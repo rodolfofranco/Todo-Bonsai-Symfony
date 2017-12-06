@@ -1,0 +1,923 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+  {{ parent() }}
+{% endblock %}
+
+{% block toplinks %}
+    
+    {% if app.user.pais == "VE" %}
+   {% if not is_granted('IS_AUTHENTICATED_FULLY')%}
+    <a class="mdl-navigation__link" href="/"> <i class="material-icons">home</i> Inicio</a>
+    <a class="mdl-navigation__link" href="/product"> <i class="material-icons">view_module</i> Productos</a>
+    <a class="mdl-navigation__link" href="/register"> <i class="material-icons">person_add</i> Registrarse</a>
+    <a class="mdl-navigation__link show-dialog" href="javascript:void(0)" id="show-dialog">  <i class="material-icons">person</i>Iniciar Sesion</a>
+  {% endif %}
+    
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %} 
+      <a class="mdl-navigation__link" href="/"> <i class="material-icons">home</i> Inicio</a>
+      <a class="mdl-navigation__link" href="/product"> <i class="material-icons">view_module</i> Productos</a>
+      <a class="mdl-navigation__link" href="/getWishlist"> <i class="material-icons">view_list</i> Lista de Deseos</a>
+      <a class="mdl-navigation__link" href="/shoppingCart"> <i class="material-icons">shopping_cart</i>Carro de Compras</a>
+      <a class="mdl-navigation__link" href="/orders"> <i class="material-icons">local_shipping</i> Ordenes</a>
+      <a class="mdl-navigation__link" href="/logout"> <i class="material-icons">exit_to_app</i> Salir</a>
+    {% endif %} 
+    {% endif %}
+    
+     {% if app.user.pais == "CO" %}
+   {% if not is_granted('IS_AUTHENTICATED_FULLY')%}
+    <a class="mdl-navigation__link" href="/"> <i class="material-icons">home</i> Home</a>
+    <a class="mdl-navigation__link" href="/product"> <i class="material-icons">view_module</i> Productos</a>
+    <a class="mdl-navigation__link" href="/register"> <i class="material-icons">person_add</i> Registrarse</a>
+    <a class="mdl-navigation__link show-dialog" href="javascript:void(0)" id="show-dialog">  <i class="material-icons">person</i>Iniciar Sesion</a>
+  {% endif %}
+    
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %} 
+      <a class="mdl-navigation__link" href="/"> <i class="material-icons">home</i> Home</a>
+      <a class="mdl-navigation__link" href="/product"> <i class="material-icons">view_module</i> Productos</a>
+      <a class="mdl-navigation__link" href="/getWishlist"> <i class="material-icons">view_list</i> Lista de Deseos</a>
+      <a class="mdl-navigation__link" href="/shoppingCart"> <i class="material-icons">shopping_cart</i>Carro de Compras</a>
+      <a class="mdl-navigation__link" href="/orders"> <i class="material-icons">local_shipping</i> Ordenes</a>
+      <a class="mdl-navigation__link" href="/logout"> <i class="material-icons">exit_to_app</i> Salir</a>
+    {% endif %} 
+    {% endif %}
+    
+     {% if app.user.pais == "US" %}
+   {% if not is_granted('IS_AUTHENTICATED_FULLY')%}
+    <a class="mdl-navigation__link" href="/"> <i class="material-icons">home</i> Home</a>
+    <a class="mdl-navigation__link" href="/product"> <i class="material-icons">view_module</i> Products</a>
+    <a class="mdl-navigation__link" href="/register"> <i class="material-icons">person_add</i> Sign Up</a>
+    <a class="mdl-navigation__link show-dialog" href="javascript:void(0)" id="show-dialog">  <i class="material-icons">person</i>Sign In</a>
+  {% endif %}
+    
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %} 
+      <a class="mdl-navigation__link" href="/"> <i class="material-icons">home</i> Home</a>
+      <a class="mdl-navigation__link" href="/product"> <i class="material-icons">view_module</i> Products</a>
+      <a class="mdl-navigation__link" href="/getWishlist"> <i class="material-icons">view_list</i> Wishlist</a>
+      <a class="mdl-navigation__link" href="/shoppingCart"> <i class="material-icons">shopping_cart</i>Shopping Cart</a>
+      <a class="mdl-navigation__link" href="/orders"> <i class="material-icons">local_shipping</i> Orders</a>
+      <a class="mdl-navigation__link" href="/logout"> <i class="material-icons">exit_to_app</i> Logout</a>
+    {% endif %} 
+    {% endif %}
+    
+    {% if app.user.pais == "EN" %}
+   {% if not is_granted('IS_AUTHENTICATED_FULLY')%}
+    <a class="mdl-navigation__link" href="/"> <i class="material-icons">home</i> Home</a>
+    <a class="mdl-navigation__link" href="/product"> <i class="material-icons">view_module</i> Products</a>
+    <a class="mdl-navigation__link" href="/register"> <i class="material-icons">person_add</i> Sign Up</a>
+    <a class="mdl-navigation__link show-dialog" href="javascript:void(0)" id="show-dialog">  <i class="material-icons">person</i>Sign In</a>
+  {% endif %}
+    
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %} 
+      <a class="mdl-navigation__link" href="/"> <i class="material-icons">home</i> Home</a>
+      <a class="mdl-navigation__link" href="/product"> <i class="material-icons">view_module</i> Products</a>
+      <a class="mdl-navigation__link" href="/getWishlist"> <i class="material-icons">view_list</i> Wishlist</a>
+      <a class="mdl-navigation__link" href="/shoppingCart"> <i class="material-icons">shopping_cart</i>Shopping Cart</a>
+      <a class="mdl-navigation__link" href="/orders"> <i class="material-icons">local_shipping</i> Orders</a>
+      <a class="mdl-navigation__link" href="/logout"> <i class="material-icons">exit_to_app</i> Logout</a>
+    {% endif %} 
+    {% endif %}
+    
+{% endblock %}
+
+{% block links %}
+    
+    {% if app.user.pais == "VE" %}
+   {% if not is_granted('IS_AUTHENTICATED_FULLY')%}
+    <a class="mdl-navigation__link" href="/"> <i class="material-icons">home</i> Inicio</a>
+    <a class="mdl-navigation__link" href="/product"> <i class="material-icons">view_module</i> Productos</a>
+    <a class="mdl-navigation__link" href="/register"> <i class="material-icons">person_add</i> Registrarse</a>
+    <a class="mdl-navigation__link show-dialog" href="javascript:void(0)" id="show-dialog">  <i class="material-icons">person</i>Iniciar Sesion</a>
+  {% endif %}
+    
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %} 
+      <a class="mdl-navigation__link" href="/"> <i class="material-icons">home</i> Inicio</a>
+      <a class="mdl-navigation__link" href="/product"> <i class="material-icons">view_module</i> Productos</a>
+      <a class="mdl-navigation__link" href="/getWishlist"> <i class="material-icons">view_list</i> Lista de Deseos</a>
+      <a class="mdl-navigation__link" href="/shoppingCart"> <i class="material-icons">shopping_cart</i>Carro de Compras</a>
+      <a class="mdl-navigation__link" href="/orders"> <i class="material-icons">local_shipping</i> Ordenes</a>
+      <a class="mdl-navigation__link" href="/logout"> <i class="material-icons">exit_to_app</i> Salir</a>
+    {% endif %} 
+    {% endif %}
+    
+     {% if app.user.pais == "CO" %}
+   {% if not is_granted('IS_AUTHENTICATED_FULLY')%}
+    <a class="mdl-navigation__link" href="/"> <i class="material-icons">home</i> Home</a>
+    <a class="mdl-navigation__link" href="/product"> <i class="material-icons">view_module</i> Productos</a>
+    <a class="mdl-navigation__link" href="/register"> <i class="material-icons">person_add</i> Registrarse</a>
+    <a class="mdl-navigation__link show-dialog" href="javascript:void(0)" id="show-dialog">  <i class="material-icons">person</i>Iniciar Sesion</a>
+  {% endif %}
+    
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %} 
+      <a class="mdl-navigation__link" href="/"> <i class="material-icons">home</i> Home</a>
+      <a class="mdl-navigation__link" href="/product"> <i class="material-icons">view_module</i> Productos</a>
+      <a class="mdl-navigation__link" href="/getWishlist"> <i class="material-icons">view_list</i> Lista de Deseos</a>
+      <a class="mdl-navigation__link" href="/shoppingCart"> <i class="material-icons">shopping_cart</i>Carro de Compras</a>
+      <a class="mdl-navigation__link" href="/orders"> <i class="material-icons">local_shipping</i> Ordenes</a>
+      <a class="mdl-navigation__link" href="/logout"> <i class="material-icons">exit_to_app</i> Salir</a>
+    {% endif %} 
+    {% endif %}
+    
+     {% if app.user.pais == "US" %}
+   {% if not is_granted('IS_AUTHENTICATED_FULLY')%}
+    <a class="mdl-navigation__link" href="/"> <i class="material-icons">home</i> Home</a>
+    <a class="mdl-navigation__link" href="/product"> <i class="material-icons">view_module</i> Products</a>
+    <a class="mdl-navigation__link" href="/register"> <i class="material-icons">person_add</i> Sign Up</a>
+    <a class="mdl-navigation__link show-dialog" href="javascript:void(0)" id="show-dialog">  <i class="material-icons">person</i>Sign In</a>
+  {% endif %}
+    
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %} 
+      <a class="mdl-navigation__link" href="/"> <i class="material-icons">home</i> Home</a>
+      <a class="mdl-navigation__link" href="/product"> <i class="material-icons">view_module</i> Products</a>
+      <a class="mdl-navigation__link" href="/getWishlist"> <i class="material-icons">view_list</i> Wishlist</a>
+      <a class="mdl-navigation__link" href="/shoppingCart"> <i class="material-icons">shopping_cart</i>Shopping Cart</a>
+      <a class="mdl-navigation__link" href="/orders"> <i class="material-icons">local_shipping</i> Orders</a>
+      <a class="mdl-navigation__link" href="/logout"> <i class="material-icons">exit_to_app</i> Logout</a>
+    {% endif %} 
+    {% endif %}
+    
+    {% if app.user.pais == "EN" %}
+   {% if not is_granted('IS_AUTHENTICATED_FULLY')%}
+    <a class="mdl-navigation__link" href="/"> <i class="material-icons">home</i> Home</a>
+    <a class="mdl-navigation__link" href="/product"> <i class="material-icons">view_module</i> Products</a>
+    <a class="mdl-navigation__link" href="/register"> <i class="material-icons">person_add</i> Sign Up</a>
+    <a class="mdl-navigation__link show-dialog" href="javascript:void(0)" id="show-dialog">  <i class="material-icons">person</i>Sign In</a>
+  {% endif %}
+    
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %} 
+      <a class="mdl-navigation__link" href="/"> <i class="material-icons">home</i> Home</a>
+      <a class="mdl-navigation__link" href="/product"> <i class="material-icons">view_module</i> Products</a>
+      <a class="mdl-navigation__link" href="/getWishlist"> <i class="material-icons">view_list</i> Wishlist</a>
+      <a class="mdl-navigation__link" href="/shoppingCart"> <i class="material-icons">shopping_cart</i>Shopping Cart</a>
+      <a class="mdl-navigation__link" href="/orders"> <i class="material-icons">local_shipping</i> Orders</a>
+      <a class="mdl-navigation__link" href="/logout"> <i class="material-icons">exit_to_app</i> Logout</a>
+    {% endif %} 
+    {% endif %}
+
+{% endblock %}
+
+
+
+{% block test %} 
+
+          <form id="form-login" action="{{ path('login') }}" method="post">
+              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <label class="mdl-textfield__label" for="correo">Correo</label>
+                <input class="mdl-textfield__input" type="email" id="correo" name='_username'>
+              </div>
+              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <label class="mdl-textfield__label" for="clave">Contraseña</label>
+                <input class="mdl-textfield__input" type="text" id="clave" name="_password">
+              </div>
+            </form>
+          <div class="mdl-dialog__actions">
+            <button form="form-login" type="submit" class="mdl-button">Login</button>
+            <button type="button" class="mdl-button close">Cancelar</button>
+          </div>
+
+{% endblock %}
+
+{% block contenido %}
+
+{% if app.user.pais == "VE" %}
+<h2>Carro de Compras</h2>
+{% endif %}
+{% if app.user.pais == "CO" %}
+<h2>Carro de Compras</h2>
+{% endif %}
+{% if app.user.pais == "EN" %}
+<h2>Shopping Cart</h2>
+{% endif %}
+{% if app.user.pais == "US" %}
+<h2>Shopping Cart</h2>
+{% endif %}
+<style>
+  .table>tbody>tr>td, .table>tfoot>tr>td{
+    vertical-align: middle;
+}
+@media screen and (max-width: 600px) {
+    table#cart tbody td .form-control{
+		width:20%;
+		display: inline !important;
+	}
+	.actions .btn{
+		width:36%;
+		margin:1.5em 0;
+	}
+	
+	.actions .btn-info{
+		float:left;
+	}
+	.actions .btn-danger{
+		float:right;
+	}
+	
+	table#cart thead { display: none; }
+	table#cart tbody td { display: block; padding: .6rem; min-width:320px;}
+	table#cart tbody tr td:first-child { background: #333; color: #fff; }
+	table#cart tbody td:before {
+		content: attr(data-th); font-weight: bold;
+		display: inline-block; width: 8rem;
+	}
+	
+	
+	
+	table#cart tfoot td{display:block; }
+	table#cart tfoot td .btn{display:block;}
+	
+}
+
+</style>
+
+
+{% if app.user.pais == "VE" %}
+<div class="card" style="">
+<div class="container">
+	<table id="cart" class="table table-hover table-condensed">
+    			<thead>
+						<tr>
+							<th style="width:60%" class="">Producto</th>
+							<th style="width:20%" class="">Precio</th>
+							<th style="width:20%" class="text-center center-text">Acciones</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% set total = 0 %}
+						{% for product in productos %}
+						{% set precio = product.precio * 35000 %}
+						{% set total = total + precio %}
+			
+						<tr>
+							<td data-th="Product">
+								<div class="row">
+									<div class="col-sm-3 hidden-xs"><img src="{{product.link}}" alt="..." class="img-responsive" width="100px" height="100px"/></div>
+									<div class="col-sm-9">
+										<h4 class="nomargin">{{product.nombre}}</h4>
+										<p>{{product.descripcion}}</p>
+									</div>
+								</div>
+							</td>
+							
+							<td data-th="Price">{{precio}} BsF</td>
+							<form action="{{ path('removeProducto' , { 'id' : product.id})}}" method="POST">
+								<td class="actions text-center center-text"  data-th="">
+									<button id="delete{{product.id}}" class="btn " style="background-color: #f44336;color:white; width:50%"type="submit"><i class="material-icons">delete</i></button>
+									<div class="mdl-tooltip mdl-tooltip--right" data-mdl-for="delete{{product.id}}">
+										Borrar
+									</div>
+								</td>
+							</form>
+						</tr>
+						
+						{% endfor %}
+						
+					</tbody>
+					<tfoot>
+						<tr>
+							<td colspan="" class=""></td>
+							<td class=""><strong>Total:{{total}} BsF</strong></td>
+							<td>
+								<button onclick="getFecha()"id="show-dialog-pago" class="btn " style="background-color: #00c853;color:white; width:100%" type="button">Checkout > </button>
+							</td>
+						</tr>
+					</tfoot>
+				</table>
+				<script>
+					function getFecha(){
+						n =  new Date();
+						y = n.getFullYear();
+						m = n.getMonth() + 1;
+						d = n.getDate();
+						document.getElementById("fecha").value = m + "/" + d + "/" + y;
+					}
+				</script>
+				<style>
+					.mdl-dialog {
+					    border: none;
+					    box-shadow: 0 9px 46px 8px rgba(0,0,0,.14), 0 11px 15px -7px rgba(0,0,0,.12), 0 24px 38px 3px rgba(0,0,0,.2);
+					    width: 600px;
+					}
+					.mdl-dialog__actions {
+					     padding: 0px 50px 0px 50px; 
+					    display: -webkit-flex;
+					    display: -ms-flexbox;
+					    /* display: flex; */
+					    -webkit-flex-direction: row-reverse;
+					    -ms-flex-direction: row-reverse;
+					    flex-direction: row-reverse;
+					    -webkit-flex-wrap: wrap;
+					    -ms-flex-wrap: wrap;
+					    flex-wrap: wrap;
+					}
+				</style>
+				
+					  <dialog class="mdl-dialog dialog-pago">
+					    <h4 class="mdl-dialog__title">Sesión de Pago</h4>
+					    <div class="mdl-dialog__content">
+					      <form id="pagar" action="{{ path('pagarCarrito')}}" method="GET">
+					      	<div class="row">
+					      		<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:100%">
+								    <input class="mdl-textfield__input" type="text" id="direccionEnvio" name="direccionEnvio" data-required>
+								    <label class="mdl-textfield__label" for="direccionEnvio">Dirección de Envío</label>
+								</div>
+					      	</div>
+					      	<div class="row">
+								<div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+								    <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="numeroTarjeta" name="numeroTarjeta" maxlength="16" minlength="16">
+								    <label class="mdl-textfield__label" for="numeroTarjeta">Número de Tarjeta</label>
+								    <span class="mdl-textfield__error">Ingresa solo números, debe ser de 20 digitos</span>
+								</div>
+								<div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+								    <input class="mdl-textfield__input" type="password" pattern="-?[0-9]*(\.[0-9]+)?" id="cvc" name="cvc" maxlength="3" minlength="3">
+								    <label class="mdl-textfield__label" for="cvc">CVC</label>
+								    <span class="mdl-textfield__error">Ingresa solo números, debe ser de 3 digitos</span>
+								</div>
+								<div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1 ">
+								</div>
+								<div class="col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5 drop-bottom" id="tipoP">
+								    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
+									  <input type="radio" id="option-1" class="mdl-radio__button" name="tipoPago" value="debito"
+									  <span class="mdl-radio__label">Débito           <i class="fa fa-credit-card" style="font-size:24px">      <i class="fa fa-google-wallet" style="font-size:24px"></i></i></span>
+									</label>
+									<br>
+									<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
+									  <input type="radio" id="option-2" class="mdl-radio__button" name="tipoPago" value="credito">
+									  <span class="mdl-radio__label">Crédito <i class="fa fa-cc-visa" style="font-size:24px"></i>      <i class="fa fa-cc-mastercard" style="font-size:24px"></i>      <i class="fa fa-cc-amex" style="font-size:24px"></i></span>
+									</label>
+									<br>
+									<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect"  for="option-3">
+									  <input type="radio" id="option-3" class="mdl-radio__button" name="tipoPago" value="paypal">
+									  <span class="mdl-radio__label">Paypal   <i class="fa fa-cc-paypal" style="font-size:24px"></i></span>
+									</label>
+								</div>
+					      	</div>
+					      	<div class="row">
+					      		<h4>Monto Total:    {{total}}  BsF</h4>
+					      		{% set totalDolar = total / 35000 %}
+					      		<input type="hidden" name="montoTotal" value="{{totalDolar}}">
+					      		<input id="fecha" type="hidden" name="fecha" value="">
+					      	</div>
+					      	
+					      </form>
+					    </div>
+					    <div class="mdl-dialog__actions">
+					      <button id="show-dialog-pago" class="btn " style="background-color: #00c853;color:white; width:100%" onclick="checkForm()">PAGAR</button>
+					      <br>
+					      <br>
+					      <br>
+					      <button type="button" class="mdl-button close" >Cancelar</button>
+					    </div>
+					  </dialog>
+					  <script>
+					  	function checkForm(){
+					  		var direccion = document.getElementById("direccionEnvio").value;
+					  		var tarjeta = document.getElementById("numeroTarjeta").value;
+					  		var cvc = document.getElementById("cvc").value;
+					  		var tipo = $('input[type=radio][name=tipoPago]:checked').val();
+					  		if(direccion=="" || tarjeta=="" || cvc=="" || tipo == null){
+					  			alert('Recuerda llenar el formulario de pago');
+					  		}
+					  		else{
+					  			document.getElementById("pagar").submit();
+					  		}
+					  	}
+					  
+					    var dialogPago = document.querySelector('.dialog-pago');
+					    var botonPago = document.querySelector('#show-dialog-pago');
+					    if (! dialogPago.showModal) {
+					      dialogPolyfill.registerDialog(dialogPago);
+					    }
+					    botonPago.addEventListener('click', function() {
+					      dialogPago.showModal();
+					    });
+					    dialogPago.querySelector('.close').addEventListener('click', function() {
+					      dialogPago.close();
+					    });
+					  </script>
+</div>
+</div>
+	<br>
+	<br>
+{% endif %}
+
+{% if app.user.pais == "CO" %}
+<div class="card" style="">
+<div class="container">
+	<table id="cart" class="table table-hover table-condensed">
+    			<thead>
+						<tr>
+							<th style="width:60%" class="">Producto</th>
+							<th style="width:20%" class="">Precio</th>
+							<th style="width:20%" class="text-center center-text">Acciones</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% set total = 0 %}
+						{% for product in productos %}
+						{% set precio = product.precio * 2977.99 %}
+						{% set total = total + precio %}
+			
+						<tr>
+							<td data-th="Product">
+								<div class="row">
+									<div class="col-sm-3 hidden-xs"><img src="{{product.link}}" alt="..." class="img-responsive" width="100px" height="100px"/></div>
+									<div class="col-sm-9">
+										<h4 class="nomargin">{{product.nombre}}</h4>
+										<p>{{product.descripcion}}</p>
+									</div>
+								</div>
+							</td>
+							<td data-th="Price">{{precio}} COP</td>
+							<form action="{{ path('removeProducto' , { 'id' : product.id})}}" method="POST">
+								<td class="actions text-center center-text"  data-th="">
+									<button id="delete{{product.id}}" class="btn " style="background-color: #f44336;color:white; width:50%"type="submit"><i class="material-icons">delete</i></button>
+									<div class="mdl-tooltip mdl-tooltip--right" data-mdl-for="delete{{product.id}}">
+										Borrar
+									</div>
+								</td>
+							</form>
+						</tr>
+						
+						{% endfor %}
+						
+					</tbody>
+					<tfoot>
+						<tr>
+							<td colspan="" class=""></td>
+							<td class=""><strong>Total:{{total}} COP</strong></td>
+							<td>
+								<button onclick="getFecha()"id="show-dialog-pago" class="btn " style="background-color: #00c853;color:white; width:100%" type="button">Checkout > </button>
+							</td>
+						</tr>
+					</tfoot>
+				</table>
+				<script>
+					function getFecha(){
+						n =  new Date();
+						y = n.getFullYear();
+						m = n.getMonth() + 1;
+						d = n.getDate();
+						document.getElementById("fecha").value = m + "/" + d + "/" + y;
+					}
+				</script>
+				<style>
+					.mdl-dialog {
+					    border: none;
+					    box-shadow: 0 9px 46px 8px rgba(0,0,0,.14), 0 11px 15px -7px rgba(0,0,0,.12), 0 24px 38px 3px rgba(0,0,0,.2);
+					    width: 600px;
+					}
+					.mdl-dialog__actions {
+					     padding: 0px 50px 0px 50px; 
+					    display: -webkit-flex;
+					    display: -ms-flexbox;
+					    /* display: flex; */
+					    -webkit-flex-direction: row-reverse;
+					    -ms-flex-direction: row-reverse;
+					    flex-direction: row-reverse;
+					    -webkit-flex-wrap: wrap;
+					    -ms-flex-wrap: wrap;
+					    flex-wrap: wrap;
+					}
+				</style>
+				
+					  <dialog class="mdl-dialog dialog-pago">
+					    <h4 class="mdl-dialog__title">Sesión de Pago</h4>
+					    <div class="mdl-dialog__content">
+					      <form id="pagar" action="{{ path('pagarCarrito')}}" method="GET">
+					      	<div class="row">
+					      		<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:100%">
+								    <input class="mdl-textfield__input" type="text" id="direccionEnvio" name="direccionEnvio">
+								    <label class="mdl-textfield__label" for="direccionEnvio">Dirección de Envío</label>
+								</div>
+					      	</div>
+					      	<div class="row">
+								<div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+								    <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="numeroTarjeta" name="numeroTarjeta" maxlength="16" minlength="16" data-inputmask="'mask': '9999 9999 9999 9999'">
+								    <label class="mdl-textfield__label" for="numeroTarjeta">Número de Tarjeta</label>
+								    <span class="mdl-textfield__error">Ingresa solo números, debe ser de 20 digitos</span>
+								</div>
+								<div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+								    <input class="mdl-textfield__input" type="password" pattern="-?[0-9]*(\.[0-9]+)?" id="cvc" name="cvc" maxlength="3" minlength="3">
+								    <label class="mdl-textfield__label" for="cvc">CVC</label>
+								    <span class="mdl-textfield__error">Ingresa solo números, debe ser de 3 digitos</span>
+								</div>
+								<div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1 ">
+								</div>
+								<div class="col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5 drop-bottom" required>
+								    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
+									  <input type="radio" id="option-1" class="mdl-radio__button" name="tipoPago" value="debito">
+									  <span class="mdl-radio__label">Débito           <i class="fa fa-credit-card" style="font-size:24px">      <i class="fa fa-google-wallet" style="font-size:24px"></i></i></span>
+									</label>
+									<br>
+									<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
+									  <input type="radio" id="option-2" class="mdl-radio__button" name="tipoPago" value="credito">
+									  <span class="mdl-radio__label">Crédito <i class="fa fa-cc-visa" style="font-size:24px"></i>      <i class="fa fa-cc-mastercard" style="font-size:24px"></i>      <i class="fa fa-cc-amex" style="font-size:24px"></i></span>
+									</label>
+									<br>
+									<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect"  for="option-3">
+									  <input type="radio" id="option-3" class="mdl-radio__button" name="tipoPago" value="paypal">
+									  <span class="mdl-radio__label">Paypal   <i class="fa fa-cc-paypal" style="font-size:24px"></i></span>
+									</label>
+								</div>
+					      	</div>
+					      	<div class="row">
+					      		<h4>Monto Total:    {{total}} COP</h4>
+					      		{% set totalDolar = total / 2977.99 %}
+					      		<input type="hidden" name="montoTotal" value="{{totalDolar}}">
+					      		<input id="fecha" type="hidden" name="fecha" value="">
+					      	</div>
+					      	
+					      </form>
+					    </div>
+					    <div class="mdl-dialog__actions">
+					      <button id="show-dialog-pago" class="btn " style="background-color: #00c853;color:white; width:100%" onclick="checkForm()">PAGAR</button>
+					      <br>
+					      <br>
+					      <br>
+					      <button type="button" class="mdl-button close" >Cancelar</button>
+					    </div>
+					  </dialog>
+					  <script>
+					  function checkForm(){
+					  		var direccion = document.getElementById("direccionEnvio").value;
+					  		var tarjeta = document.getElementById("numeroTarjeta").value;
+					  		var cvc = document.getElementById("cvc").value;
+					  		var tipo = $('input[type=radio][name=tipoPago]:checked').val();
+					  		if(direccion=="" || tarjeta=="" || cvc=="" || tipo == null){
+					  			alert('Recuerda llenar el formulario de pago');
+					  		}
+					  		else{
+					  			document.getElementById("pagar").submit();
+					  		}
+					  	}
+					    var dialogPago = document.querySelector('.dialog-pago');
+					    var botonPago = document.querySelector('#show-dialog-pago');
+					    if (! dialogPago.showModal) {
+					      dialogPolyfill.registerDialog(dialogPago);
+					    }
+					    botonPago.addEventListener('click', function() {
+					      dialogPago.showModal();
+					    });
+					    dialogPago.querySelector('.close').addEventListener('click', function() {
+					      dialogPago.close();
+					    });
+					  </script>
+</div>
+</div>
+	<br>
+	<br>
+{% endif %}
+
+{% if app.user.pais == "US" %}
+<div class="card" style="">
+<div class="container">
+	<table id="cart" class="table table-hover table-condensed">
+    			<thead>
+						<tr>
+							<th style="width:60%" class="">Producto</th>
+							<th style="width:20%" class="">Precio</th>
+							<th style="width:20%" class="text-center center-text">Acciones</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% set total = 0 %}
+						{% for product in productos %}
+						{% set total = total + product.precio %}
+			
+						<tr>
+							<td data-th="Product">
+								<div class="row">
+									<div class="col-sm-3 hidden-xs"><img src="{{product.link}}" alt="..." class="img-responsive" width="100px" height="100px"/></div>
+									<div class="col-sm-9">
+										<h4 class="nomargin">{{product.nombre}}</h4>
+										<p>{{product.descripcion}}</p>
+									</div>
+								</div>
+							</td>
+							<td data-th="Price">{{product.precio}} $</td>
+							<form action="{{ path('removeProducto' , { 'id' : product.id})}}" method="POST">
+								<td class="actions text-center center-text"  data-th="">
+									<button id="delete{{product.id}}" class="btn " style="background-color: #f44336;color:white; width:50%"type="submit"><i class="material-icons">delete</i></button>
+									<div class="mdl-tooltip mdl-tooltip--right" data-mdl-for="delete{{product.id}}">
+										Borrar
+									</div>
+								</td>
+							</form>
+						</tr>
+						
+						{% endfor %}
+						
+					</tbody>
+					<tfoot>
+						<tr>
+							<td colspan="" class=""></td>
+							<td class=""><strong>Total:{{total}} $</strong></td>
+							<td>
+								<button onclick="getFecha()"id="show-dialog-pago" class="btn " style="background-color: #00c853;color:white; width:100%" type="button">Checkout > </button>
+							</td>
+						</tr>
+					</tfoot>
+				</table>
+				<script>
+					function getFecha(){
+						n =  new Date();
+						y = n.getFullYear();
+						m = n.getMonth() + 1;
+						d = n.getDate();
+						document.getElementById("fecha").value = m + "/" + d + "/" + y;
+					}
+				</script>
+				<style>
+					.mdl-dialog {
+					    border: none;
+					    box-shadow: 0 9px 46px 8px rgba(0,0,0,.14), 0 11px 15px -7px rgba(0,0,0,.12), 0 24px 38px 3px rgba(0,0,0,.2);
+					    width: 600px;
+					}
+					.mdl-dialog__actions {
+					     padding: 0px 50px 0px 50px; 
+					    display: -webkit-flex;
+					    display: -ms-flexbox;
+					    /* display: flex; */
+					    -webkit-flex-direction: row-reverse;
+					    -ms-flex-direction: row-reverse;
+					    flex-direction: row-reverse;
+					    -webkit-flex-wrap: wrap;
+					    -ms-flex-wrap: wrap;
+					    flex-wrap: wrap;
+					}
+				</style>
+				
+					  <dialog class="mdl-dialog dialog-pago">
+					    <h4 class="mdl-dialog__title">Sesión de Pago</h4>
+					    <div class="mdl-dialog__content">
+					      <form id="pagar" action="{{ path('pagarCarrito')}}" method="GET">
+					      	<div class="row">
+					      		<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:100%">
+								    <input class="mdl-textfield__input" type="text" id="direccionEnvio" name="direccionEnvio">
+								    <label class="mdl-textfield__label" for="direccionEnvio">Dirección de Envío</label>
+								</div>
+					      	</div>
+					      	<div class="row">
+								<div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+								    <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="numeroTarjeta" name="numeroTarjeta" maxlength="16" minlength="16" data-inputmask="'mask': '9999 9999 9999 9999'">
+								    <label class="mdl-textfield__label" for="numeroTarjeta">Número de Tarjeta</label>
+								    <span class="mdl-textfield__error">Ingresa solo números, debe ser de 20 digitos</span>
+								</div>
+								<div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+								    <input class="mdl-textfield__input" type="password" pattern="-?[0-9]*(\.[0-9]+)?" id="cvc" name="cvc" maxlength="3" minlength="3">
+								    <label class="mdl-textfield__label" for="cvc">CVC</label>
+								    <span class="mdl-textfield__error">Ingresa solo números, debe ser de 3 digitos</span>
+								</div>
+								<div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1 ">
+								</div>
+								<div class="col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5 drop-bottom" required>
+								    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
+									  <input type="radio" id="option-1" class="mdl-radio__button" name="tipoPago" value="debito">
+									  <span class="mdl-radio__label">Débito           <i class="fa fa-credit-card" style="font-size:24px">      <i class="fa fa-google-wallet" style="font-size:24px"></i></i></span>
+									</label>
+									<br>
+									<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
+									  <input type="radio" id="option-2" class="mdl-radio__button" name="tipoPago" value="credito">
+									  <span class="mdl-radio__label">Crédito <i class="fa fa-cc-visa" style="font-size:24px"></i>      <i class="fa fa-cc-mastercard" style="font-size:24px"></i>      <i class="fa fa-cc-amex" style="font-size:24px"></i></span>
+									</label>
+									<br>
+									<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect"  for="option-3">
+									  <input type="radio" id="option-3" class="mdl-radio__button" name="tipoPago" value="paypal">
+									  <span class="mdl-radio__label">Paypal   <i class="fa fa-cc-paypal" style="font-size:24px"></i></span>
+									</label>
+								</div>
+					      	</div>
+					      	<div class="row">
+					      		<h4>Monto Total:    {{total}} </h4>
+					      		<input type="hidden" name="montoTotal" value="{{total}}">
+					      		<input id="fecha" type="hidden" name="fecha" value="">
+					      	</div>
+					      	
+					      </form>
+					    </div>
+					    <div class="mdl-dialog__actions">
+					      <button id="show-dialog-pago" class="btn " style="background-color: #00c853;color:white; width:100%" onclick="checkForm()">PAGAR</button>
+					      <br>
+					      <br>
+					      <br>
+					      <button type="button" class="mdl-button close" >Cancelar</button>
+					    </div>
+					  </dialog>
+					  <script>
+					  function checkForm(){
+					  		var direccion = document.getElementById("direccionEnvio").value;
+					  		var tarjeta = document.getElementById("numeroTarjeta").value;
+					  		var cvc = document.getElementById("cvc").value;
+					  		var tipo = $('input[type=radio][name=tipoPago]:checked').val();
+					  		if(direccion=="" || tarjeta=="" || cvc=="" || tipo == null){
+					  			alert('Remember to fill all inputs to pay');
+					  		}
+					  		else{
+					  			document.getElementById("pagar").submit();
+					  		}
+					  	}
+					    var dialogPago = document.querySelector('.dialog-pago');
+					    var botonPago = document.querySelector('#show-dialog-pago');
+					    if (! dialogPago.showModal) {
+					      dialogPolyfill.registerDialog(dialogPago);
+					    }
+					    botonPago.addEventListener('click', function() {
+					      dialogPago.showModal();
+					    });
+					    dialogPago.querySelector('.close').addEventListener('click', function() {
+					      dialogPago.close();
+					    });
+					  </script>
+</div>
+</div>
+	<br>
+	<br>
+{% endif %}
+
+{% if app.user.pais == "EN" %}
+<div class="card" style="">
+<div class="container">
+	<table id="cart" class="table table-hover table-condensed">
+    			<thead>
+						<tr>
+							<th style="width:60%" class="">Producto</th>
+							<th style="width:20%" class="">Precio</th>
+							<th style="width:20%" class="text-center center-text">Acciones</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% set total = 0 %}
+						{% for product in productos %}
+						{% set precio = product.precio * 0.76 %}
+						{% set total = total + precio %}
+			
+						<tr>
+							<td data-th="Product">
+								<div class="row">
+									<div class="col-sm-3 hidden-xs"><img src="{{product.link}}" alt="..." class="img-responsive" width="100px" height="100px"/></div>
+									<div class="col-sm-9">
+										<h4 class="nomargin">{{product.nombre}}</h4>
+										<p>{{product.descripcion}}</p>
+									</div>
+								</div>
+							</td>
+							<td data-th="Price">{{precio}} £</td>
+							<form action="{{ path('removeProducto' , { 'id' : product.id})}}" method="POST">
+								<td class="actions text-center center-text"  data-th="">
+									<button id="delete{{product.id}}" class="btn " style="background-color: #f44336;color:white; width:50%"type="submit"><i class="material-icons">delete</i></button>
+									<div class="mdl-tooltip mdl-tooltip--right" data-mdl-for="delete{{product.id}}">
+										Borrar
+									</div>
+								</td>
+							</form>
+						</tr>
+						
+						{% endfor %}
+						
+					</tbody>
+					<tfoot>
+						<tr>
+							<td colspan="" class=""></td>
+							<td class=""><strong>Total:{{total}} £</strong></td>
+							<td>
+								<button onclick="getFecha()"id="show-dialog-pago" class="btn " style="background-color: #00c853;color:white; width:100%" type="button">Checkout > </button>
+							</td>
+						</tr>
+					</tfoot>
+				</table>
+				<script>
+					function getFecha(){
+						n =  new Date();
+						y = n.getFullYear();
+						m = n.getMonth() + 1;
+						d = n.getDate();
+						document.getElementById("fecha").value = m + "/" + d + "/" + y;
+					}
+				</script>
+				<style>
+					.mdl-dialog {
+					    border: none;
+					    box-shadow: 0 9px 46px 8px rgba(0,0,0,.14), 0 11px 15px -7px rgba(0,0,0,.12), 0 24px 38px 3px rgba(0,0,0,.2);
+					    width: 600px;
+					}
+					.mdl-dialog__actions {
+					     padding: 0px 50px 0px 50px; 
+					    display: -webkit-flex;
+					    display: -ms-flexbox;
+					    /* display: flex; */
+					    -webkit-flex-direction: row-reverse;
+					    -ms-flex-direction: row-reverse;
+					    flex-direction: row-reverse;
+					    -webkit-flex-wrap: wrap;
+					    -ms-flex-wrap: wrap;
+					    flex-wrap: wrap;
+					}
+				</style>
+				
+					  <dialog class="mdl-dialog dialog-pago">
+					    <h4 class="mdl-dialog__title">Sesión de Pago</h4>
+					    <div class="mdl-dialog__content">
+					      <form id="pagar" action="{{ path('pagarCarrito')}}" method="GET">
+					      	<div class="row">
+					      		<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:100%">
+								    <input class="mdl-textfield__input" type="text" id="direccionEnvio" name="direccionEnvio">
+								    <label class="mdl-textfield__label" for="direccionEnvio">Dirección de Envío</label>
+								</div>
+					      	</div>
+					      	<div class="row">
+								<div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+								    <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="numeroTarjeta" name="numeroTarjeta" maxlength="16" minlength="16" data-inputmask="'mask': '9999 9999 9999 9999'">
+								    <label class="mdl-textfield__label" for="numeroTarjeta">Número de Tarjeta</label>
+								    <span class="mdl-textfield__error">Ingresa solo números, debe ser de 20 digitos</span>
+								</div>
+								<div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+								    <input class="mdl-textfield__input" type="password" pattern="-?[0-9]*(\.[0-9]+)?" id="cvc" name="cvc" maxlength="3" minlength="3">
+								    <label class="mdl-textfield__label" for="cvc">CVC</label>
+								    <span class="mdl-textfield__error">Ingresa solo números, debe ser de 3 digitos</span>
+								</div>
+								<div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1 ">
+								</div>
+								<div class="col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5 drop-bottom" required>
+								    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
+									  <input type="radio" id="option-1" class="mdl-radio__button" name="tipoPago" value="debito">
+									  <span class="mdl-radio__label">Débito           <i class="fa fa-credit-card" style="font-size:24px">      <i class="fa fa-google-wallet" style="font-size:24px"></i></i></span>
+									</label>
+									<br>
+									<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
+									  <input type="radio" id="option-2" class="mdl-radio__button" name="tipoPago" value="credito">
+									  <span class="mdl-radio__label">Crédito <i class="fa fa-cc-visa" style="font-size:24px"></i>      <i class="fa fa-cc-mastercard" style="font-size:24px"></i>      <i class="fa fa-cc-amex" style="font-size:24px"></i></span>
+									</label>
+									<br>
+									<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect"  for="option-3">
+									  <input type="radio" id="option-3" class="mdl-radio__button" name="tipoPago" value="paypal">
+									  <span class="mdl-radio__label">Paypal   <i class="fa fa-cc-paypal" style="font-size:24px"></i></span>
+									</label>
+								</div>
+					      	</div>
+					      	<div class="row">
+					      		<h4>Monto Total:    {{total}} £</h4>
+					      		{% set totalDolar = total / 0.76 %}
+					      		<input type="hidden" name="montoTotal" value="{{totalDolar}}">
+					      		<input id="fecha" type="hidden" name="fecha" value="">
+					      	</div>
+					      	
+					      </form>
+					    </div>
+					    <div class="mdl-dialog__actions">
+					      <button id="show-dialog-pago" class="btn " style="background-color: #00c853;color:white; width:100%" onclick="checkForm()">PAGAR</button>
+					      <br>
+					      <br>
+					      <br>
+					      <button type="button" class="mdl-button close" >Cancelar</button>
+					    </div>
+					  </dialog>
+					  <script>
+					  function checkForm(){
+					  		var direccion = document.getElementById("direccionEnvio").value;
+					  		var tarjeta = document.getElementById("numeroTarjeta").value;
+					  		var cvc = document.getElementById("cvc").value;
+					  		var tipo = $('input[type=radio][name=tipoPago]:checked').val();
+					  		if(direccion=="" || tarjeta=="" || cvc=="" || tipo == null){
+					  			alert('Remember to fill all inputs to pay');
+					  		}
+					  		else{
+					  			document.getElementById("pagar").submit();
+					  		}
+					  	}
+					    var dialogPago = document.querySelector('.dialog-pago');
+					    var botonPago = document.querySelector('#show-dialog-pago');
+					    if (! dialogPago.showModal) {
+					      dialogPolyfill.registerDialog(dialogPago);
+					    }
+					    botonPago.addEventListener('click', function() {
+					      dialogPago.showModal();
+					    });
+					    dialogPago.querySelector('.close').addEventListener('click', function() {
+					      dialogPago.close();
+					    });
+					  </script>
+</div>
+</div>
+	<br>
+	<br>
+{% endif %}
+
+ <script>
+// // Example starter JavaScript for disabling form submissions if there are invalid fields
+// (function() {
+//   'use strict';
+
+//   window.addEventListener('load', function() {
+//     var form = document.getElementById('pagar');
+//     form.addEventListener('submit', function(event) {
+//       if (form.checkValidity() === false) {
+//         event.preventDefault();
+//         event.stopPropagation();
+//       }
+//       form.classList.add('was-validated');
+//     }, false);
+//   }, false);
+// })();
+ </script>
+
+
+{% endblock %}

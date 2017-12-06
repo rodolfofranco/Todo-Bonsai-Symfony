@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {#<meta http-equiv="X-UA-Compatible" content="ie=edge">#}
+    <title>{% block title %}Todo Bonsai C.A.{% endblock %}</title>
+    
+    <!--bootstrap-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <!---->
+    <link rel="icon" type="image/jpg" href="https://i.pinimg.com/originals/61/22/71/612271e1f5df88f419fc69c29f9feda9.jpg">
+    <!--font-->
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500" rel="stylesheet" type="text/css">
+    <!---->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+  
+  <link rel="stylesheet" href="./bower_components/mdl-selectfield/dist/mdl-selectfield.min.css">
+
+<script src="./bower_components/mdl-selectfield/dist/mdl-selectfield.min.js"></script>
+    
+    
+    {% block stylesheets %}
+      <link rel="stylesheet" href="{{ asset('css/index.css') }}" >
+    {% endblock %}
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    
+    
+    <style>
+      
+      .footer {
+  position: absolute;
+  text-align: center;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  line-height: 60px; /* Vertically center the text there */
+  background-color: #adccff;
+}
+
+    </style>
+</head>
+
+ <body onload="cargando()">
+   
+       
+  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+            
+    {#MENU GENERAL DE LA PAGINA#}
+    <header class="mdl-layout__header" style="background-color: #03a9f4">
+                <div class="mdl-layout__header-row">
+                
+                {% set pais="" %}
+                {% set US="United States" %}
+                {% set VE="Venezuela" %}
+                {% set CO="Colombia" %}
+                {% set EN="England" %}
+
+  
+                <!-- Title -->
+                <img  height="45" width="45" src="https://seeklogo.com/images/B/bonsai-logo-3CFD7B0AC3-seeklogo.com.png">
+                <span style="left: 20px" class="mdl-layout-title">Todo Bonsai eShop</span>
+                <!-- Add spacer, to align navigation to the right -->
+                <div class="mdl-layout-spacer"></div>
+                
+                <!-- Navigation. We hide it in small screens. -->
+                <nav class="mdl-navigation mdl-layout--large-screen-only">
+                  
+                  
+                  
+                  
+                  {% block toplinks %}{% endblock %}
+                  
+                </nav>
+                <div aria-expanded="false" role="button" tabindex="0" class="mdl-layout__drawer-button mdl-layout--small-screen-only" style="color:black"><i class="material-icons"></i></div>
+                </div>
+            </header>
+    
+    {#LINKS DE LA PAGINA#}
+    <div class="mdl-layout__drawer" style="color:black">
+            <span class="mdl-layout-title">Menu</span>
+            <nav class="mdl-navigation">
+              {% block links %}{% endblock %}
+            </nav>
+          </div>
+    
+    {#AQUI EMPIEZA EL CONTENIDO#}
+    <main class="mdl-layout__content" style="background-color: #E3EEFB">
+      
+      {#MENU LATERAL PARA LA PAGINA DE PRODUCTOS#}
+      {% block menuLateral %}{% endblock %}
+      
+      {#AQUI EMPIEZA EL CONTENIDO DE CADA PAGINA, LO QUE NO ES MENU#}
+      <div class="page-content">
+        
+        {#BLOQUE PARA EL CARRUSEL DE LA VISTA PRINCIPAL#}
+        {% block carrusel %}{% endblock %}
+    
+        
+        <article class="container">
+          {#CONTENIDO DENTRO DEL CONTAINER DE LA PAGINA#}
+          {% block contenido %}{% endblock %}
+          
+          {#DIALOG PARA EL LOGIN#}
+        <dialog class="mdl-dialog">
+            
+          <h5 class="mdl-dialog__title" style="font-size:25px; align:center">Inicio de Sesión</h5>
+          <br></br>
+          {% block test %}
+          {% endblock %}
+        </dialog>
+        <script>
+          var dialog = document.querySelector('dialog');
+          var showDialogButton = document.querySelector('#show-dialog');
+          if (! dialog.showModal) {
+            dialogPolyfill.registerDialog(dialog);
+          }
+          showDialogButton.addEventListener('click', function() {
+            dialog.showModal();
+          });
+          dialog.querySelector('.close').addEventListener('click', function() {
+            dialog.close();
+          });
+          
+          var dialog2 = document.querySelector('dialog');
+          var showDialogButton2 = document.querySelector('#show-dialog2');
+          if (! dialog2.showModal) {
+            dialogPolyfill.registerDialog(dialog);
+          }
+          showDialogButton2.addEventListener('click', function() {
+            dialog2.showModal();
+          });
+          dialog.querySelector('.close').addEventListener('click', function() {
+            dialog2.close();
+          });
+        </script>
+        
+        
+        
+        </article>
+  
+      </div>
+     
+      <footer class="mdl-mini-footer">
+        <div class="mdl-mini-footer__left-section">
+          <div class="mdl-logo">Todo Bonsai C.A</div>
+          <ul class="mdl-mini-footer__link-list">
+            <li><a href="#">Help</a></li>
+            <li><a href="#">Privacy & Terms</a></li>
+            
+            {% if app.user %}
+            
+            {% if app.user.pais == "VE" %}
+              <form action="{{ path('pais') }}" method="GET" id="formPais">
+              <select class="form-control" name="seleccion" id="selPais">
+                <option selected value="VE">Venezuela</a>
+                <option value="US">United States</a>
+                <option value="EN">England</a>
+                <option value="CO">Colombia</a>
+              </select>
+            </form>
+            {% endif %}
+            {% if app.user.pais == "US" %}
+              <form action="{{ path('pais') }}" method="GET" id="formPais">
+              <select class="form-control" name="seleccion" id="selPais">
+                <option value="VE">Venezuela</a>
+                <option selected value="US">United States</a>
+                <option value="EN">England</a>
+                <option value="CO">Colombia</a>
+              </select>
+            </form>
+            {% endif %}
+            {% if app.user.pais == "EN" %}
+              <form action="{{ path('pais') }}" method="GET" id="formPais">
+              <select class="form-control" name="seleccion" id="selPais">
+                <option value="VE">Venezuela</a>
+                <option value="US">United States</a>
+                <option selected value="EN">England</a>
+                <option value="CO">Colombia</a>
+              </select>
+            </form>
+            {% endif %}
+            {% if app.user.pais == "CO" %}
+              <form action="{{ path('pais') }}" method="GET" id="formPais">
+              <select class="form-control" name="seleccion" id="selPais">
+                <option value="VE">Venezuela</a>
+                <option value="US">United States</a>
+                <option value="EN">England</a>
+                <option selected value="CO">Colombia</a>
+              </select>
+            </form>
+            {% endif %}
+            
+            {% else %}
+            <form action="{{ path('pais') }}" method="GET" id="formPais">
+              <select class="form-control" name="seleccion" id="selPais">
+                <option selected >Inicie Sesion</option>
+                <option value="VE" disabled>Venezuela</a>
+                <option value="US" disabled>United States</a>
+                <option value="EN" disabled>England</a>
+                <option value="CO" disabled>Colombia</a>
+              </select>
+            </form>
+            {% endif %}
+            
+
+          </ul>
+        </div>
+      </footer>
+
+{#<script>#}
+{#  function selectPais(sel)#}
+{#    {#}
+{#      var test = sel.options[sel.selectedIndex].value;#}
+{#      alert(test);#}
+{#    }#}
+{#</script>#}
+
+    </main>
+    
+    </div>
+    
+    
+    
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    
+    
+    <script
+    src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous"></script>
+    </body>
+      
+      <script type="text/javascript">
+         $(document).ready(function() {
+          $('#selPais').on('change', function() {
+          this.form.submit();
+    });
+    });
+    </script>
+    
+</html>

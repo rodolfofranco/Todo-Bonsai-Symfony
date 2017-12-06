@@ -1,0 +1,2970 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+    <link href="{{ asset('css/product.css') }}" rel="stylesheet" />
+{% endblock %}
+
+{% block toplinks %}
+{% if app.user %}
+    
+      {% if app.user.correo == "admin@admin.com" %}
+        
+        {% if app.user.pais == "VE" %}
+        
+              {% if is_granted('IS_AUTHENTICATED_FULLY') %} 
+              <a class="mdl-navigation__link" href="/"> <i class="material-icons">home</i> Inicio</a>
+              <a class="mdl-navigation__link" href="/admin"> <i class="material-icons">account_circle</i> Administrar Aplicacion</a>
+              <a class="mdl-navigation__link" href="/product"> <i class="material-icons">view_module</i> Productos</a>
+              <a class="mdl-navigation__link" href="/logout"> <i class="material-icons">exit_to_app</i> Salir</a>
+              {% endif %} 
+            
+        {% endif %}
+      
+          {% if app.user.pais == "CO" %}
+            
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %} 
+                  <a class="mdl-navigation__link" href="/"> <i class="material-icons">home</i> Inicio</a>
+                  <a class="mdl-navigation__link" href="/admin"> <i class="material-icons">account_circle</i> Administrar Aplicacion</a>
+                  <a class="mdl-navigation__link" href="/product"> <i class="material-icons">view_module</i> Productos</a>
+                  <a class="mdl-navigation__link" href="/logout"> <i class="material-icons">exit_to_app</i> Salir</a>
+                {% endif %} 
+                
+          {% endif %}
+          
+          {% if app.user.pais == "US" %}
+        
+              {% if is_granted('IS_AUTHENTICATED_FULLY') %} 
+                <a class="mdl-navigation__link" href="/"> <i class="material-icons">home</i> Home</a>
+                <a class="mdl-navigation__link" href="/admin"> <i class="material-icons">account_circle</i> Administrate App</a>
+                <a class="mdl-navigation__link" href="/product"> <i class="material-icons">view_module</i> Products</a>
+                <a class="mdl-navigation__link" href="/logout"> <i class="material-icons">exit_to_app</i> Logout</a>
+              {% endif %} 
+          {% endif %}
+          
+          {% if app.user.pais == "EN" %}
+        
+              {% if is_granted('IS_AUTHENTICATED_FULLY') %} 
+                <a class="mdl-navigation__link" href="/"> <i class="material-icons">home</i> Home</a>
+                <a class="mdl-navigation__link" href="/admin"> <i class="material-icons">account_circle</i> Administrate App</a>
+                <a class="mdl-navigation__link" href="/product"> <i class="material-icons">view_module</i> Products</a>
+                <a class="mdl-navigation__link" href="/logout"> <i class="material-icons">exit_to_app</i> Logout</a>
+              {% endif %} 
+              
+          {% endif %}
+          
+      {% else %}
+      
+      {% if app.user.pais == "VE" %}
+        
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %} 
+          <a class="mdl-navigation__link" href="/"> <i class="material-icons">home</i> Inicio</a>
+          <a class="mdl-navigation__link" href="/product"> <i class="material-icons">view_module</i> Productos</a>
+          <a class="mdl-navigation__link" href="/getWishlist"> <i class="material-icons">view_list</i> Lista de Deseos</a>
+          <a class="mdl-navigation__link" href="/shoppingCart"> <i class="material-icons">shopping_cart</i>Carro de Compras</a>
+          <a class="mdl-navigation__link" href="/orders"> <i class="material-icons">local_shipping</i> Ordenes</a>
+          <a class="mdl-navigation__link" href="/logout"> <i class="material-icons">exit_to_app</i> Salir</a>
+        {% endif %} 
+      {% endif %}
+    
+      {% if app.user.pais == "CO" %}
+    
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %} 
+          <a class="mdl-navigation__link" href="/"> <i class="material-icons">home</i> Home</a>
+          <a class="mdl-navigation__link" href="/product"> <i class="material-icons">view_module</i> Productos</a>
+          <a class="mdl-navigation__link" href="/getWishlist"> <i class="material-icons">view_list</i> Lista de Deseos</a>
+          <a class="mdl-navigation__link" href="/shoppingCart"> <i class="material-icons">shopping_cart</i>Carro de Compras</a>
+          <a class="mdl-navigation__link" href="/orders"> <i class="material-icons">local_shipping</i> Ordenes</a>
+          <a class="mdl-navigation__link" href="/logout"> <i class="material-icons">exit_to_app</i> Salir</a>
+        {% endif %} 
+      {% endif %}
+    
+      {% if app.user.pais == "US" %}
+        
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %} 
+          <a class="mdl-navigation__link" href="/"> <i class="material-icons">home</i> Home</a>
+          <a class="mdl-navigation__link" href="/product"> <i class="material-icons">view_module</i> Products</a>
+          <a class="mdl-navigation__link" href="/getWishlist"> <i class="material-icons">view_list</i> Wishlist</a>
+          <a class="mdl-navigation__link" href="/shoppingCart"> <i class="material-icons">shopping_cart</i>Shopping Cart</a>
+          <a class="mdl-navigation__link" href="/orders"> <i class="material-icons">local_shipping</i> Orders</a>
+          <a class="mdl-navigation__link" href="/logout"> <i class="material-icons">exit_to_app</i> Logout</a>
+        {% endif %} 
+      {% endif %}
+    
+    {% if app.user.pais == "EN" %}
+      
+      {% if is_granted('IS_AUTHENTICATED_FULLY') %} 
+        <a class="mdl-navigation__link" href="/"> <i class="material-icons">home</i> Home</a>
+        <a class="mdl-navigation__link" href="/product"> <i class="material-icons">view_module</i> Products</a>
+        <a class="mdl-navigation__link" href="/getWishlist"> <i class="material-icons">view_list</i> Wishlist</a>
+        <a class="mdl-navigation__link" href="/shoppingCart"> <i class="material-icons">shopping_cart</i>Shopping Cart</a>
+        <a class="mdl-navigation__link" href="/orders"> <i class="material-icons">local_shipping</i> Orders</a>
+        <a class="mdl-navigation__link" href="/logout"> <i class="material-icons">exit_to_app</i> Logout</a>
+      {% endif %} 
+      
+    {% endif %}
+          
+    {% endif %}
+    
+    
+    {% else %}
+    
+      {% if not is_granted('IS_AUTHENTICATED_FULLY')%}
+        <a class="mdl-navigation__link" href="/"> <i class="material-icons">home</i> Home</a>
+        <a class="mdl-navigation__link" href="/product"> <i class="material-icons">view_module</i> Products</a>
+        <a class="mdl-navigation__link" href="/register"> <i class="material-icons">person_add</i> Sign Up</a>
+        <a class="mdl-navigation__link show-dialog" href="javascript:void(0)" id="show-dialog">  <i class="material-icons">person</i>Sign In</a>
+      {% endif %}
+  
+    {% endif %}
+{% endblock %}
+
+{% block links %}
+
+{% if app.user %}
+    
+      {% if app.user.correo == "admin@admin.com" %}
+        
+        {% if app.user.pais == "VE" %}
+        
+              {% if is_granted('IS_AUTHENTICATED_FULLY') %} 
+              <a class="mdl-navigation__link" href="/"> <i class="material-icons">home</i> Inicio</a>
+              <a class="mdl-navigation__link" href="/admin"> <i class="material-icons">account_circle</i> Administrar Aplicacion</a>
+              <a class="mdl-navigation__link" href="/product"> <i class="material-icons">view_module</i> Productos</a>
+              <a class="mdl-navigation__link" href="/logout"> <i class="material-icons">exit_to_app</i> Salir</a>
+              {% endif %} 
+            
+        {% endif %}
+      
+          {% if app.user.pais == "CO" %}
+            
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %} 
+                  <a class="mdl-navigation__link" href="/"> <i class="material-icons">home</i> Inicio</a>
+                  <a class="mdl-navigation__link" href="/admin"> <i class="material-icons">account_circle</i> Administrar Aplicacion</a>
+                  <a class="mdl-navigation__link" href="/product"> <i class="material-icons">view_module</i> Productos</a>
+                  <a class="mdl-navigation__link" href="/logout"> <i class="material-icons">exit_to_app</i> Salir</a>
+                {% endif %} 
+                
+          {% endif %}
+          
+          {% if app.user.pais == "US" %}
+        
+              {% if is_granted('IS_AUTHENTICATED_FULLY') %} 
+                <a class="mdl-navigation__link" href="/"> <i class="material-icons">home</i> Home</a>
+                <a class="mdl-navigation__link" href="/admin"> <i class="material-icons">account_circle</i> Administrate App</a>
+                <a class="mdl-navigation__link" href="/product"> <i class="material-icons">view_module</i> Products</a>
+                <a class="mdl-navigation__link" href="/logout"> <i class="material-icons">exit_to_app</i> Logout</a>
+              {% endif %} 
+          {% endif %}
+          
+          {% if app.user.pais == "EN" %}
+        
+              {% if is_granted('IS_AUTHENTICATED_FULLY') %} 
+                <a class="mdl-navigation__link" href="/"> <i class="material-icons">home</i> Home</a>
+                <a class="mdl-navigation__link" href="/admin"> <i class="material-icons">account_circle</i> Administrate App</a>
+                <a class="mdl-navigation__link" href="/product"> <i class="material-icons">view_module</i> Products</a>
+                <a class="mdl-navigation__link" href="/logout"> <i class="material-icons">exit_to_app</i> Logout</a>
+              {% endif %} 
+              
+          {% endif %}
+          
+      {% else %}
+      
+      {% if app.user.pais == "VE" %}
+        
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %} 
+          <a class="mdl-navigation__link" href="/"> <i class="material-icons">home</i> Inicio</a>
+          <a class="mdl-navigation__link" href="/product"> <i class="material-icons">view_module</i> Productos</a>
+          <a class="mdl-navigation__link" href="/getWishlist"> <i class="material-icons">view_list</i> Lista de Deseos</a>
+          <a class="mdl-navigation__link" href="/shoppingCart"> <i class="material-icons">shopping_cart</i>Carro de Compras</a>
+          <a class="mdl-navigation__link" href="/orders"> <i class="material-icons">local_shipping</i> Ordenes</a>
+          <a class="mdl-navigation__link" href="/logout"> <i class="material-icons">exit_to_app</i> Salir</a>
+        {% endif %} 
+      {% endif %}
+    
+      {% if app.user.pais == "CO" %}
+    
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %} 
+          <a class="mdl-navigation__link" href="/"> <i class="material-icons">home</i> Home</a>
+          <a class="mdl-navigation__link" href="/product"> <i class="material-icons">view_module</i> Productos</a>
+          <a class="mdl-navigation__link" href="/getWishlist"> <i class="material-icons">view_list</i> Lista de Deseos</a>
+          <a class="mdl-navigation__link" href="/shoppingCart"> <i class="material-icons">shopping_cart</i>Carro de Compras</a>
+          <a class="mdl-navigation__link" href="/orders"> <i class="material-icons">local_shipping</i> Ordenes</a>
+          <a class="mdl-navigation__link" href="/logout"> <i class="material-icons">exit_to_app</i> Salir</a>
+        {% endif %} 
+      {% endif %}
+    
+      {% if app.user.pais == "US" %}
+        
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %} 
+          <a class="mdl-navigation__link" href="/"> <i class="material-icons">home</i> Home</a>
+          <a class="mdl-navigation__link" href="/product"> <i class="material-icons">view_module</i> Products</a>
+          <a class="mdl-navigation__link" href="/getWishlist"> <i class="material-icons">view_list</i> Wishlist</a>
+          <a class="mdl-navigation__link" href="/shoppingCart"> <i class="material-icons">shopping_cart</i>Shopping Cart</a>
+          <a class="mdl-navigation__link" href="/orders"> <i class="material-icons">local_shipping</i> Orders</a>
+          <a class="mdl-navigation__link" href="/logout"> <i class="material-icons">exit_to_app</i> Logout</a>
+        {% endif %} 
+      {% endif %}
+    
+    {% if app.user.pais == "EN" %}
+      
+      {% if is_granted('IS_AUTHENTICATED_FULLY') %} 
+        <a class="mdl-navigation__link" href="/"> <i class="material-icons">home</i> Home</a>
+        <a class="mdl-navigation__link" href="/product"> <i class="material-icons">view_module</i> Products</a>
+        <a class="mdl-navigation__link" href="/getWishlist"> <i class="material-icons">view_list</i> Wishlist</a>
+        <a class="mdl-navigation__link" href="/shoppingCart"> <i class="material-icons">shopping_cart</i>Shopping Cart</a>
+        <a class="mdl-navigation__link" href="/orders"> <i class="material-icons">local_shipping</i> Orders</a>
+        <a class="mdl-navigation__link" href="/logout"> <i class="material-icons">exit_to_app</i> Logout</a>
+      {% endif %} 
+      
+    {% endif %}
+          
+    {% endif %}
+    
+    
+    {% else %}
+    
+      {% if not is_granted('IS_AUTHENTICATED_FULLY')%}
+        <a class="mdl-navigation__link" href="/"> <i class="material-icons">home</i> Home</a>
+        <a class="mdl-navigation__link" href="/product"> <i class="material-icons">view_module</i> Products</a>
+        <a class="mdl-navigation__link" href="/register"> <i class="material-icons">person_add</i> Sign Up</a>
+        <a class="mdl-navigation__link show-dialog" href="javascript:void(0)" id="show-dialog">  <i class="material-icons">person</i>Sign In</a>
+      {% endif %}
+  
+    {% endif %}
+
+{% endblock %}
+
+
+{% block test %} 
+
+<form id="form-login" action="{{ path('login') }}" method="post">
+              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <label class="mdl-textfield__label" for="correo">Correo</label>
+                <input class="mdl-textfield__input" type="email" id="correo" name='_username'>
+              </div>
+              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <label class="mdl-textfield__label" for="clave">Contraseña</label>
+                <input class="mdl-textfield__input" type="password" id="clave" name="_password">
+              </div>
+            </form>
+          <div class="mdl-dialog__actions">
+            <button form="form-login" type="submit" class="mdl-button">Login</button>
+            <button type="button" class="mdl-button close">Cancelar</button>
+          </div>
+{% endblock %}
+
+
+
+{% block menuLateral %}
+<!-- No header, and the drawer stays open on larger screens (fixed drawer). -->
+
+  {% if app.user %}
+
+        <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer" style="height:100%">
+          {% if app.user.pais == "US"%}
+                   
+            <div class="mdl-layout__drawer lateral">
+              <span class="mdl-layout-title" style="text-align:left">Category</span>
+              <nav class="mdl-navigation lateral">
+          
+                  <button class="mdl-button mdl-js-button mdl-js-ripple-effect option " id="todos">
+                    All
+                  </button>
+                  <br>
+                  
+                  <button class="mdl-button mdl-js-button mdl-js-ripple-effect option " id="bonsai">
+                    Bonsai
+                  </button>
+                  <br>
+                  
+                  <button class="mdl-button mdl-js-button mdl-js-ripple-effect option" id="maceta">
+                    Pot
+                  </button>
+                  <br>
+                  
+                  <button class="mdl-button mdl-js-button mdl-js-ripple-effect option" id="accesorio">
+                    Accesories
+                  </button>
+                  <br>
+          
+              </nav>
+            </div>          
+          {% endif %}
+          
+          {% if app.user.pais == "EN"%}
+                    
+            <div class="mdl-layout__drawer lateral">
+              <span class="mdl-layout-title" style="text-align:left">Category</span>
+              <nav class="mdl-navigation lateral">
+          
+                  <button class="mdl-button mdl-js-button mdl-js-ripple-effect option " id="todos">
+                    All
+                  </button>
+                  <br>
+                  
+                  <button class="mdl-button mdl-js-button mdl-js-ripple-effect option " id="bonsai">
+                    Bonsai
+                  </button>
+                  <br>
+                  
+                  <button class="mdl-button mdl-js-button mdl-js-ripple-effect option" id="maceta">
+                    Pot
+                  </button>
+                  <br>
+                  
+                  <button class="mdl-button mdl-js-button mdl-js-ripple-effect option" id="accesorio">
+                    Accesories
+                  </button>
+                  <br>
+          
+              </nav>
+            </div>          
+          {% endif %}
+          
+          {% if app.user.pais == "VE"%}
+                   
+            <div class="mdl-layout__drawer lateral">
+              <span class="mdl-layout-title" style="text-align:left">Categoría</span>
+              <nav class="mdl-navigation lateral">
+          
+                  <button class="mdl-button mdl-js-button mdl-js-ripple-effect option " id="todos">
+                    Todos
+                  </button>
+                  <br>
+                  
+                  <button class="mdl-button mdl-js-button mdl-js-ripple-effect option " id="bonsai">
+                    Bonsai
+                  </button>
+                  <br>
+                  
+                  <button class="mdl-button mdl-js-button mdl-js-ripple-effect option" id="maceta">
+                    Maceta
+                  </button>
+                  <br>
+                  
+                  <button class="mdl-button mdl-js-button mdl-js-ripple-effect option" id="accesorio">
+                    Accesorios
+                  </button>
+                  <br>
+          
+              </nav>
+            </div>          
+          {% endif %}
+          
+          {% if app.user.pais == "CO"%}
+                   
+            <div class="mdl-layout__drawer lateral">
+              <span class="mdl-layout-title" style="text-align:left">Categoría</span>
+              <nav class="mdl-navigation lateral">
+          
+                  <button class="mdl-button mdl-js-button mdl-js-ripple-effect option " id="todos">
+                    Todos
+                  </button>
+                  <br>
+                  
+                  <button class="mdl-button mdl-js-button mdl-js-ripple-effect option " id="bonsai">
+                    Bonsai
+                  </button>
+                  <br>
+                  
+                  <button class="mdl-button mdl-js-button mdl-js-ripple-effect option" id="maceta">
+                    Maceta
+                  </button>
+                  <br>
+                  
+                  <button class="mdl-button mdl-js-button mdl-js-ripple-effect option" id="accesorio">
+                    Accesorios
+                  </button>
+                  <br>
+          
+              </nav>
+            </div>          
+          {% endif %}
+  
+  {% else %}
+  
+  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer" style="height:100%">
+           
+    <div class="mdl-layout__drawer lateral">
+      <span class="mdl-layout-title" style="text-align:left">Category</span>
+      <nav class="mdl-navigation lateral">
+  
+          <button class="mdl-button mdl-js-button mdl-js-ripple-effect option " id="todos">
+            All
+          </button>
+          <br>
+          
+          <button class="mdl-button mdl-js-button mdl-js-ripple-effect option " id="bonsai">
+            Bonsai
+          </button>
+          <br>
+          
+          <button class="mdl-button mdl-js-button mdl-js-ripple-effect option" id="maceta">
+            Pot
+          </button>
+          <br>
+          
+          <button class="mdl-button mdl-js-button mdl-js-ripple-effect option" id="accesorio">
+            Accesories
+          </button>
+          <br>
+  
+      </nav>
+    </div>          
+  
+  
+  
+  
+  
+  
+  {% endif %}
+  
+</div>
+
+<script>
+  // ESTA FUNCION VIENE DEL ATRIBUTO ONLOAD DEL BASE.HTML.TWIG
+  function cargando(){
+    $("#bonsaiprod").hide();
+    $("#macetaprod").hide();
+    $("#accesorioprod").hide();
+    $("#allproducts").show();
+  }
+  
+  $("#todos").click(function(){
+      $("#bonsaiprod").hide();
+      $("#macetaprod").hide();
+      $("#accesorioprod").hide();
+      $("#allproducts").show();
+  });
+  
+  $("#bonsai").click(function(){
+      $("#macetaprod").hide();
+      $("#accesorioprod").hide();
+      $("#allproducts").hide();
+      $("#bonsaiprod").show();
+  });
+  
+  $("#maceta").click(function(){
+      $("#bonsaiprod").hide();
+      $("#accesorioprod").hide();
+      $("#allproducts").hide();
+      $("#macetaprod").show();
+  });
+  
+  $("#accesorio").click(function(){
+      $("#bonsaiprod").hide();
+      $("#allproducts").hide();
+      $("#macetaprod").hide();
+      $("#accesorioprod").show();
+  });
+  
+</script>
+
+{% endblock %}
+
+
+{% block contenido %}
+
+  {% if app.user %}
+
+  <dialog class="mdl-dialog dialogLogin">
+    <h5 class="mdl-dialog__title" style="font-size:25px; align:center">Inicio de Sesión</h5>
+    <div class="mdl-dialog__content">
+      <form id="form-login" action="{{ path('login') }}" method="post">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <label class="mdl-textfield__label" for="correo">Correo</label>
+              <input class="mdl-textfield__input" type="email" id="correo" name='_username'>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <label class="mdl-textfield__label" for="clave">Contraseña</label>
+              <input class="mdl-textfield__input" type="password" id="clave" name="_password">
+            </div>
+          </form>
+    </div>
+    <div class="mdl-dialog__actions">
+      <button form="form-login" type="submit" class="mdl-button">Login</button>
+      <button type="button" class="mdl-button close">Cancelar</button>
+    </div>
+  </dialog>
+  <script>
+    var dialog = document.querySelector('.dialogLogin');
+    var showDialogButton = document.querySelector('.show-dialogLogin');
+    if (! dialog.showModal) {
+      dialogPolyfill.registerDialog(dialog);
+    }
+    showDialogButton.addEventListener('click', function() {
+      dialog.showModal();
+    });
+    dialog.querySelector('.close').addEventListener('click', function() {
+      dialog.close();
+    });
+    
+  </script>
+  
+  
+
+  {% if products|length == 0  %}
+  <h3 style="text-align: right">No hay productos... </h3>
+  {% endif %}
+
+  <div class="row text-center" style="padding-left:100px; padding-top:50px; padding-bottom: 50px" id="allproducts">
+      {% for product in products %}
+        <style> 
+          .mdl-dialog {
+            border: none;
+            box-shadow: 0 9px 46px 8px rgba(0,0,0,.14), 0 11px 15px -7px rgba(0,0,0,.12), 0 24px 38px 3px rgba(0,0,0,.2);
+            width: 60%;
+          }
+          .mdl-navigation.lateral{
+            background-color:white;
+          }
+          .mdl-layout__drawer.lateral{
+              background-color:white;
+              width: 175px;
+              height:55%;
+              border-right-style: none;
+              border-right-width: 0px;
+              border-bottom-style: none;
+              border-bottom-width: 0px;
+              border-bottom-color: transparent;
+              
+          }
+          .mdl-button.mdl-js-button.mdl-js-ripple-effect:hover{
+            background-color: #67daff;
+          }
+          .mdl-dialog__actions--full-width>* {
+              height: 48px;
+              -webkit-flex: 0 0 100%;
+              -ms-flex: 0 0 100%;
+              flex: 0 0 100%;
+              padding-right: 0px;
+              margin-right: 0;
+              /* text-align: right; */
+          }
+      
+      </style>
+          {#componente que contiene cada producto#}
+          
+          {#VENEZUELA#}
+          {% if app.user.pais == "VE" %}
+            {#  <form action="{{ path('pais') }}" method="GET" id="formPais">#}
+            {#  <select class="form-control" name="seleccion" id="selPais">#}
+            {#    <option value="VE">Venezuela</a>#}
+            {#    <option value="US">United States</a>#}
+            {#    <option value="EN">England</a>#}
+            {#    <option selected value="CO">Colombia</a>#}
+            {#  </select>#}
+            {#</form>#}
+
+            <div id="{{product.id}}" class="col-lg-4 col-md-6 mb-4 epale" style="heigth:200px">
+              <div  class="filterDiv {{product.categoria}}">
+              {#link del producto#}
+                <a href="javascript:void(0)" class="show-modal{{product.id}}">
+              {#imagen del producto#}
+              <img class="card-img-top img-fluid " style="background-position:center center; background-size:cover;" src="{{product.link}}" alt="">
+              {#informacion cuando se hace hover#}
+              <div class="descripcionProducto">
+                <a href="javascript:void(0)" class="show-modal{{product.id}}">
+                  <h4 class="producto text{{product.id}}">{{product.nombre}}</h4>
+                  <h6 class="producto price{{product.id}}">{{product.precio*35000}} BsF.</h6>
+                </a>
+              </div>
+              <br>
+              <br>
+              
+              {#AQUI ABRE EL DIALOG CUANDO SE HACE CLICK EN UN PRODUCTO #}
+              
+              <dialog class="mdl-dialog show-dialog{{product.id}}">
+                  <div class="mdl-dialog__content">
+                     
+                      <div class="row">
+                      {#ESTA SECCION TIENE LA FOTO DEL PRODUCTO#}
+                      <section class="foto col-lg-6 col-md-6">
+                        <img class="img-fluid" src="{{product.link}}" alt="">  
+                      </section>
+                      {#ESTA SECCION TIENA LA INFORMACION DEL PRODUCTO#}
+                      <section class="col-lg-6 col-md-6 mb-12">
+                        <h4 class="producto text-center center-text">{{product.nombre}}</h4>
+                        <h6 class="producto text-center center-text">Precio: {{product.precio*35000}} BsF</h6>
+                        <h6 class="producto text-center center-text">Descripcion: {{product.Descripcion}}</h6>
+                        {#AQUI ESTAN LOS BOTONES SOBRE LAS ACCIONES DE CADA PRODUCTO#}
+                        <div class="mdl-dialog__actions mdl-dialog__actions--full-width">
+                          
+                          {% if not is_granted('IS_AUTHENTICATED_FULLY')%}
+                          <p>Inicie Sesion para empezar a agregar productos a su Carro de Compras!</p>
+                          <button type="button" class="mdl-button close{{product.id}}">Cerrar <i class="material-icons">close</i></button>
+                          {% endif %}
+                          
+                          {% if is_granted('IS_AUTHENTICATED_FULLY')%}
+                            <hr style="height:10px">                            
+                            <form style="width:100%" class="text-center center-text" action="{{ path('agregarProducto' , { 'id' : product.id}) }}" method="POST">
+                              <button style="width:100%; background-color:#f44336; color:white; font-weight:bold" type="submit" class="mdl-button text-center center-text">Agregar al Carro de Compras<i class="material-icons">add_shopping_cart</i></button>
+                            </form>
+                            <form style="width:100%" class="text-center center-text" action="{{ path('agregarWishlist' , { 'id' : product.id}) }}" method="POST">
+                              <button style="width:100%; background-color:#E0E3E8" type="submit" class="mdl-button text-center center-text"> Agregar a la wishlist <i class="material-icons">list</i></button>
+                            </form>
+                            <form style="width:100%" class="text-center center-text" action="" method="">
+                              <button style="width:100%; background-color:#E0E3E8" type="button" class="mdl-button text-center center-text close{{product.id}}">Cerrar <i class="material-icons">close</i></button>
+                            </form>
+                          {% endif %}
+                        </div>
+                      </section>
+                      </div>
+                    
+                  </div>
+                </dialog>
+                
+              {#SCRIPT QUE SE CORRE PARA ABRIR EL DIALOG  #}
+              <script>
+                // SE CREA LA VARIABLE DIALOG PARA TODAS LAS VECES QUE A APAREZCA LA CLASE SHOWDIALOG((product.id))//
+                var dialog{{product.id}} = document.querySelector('.show-dialog{{product.id}}');
+                // SE CREA LA VARIAVLE DE BOTON DE MODAL PARA TODAS LAS CLASES SHOWMODAL PARA CUANDO SE HAGA CLICK EN LA IMAGEN
+                var showModalButton{{product.id}} = document.querySelector('.show-modal{{product.id}}'); 
+                // SE CREA LA VARIABLE DE BOTON DE MODAL PARA TODAS LAS CLASES TEXT PARA CUANDO SE HAGA CLICK EN EL NOMBRE DEL PRODUCTO
+                var showTextButton{{product.id}} = document.querySelector('.text{{product.id}}');
+                // SE CREA LA VARIABLE DE BOTON DE MODEL PARA TODAS LAS CLASES PRICE PARA CUANDO SE HAGA CLICK EN EL PRECIO DEL PRODUCTO
+                var showPriceButton{{product.id}} = document.querySelector('.price{{product.id}}');
+                
+                if (!dialog{{product.id}}.showModal){
+                  dialogPolyfill.registerDialog(dialog{{product.id}});
+                }
+                // FUNCION PARA CUANDO SE HAGA CLICK EN LA IMAGEN
+                showModalButton{{product.id}}.addEventListener('click', function() {
+                  dialog{{product.id}}.showModal();
+                });
+                // FUNCION PARA CUANDO SE HAGA CLICK EN EL NOMBRE
+                showTextButton{{product.id}}.addEventListener('click', function() {
+                  dialog{{product.id}}.showModal();
+                });
+                // FUNCION PARA CUANDO SE HAGA CLICK EN EL PRECIO
+                showPriceButton{{product.id}}.addEventListener('click', function() {
+                  dialog{{product.id}}.showModal();
+                });
+                // FUNCION PARA CERRAR EL DIALOG
+                dialog{{product.id}}.querySelector('.close{{product.id}}').addEventListener('click', function() {
+                  dialog{{product.id}}.close();
+                });
+              </script> 
+            </a>
+              </div>
+            </div>
+      
+          {% endif %}
+          
+          {#ESTADOS UNIDOS#}
+          {% if app.user.pais == "US" %}
+            {#  <form action="{{ path('pais') }}" method="GET" id="formPais">#}
+            {#  <select class="form-control" name="seleccion" id="selPais">#}
+            {#    <option value="VE">Venezuela</a>#}
+            {#    <option value="US">United States</a>#}
+            {#    <option value="EN">England</a>#}
+            {#    <option selected value="CO">Colombia</a>#}
+            {#  </select>#}
+            {#</form>#}
+
+            <div id="{{product.id}}" class="col-lg-4 col-md-6 mb-4 epale" style="heigth:200px">
+            <div  class="filterDiv {{product.categoria}}">
+            {#link del producto#}
+            <a href="javascript:void(0)" class="show-modal{{product.id}}">
+              {#imagen del producto#}
+              <img class="card-img-top img-fluid " style="background-position:center center; background-size:cover" src="{{product.link}}" alt="">
+              {#informacion cuando se hace hover#}
+              <div class="descripcionProducto">
+                <a href="javascript:void(0)" class="show-modal{{product.id}}">
+                  <h4 class="producto text{{product.id}}">{{product.nombre}}</h4>
+                  <h6 class="producto price{{product.id}}">{{product.precio}} $.</h6>
+                </a>
+              </div>
+              <br>
+              <br>
+              
+              {#AQUI ABRE EL DIALOG CUANDO SE HACE CLICK EN UN PRODUCTO #}
+              
+              <dialog class="mdl-dialog show-dialog{{product.id}}">
+                  <div class="mdl-dialog__content">
+                     
+                      <div class="row">
+                      {#ESTA SECCION TIENE LA FOTO DEL PRODUCTO#}
+                      <section class="foto col-lg-6 col-md-6">
+                        <img class="img-fluid" src="{{product.link}}" alt="">  
+                      </section>
+                      {#ESTA SECCION TIENA LA INFORMACION DEL PRODUCTO#}
+                      <section class="col-lg-6 col-md-6 mb-12">
+                        <h4 class="producto text-center center-text">{{product.nombre}}</h4>
+                        <h6 class="producto text-center center-text">Price: {{product.precio}} $</h6>
+                        <h6 class="producto text-center center-text">Description: {{product.Descripcion}}</h6>
+                        {#AQUI ESTAN LOS BOTONES SOBRE LAS ACCIONES DE CADA PRODUCTO#}
+                        <div class="mdl-dialog__actions mdl-dialog__actions--full-width">
+                          
+                          {% if not is_granted('IS_AUTHENTICATED_FULLY')%}
+                          <p>You have to sign in to add products to your shopping cart!</p>
+                          <button type="button" class="mdl-button close{{product.id}}">Cerrar <i class="material-icons">close</i></button>
+                          {% endif %}
+                          
+                          {% if is_granted('IS_AUTHENTICATED_FULLY')%}
+                            <hr style="height:10px">                            
+                            <form style="width:100%" class="text-center center-text" action="{{ path('agregarProducto' , { 'id' : product.id}) }}" method="POST">
+                              <button style="width:100%; background-color:#f44336; color:white; font-weight:bold" type="submit" class="mdl-button text-center center-text">Add to Shopping Cart<i class="material-icons">add_shopping_cart</i></button>
+                            </form>
+                            <form style="width:100%" class="text-center center-text" action="{{ path('agregarWishlist' , { 'id' : product.id}) }}" method="POST">
+                              <button style="width:100%; background-color:#E0E3E8" type="submit" class="mdl-button text-center center-text"> Add To WishList <i class="material-icons">list</i></button>
+                            </form>
+                            <form style="width:100%" class="text-center center-text" action="" method="">
+                              <button style="width:100%; background-color:#E0E3E8" type="button" class="mdl-button text-center center-text close{{product.id}}">Close <i class="material-icons">close</i></button>
+                            </form>
+                          {% endif %}
+                        </div>
+                      </section>
+                      </div>
+                    
+                  </div>
+                </dialog>
+                
+              {#SCRIPT QUE SE CORRE PARA ABRIR EL DIALOG  #}
+              <script>
+                // SE CREA LA VARIABLE DIALOG PARA TODAS LAS VECES QUE A APAREZCA LA CLASE SHOWDIALOG((product.id))//
+                var dialog{{product.id}} = document.querySelector('.show-dialog{{product.id}}');
+                // SE CREA LA VARIAVLE DE BOTON DE MODAL PARA TODAS LAS CLASES SHOWMODAL PARA CUANDO SE HAGA CLICK EN LA IMAGEN
+                var showModalButton{{product.id}} = document.querySelector('.show-modal{{product.id}}'); 
+                // SE CREA LA VARIABLE DE BOTON DE MODAL PARA TODAS LAS CLASES TEXT PARA CUANDO SE HAGA CLICK EN EL NOMBRE DEL PRODUCTO
+                var showTextButton{{product.id}} = document.querySelector('.text{{product.id}}');
+                // SE CREA LA VARIABLE DE BOTON DE MODEL PARA TODAS LAS CLASES PRICE PARA CUANDO SE HAGA CLICK EN EL PRECIO DEL PRODUCTO
+                var showPriceButton{{product.id}} = document.querySelector('.price{{product.id}}');
+                
+                if (!dialog{{product.id}}.showModal){
+                  dialogPolyfill.registerDialog(dialog{{product.id}});
+                }
+                // FUNCION PARA CUANDO SE HAGA CLICK EN LA IMAGEN
+                showModalButton{{product.id}}.addEventListener('click', function() {
+                  dialog{{product.id}}.showModal();
+                });
+                // FUNCION PARA CUANDO SE HAGA CLICK EN EL NOMBRE
+                showTextButton{{product.id}}.addEventListener('click', function() {
+                  dialog{{product.id}}.showModal();
+                });
+                // FUNCION PARA CUANDO SE HAGA CLICK EN EL PRECIO
+                showPriceButton{{product.id}}.addEventListener('click', function() {
+                  dialog{{product.id}}.showModal();
+                });
+                // FUNCION PARA CERRAR EL DIALOG
+                dialog{{product.id}}.querySelector('.close{{product.id}}').addEventListener('click', function() {
+                  dialog{{product.id}}.close();
+                });
+              </script> 
+            </a>
+          </div>
+      </div>
+      
+          {% endif %}
+          
+          
+          {#INGLATERRA#}
+          {% if app.user.pais == "EN" %}
+            {#  <form action="{{ path('pais') }}" method="GET" id="formPais">#}
+            {#  <select class="form-control" name="seleccion" id="selPais">#}
+            {#    <option value="VE">Venezuela</a>#}
+            {#    <option value="US">United States</a>#}
+            {#    <option value="EN">England</a>#}
+            {#    <option selected value="CO">Colombia</a>#}
+            {#  </select>#}
+            {#</form>#}
+
+            <div id="{{product.id}}" class="col-lg-4 col-md-6 mb-4 epale" style="heigth:200px">
+              <div  class="filterDiv {{product.categoria}}">
+            {#link del producto#}
+            <a href="javascript:void(0)" class="show-modal{{product.id}}">
+              {#imagen del producto#}
+              <img class="card-img-top img-fluid " style="background-position:center center; background-size:cover" src="{{product.link}}" alt="">
+              {#informacion cuando se hace hover#}
+              <div class="descripcionProducto">
+                <a href="javascript:void(0)" class="show-modal{{product.id}}">
+                  <h4 class="producto text{{product.id}}">{{product.nombre}}</h4>
+                  <h6 class="producto price{{product.id}}">{{product.precio*0.76}} £.</h6>
+                </a>
+              </div>
+              <br>
+              <br>
+              
+              {#AQUI ABRE EL DIALOG CUANDO SE HACE CLICK EN UN PRODUCTO #}
+              
+              <dialog class="mdl-dialog show-dialog{{product.id}}">
+                  <div class="mdl-dialog__content">
+                     
+                      <div class="row">
+                      {#ESTA SECCION TIENE LA FOTO DEL PRODUCTO#}
+                      <section class="foto col-lg-6 col-md-6">
+                        <img class="img-fluid" src="{{product.link}}" alt="">  
+                      </section>
+                      {#ESTA SECCION TIENA LA INFORMACION DEL PRODUCTO#}
+                      <section class="col-lg-6 col-md-6 mb-12">
+                        <h4 class="producto text-center center-text">{{product.nombre}}</h4>
+                        <h6 class="producto text-center center-text">Price: {{product.precio*0.76}} £</h6>
+                        <h6 class="producto text-center center-text">Description: {{product.Descripcion}}</h6>
+                        {#AQUI ESTAN LOS BOTONES SOBRE LAS ACCIONES DE CADA PRODUCTO#}
+                        <div class="mdl-dialog__actions mdl-dialog__actions--full-width">
+                          
+                          {% if not is_granted('IS_AUTHENTICATED_FULLY')%}
+                          <p>You have to sign in to add products to your shopping cart!</p>
+                          <button type="button" class="mdl-button close{{product.id}}">Cerrar <i class="material-icons">close</i></button>
+                          {% endif %}
+                          
+                          {% if is_granted('IS_AUTHENTICATED_FULLY')%}
+                            <hr style="height:10px">                            
+                            <form style="width:100%" class="text-center center-text" action="{{ path('agregarProducto' , { 'id' : product.id}) }}" method="POST">
+                              <button style="width:100%; background-color:#f44336; color:white; font-weight:bold" type="submit" class="mdl-button text-center center-text">Add to Shopping Cart<i class="material-icons">add_shopping_cart</i></button>
+                            </form>
+                            <form style="width:100%" class="text-center center-text" action="{{ path('agregarWishlist' , { 'id' : product.id}) }}" method="POST">
+                              <button style="width:100%; background-color:#E0E3E8" type="submit" class="mdl-button text-center center-text"> Add To WishList <i class="material-icons">list</i></button>
+                            </form>
+                            <form style="width:100%" class="text-center center-text" action="" method="">
+                              <button style="width:100%; background-color:#E0E3E8" type="button" class="mdl-button text-center center-text close{{product.id}}">Close <i class="material-icons">close</i></button>
+                            </form>
+                          {% endif %}
+                        </div>
+                      </section>
+                      </div>
+                    
+                  </div>
+                </dialog>
+                
+              {#SCRIPT QUE SE CORRE PARA ABRIR EL DIALOG  #}
+              <script>
+                // SE CREA LA VARIABLE DIALOG PARA TODAS LAS VECES QUE A APAREZCA LA CLASE SHOWDIALOG((product.id))//
+                var dialog{{product.id}} = document.querySelector('.show-dialog{{product.id}}');
+                // SE CREA LA VARIAVLE DE BOTON DE MODAL PARA TODAS LAS CLASES SHOWMODAL PARA CUANDO SE HAGA CLICK EN LA IMAGEN
+                var showModalButton{{product.id}} = document.querySelector('.show-modal{{product.id}}'); 
+                // SE CREA LA VARIABLE DE BOTON DE MODAL PARA TODAS LAS CLASES TEXT PARA CUANDO SE HAGA CLICK EN EL NOMBRE DEL PRODUCTO
+                var showTextButton{{product.id}} = document.querySelector('.text{{product.id}}');
+                // SE CREA LA VARIABLE DE BOTON DE MODEL PARA TODAS LAS CLASES PRICE PARA CUANDO SE HAGA CLICK EN EL PRECIO DEL PRODUCTO
+                var showPriceButton{{product.id}} = document.querySelector('.price{{product.id}}');
+                
+                if (!dialog{{product.id}}.showModal){
+                  dialogPolyfill.registerDialog(dialog{{product.id}});
+                }
+                // FUNCION PARA CUANDO SE HAGA CLICK EN LA IMAGEN
+                showModalButton{{product.id}}.addEventListener('click', function() {
+                  dialog{{product.id}}.showModal();
+                });
+                // FUNCION PARA CUANDO SE HAGA CLICK EN EL NOMBRE
+                showTextButton{{product.id}}.addEventListener('click', function() {
+                  dialog{{product.id}}.showModal();
+                });
+                // FUNCION PARA CUANDO SE HAGA CLICK EN EL PRECIO
+                showPriceButton{{product.id}}.addEventListener('click', function() {
+                  dialog{{product.id}}.showModal();
+                });
+                // FUNCION PARA CERRAR EL DIALOG
+                dialog{{product.id}}.querySelector('.close{{product.id}}').addEventListener('click', function() {
+                  dialog{{product.id}}.close();
+                });
+              </script> 
+            </a>
+          </div>
+            </div>
+      
+          {% endif %}
+          
+          
+          {#COLOMBIA#}
+          {% if app.user.pais == "CO" %}
+            {#  <form action="{{ path('pais') }}" method="GET" id="formPais">#}
+            {#  <select class="form-control" name="seleccion" id="selPais">#}
+            {#    <option value="VE">Venezuela</a>#}
+            {#    <option value="US">United States</a>#}
+            {#    <option value="EN">England</a>#}
+            {#    <option selected value="CO">Colombia</a>#}
+            {#  </select>#}
+            {#</form>#}
+
+            <div id="{{product.id}}" class="col-lg-4 col-md-6 mb-4 epale" style="heigth:200px">
+              <div  class="filterDiv {{product.categoria}}">
+            {#link del producto#}
+            <a href="javascript:void(0)" class="show-modal{{product.id}}">
+              {#imagen del producto#}
+              <img class="card-img-top img-fluid " style="background-position:center center; background-size:cover" src="{{product.link}}" alt="">
+              {#informacion cuando se hace hover#}
+              <div class="descripcionProducto">
+                <a href="javascript:void(0)" class="show-modal{{product.id}}">
+                  <h4 class="producto text{{product.id}}">{{product.nombre}}</h4>
+                  <h6 class="producto price{{product.id}}">{{product.precio*2977.99}} COP</h6>
+                </a>
+              </div>
+              <br>
+              <br>
+              
+              {#AQUI ABRE EL DIALOG CUANDO SE HACE CLICK EN UN PRODUCTO #}
+              
+              <dialog class="mdl-dialog show-dialog{{product.id}}">
+                  <div class="mdl-dialog__content">
+                     
+                      <div class="row">
+                      {#ESTA SECCION TIENE LA FOTO DEL PRODUCTO#}
+                      <section class="foto col-lg-6 col-md-6">
+                        <img class="img-fluid" src="{{product.link}}" alt="">  
+                      </section>
+                      {#ESTA SECCION TIENA LA INFORMACION DEL PRODUCTO#}
+                      <section class="col-lg-6 col-md-6 mb-12">
+                        <h4 class="producto text-center center-text">{{product.nombre}}</h4>
+                        <h6 class="producto text-center center-text">Precio: {{product.precio*2977.99}} COP</h6>
+                        <h6 class="producto text-center center-text">Descripcion: {{product.Descripcion}}</h6>
+                        {#AQUI ESTAN LOS BOTONES SOBRE LAS ACCIONES DE CADA PRODUCTO#}
+                        <div class="mdl-dialog__actions mdl-dialog__actions--full-width">
+                          
+                          {% if not is_granted('IS_AUTHENTICATED_FULLY')%}
+                          <p>Inicie Sesion para empezar a agregar productos a su Carro de Compras!</p>
+                          <button type="button" class="mdl-button close{{product.id}}">Cerrar <i class="material-icons">close</i></button>
+                          {% endif %}
+                          
+                          {% if is_granted('IS_AUTHENTICATED_FULLY')%}
+                            <hr style="height:10px">                            
+                            <form style="width:100%" class="text-center center-text" action="{{ path('agregarProducto' , { 'id' : product.id}) }}" method="POST">
+                              <button style="width:100%; background-color:#f44336; color:white; font-weight:bold" type="submit" class="mdl-button text-center center-text">Agregar al Carro de Compras<i class="material-icons">add_shopping_cart</i></button>
+                            </form>
+                            <form style="width:100%" class="text-center center-text" action="{{ path('agregarWishlist' , { 'id' : product.id}) }}" method="POST">
+                              <button style="width:100%; background-color:#E0E3E8" type="submit" class="mdl-button text-center center-text"> Agregar a la wishlist <i class="material-icons">list</i></button>
+                            </form>
+                            <form style="width:100%" class="text-center center-text" action="" method="">
+                              <button style="width:100%; background-color:#E0E3E8" type="button" class="mdl-button text-center center-text close{{product.id}}">Cerrar <i class="material-icons">close</i></button>
+                            </form>
+                          {% endif %}
+                        </div>
+                      </section>
+                      </div>
+                    
+                  </div>
+                </dialog>
+                
+              {#SCRIPT QUE SE CORRE PARA ABRIR EL DIALOG  #}
+              <script>
+                // SE CREA LA VARIABLE DIALOG PARA TODAS LAS VECES QUE A APAREZCA LA CLASE SHOWDIALOG((product.id))//
+                var dialog{{product.id}} = document.querySelector('.show-dialog{{product.id}}');
+                // SE CREA LA VARIAVLE DE BOTON DE MODAL PARA TODAS LAS CLASES SHOWMODAL PARA CUANDO SE HAGA CLICK EN LA IMAGEN
+                var showModalButton{{product.id}} = document.querySelector('.show-modal{{product.id}}'); 
+                // SE CREA LA VARIABLE DE BOTON DE MODAL PARA TODAS LAS CLASES TEXT PARA CUANDO SE HAGA CLICK EN EL NOMBRE DEL PRODUCTO
+                var showTextButton{{product.id}} = document.querySelector('.text{{product.id}}');
+                // SE CREA LA VARIABLE DE BOTON DE MODEL PARA TODAS LAS CLASES PRICE PARA CUANDO SE HAGA CLICK EN EL PRECIO DEL PRODUCTO
+                var showPriceButton{{product.id}} = document.querySelector('.price{{product.id}}');
+                
+                if (!dialog{{product.id}}.showModal){
+                  dialogPolyfill.registerDialog(dialog{{product.id}});
+                }
+                // FUNCION PARA CUANDO SE HAGA CLICK EN LA IMAGEN
+                showModalButton{{product.id}}.addEventListener('click', function() {
+                  dialog{{product.id}}.showModal();
+                });
+                // FUNCION PARA CUANDO SE HAGA CLICK EN EL NOMBRE
+                showTextButton{{product.id}}.addEventListener('click', function() {
+                  dialog{{product.id}}.showModal();
+                });
+                // FUNCION PARA CUANDO SE HAGA CLICK EN EL PRECIO
+                showPriceButton{{product.id}}.addEventListener('click', function() {
+                  dialog{{product.id}}.showModal();
+                });
+                // FUNCION PARA CERRAR EL DIALOG
+                dialog{{product.id}}.querySelector('.close{{product.id}}').addEventListener('click', function() {
+                  dialog{{product.id}}.close();
+                });
+              </script> 
+            </a>
+          </div>
+            </div>
+      
+          {% endif %}
+      
+      {% endfor %}
+      
+
+  </div>
+  
+  <div class="row text-center" style="padding-left:100px; padding-top:50px; padding-bottom: 50px" id="bonsaiprod">
+      {% for product in products %}
+        {% if product.categoria == 'bonsai'  %}
+        <style> 
+      .mdl-dialog {
+        border: none;
+        box-shadow: 0 9px 46px 8px rgba(0,0,0,.14), 0 11px 15px -7px rgba(0,0,0,.12), 0 24px 38px 3px rgba(0,0,0,.2);
+        width: 60%;
+      }
+      .mdl-navigation.lateral{
+        
+        background-color:white;
+    }
+      .mdl-layout__drawer.lateral{
+          background-color:white;
+          width: 175px;
+          height:55%;
+          border-right-style: none;
+          border-right-width: 0px;
+          border-bottom-style: none;
+          border-bottom-width: 0px;
+          border-bottom-color: transparent;
+          
+      }
+      .mdl-button.mdl-js-button.mdl-js-ripple-effect:hover{
+        
+        background-color: #67daff;
+         
+        
+    }
+    
+    </style>
+          {#componente que contiene cada producto#}
+          
+          {#VENEZUELA#}
+          {% if app.user.pais == "VE" %}
+            {#  <form action="{{ path('pais') }}" method="GET" id="formPais">#}
+            {#  <select class="form-control" name="seleccion" id="selPais">#}
+            {#    <option value="VE">Venezuela</a>#}
+            {#    <option value="US">United States</a>#}
+            {#    <option value="EN">England</a>#}
+            {#    <option selected value="CO">Colombia</a>#}
+            {#  </select>#}
+            {#</form>#}
+
+            <div id="{{product.id}}" class="col-lg-4 col-md-6 mb-4 epale" style="heigth:200px">
+              <div  class="filterDiv {{product.categoria}}">
+              {#link del producto#}
+                <a href="javascript:void(0)" class="show-modal{{product.id}}">
+              {#imagen del producto#}
+              <img class="card-img-top img-fluid " style="background-position:center center; background-size:cover" src="{{product.link}}" alt="">
+              {#informacion cuando se hace hover#}
+              <div class="descripcionProducto">
+                <a href="javascript:void(0)" class="show-modal{{product.id}}">
+                  <h4 class="producto text{{product.id}}">{{product.nombre}}</h4>
+                  <h6 class="producto price{{product.id}}">{{product.precio*35000}} BsF.</h6>
+                </a>
+              </div>
+              <br>
+              <br>
+              
+              {#AQUI ABRE EL DIALOG CUANDO SE HACE CLICK EN UN PRODUCTO #}
+              
+              <dialog class="mdl-dialog show-dialog{{product.id}}">
+                  <div class="mdl-dialog__content">
+                     
+                      <div class="row">
+                      {#ESTA SECCION TIENE LA FOTO DEL PRODUCTO#}
+                      <section class="foto col-lg-6 col-md-6">
+                        <img class="img-fluid" src="{{product.link}}" alt="">  
+                      </section>
+                      {#ESTA SECCION TIENA LA INFORMACION DEL PRODUCTO#}
+                      <section class="col-lg-6 col-md-6 mb-12">
+                        <h4 class="producto text-center center-text">{{product.nombre}}</h4>
+                        <h6 class="producto text-center center-text">Precio: {{product.precio*35000}} BsF</h6>
+                        <h6 class="producto text-center center-text">Descripcion: {{product.Descripcion}}</h6>
+                        {#AQUI ESTAN LOS BOTONES SOBRE LAS ACCIONES DE CADA PRODUCTO#}
+                        <div class="mdl-dialog__actions mdl-dialog__actions--full-width">
+                          
+                          {% if not is_granted('IS_AUTHENTICATED_FULLY')%}
+                          <p>Inicie Sesion para empezar a agregar productos a su Carro de Compras!</p>
+                          <button type="button" class="mdl-button close{{product.id}}">Cerrar <i class="material-icons">close</i></button>
+                          {% endif %}
+                          
+                          {% if is_granted('IS_AUTHENTICATED_FULLY')%}
+                            <hr style="height:10px">                            
+                            <form style="width:100%" class="text-center center-text" action="{{ path('agregarProducto' , { 'id' : product.id}) }}" method="POST">
+                              <button style="width:100%; background-color:#f44336; color:white; font-weight:bold" type="submit" class="mdl-button text-center center-text">Agregar al Carro de Compras<i class="material-icons">add_shopping_cart</i></button>
+                            </form>
+                            <form style="width:100%" class="text-center center-text" action="{{ path('agregarWishlist' , { 'id' : product.id}) }}" method="POST">
+                              <button style="width:100%; background-color:#E0E3E8" type="submit" class="mdl-button text-center center-text"> Agregar a la wishlist <i class="material-icons">list</i></button>
+                            </form>
+                            <form style="width:100%" class="text-center center-text" action="" method="">
+                              <button style="width:100%; background-color:#E0E3E8" type="button" class="mdl-button text-center center-text close{{product.id}}">Cerrar <i class="material-icons">close</i></button>
+                            </form>
+                          {% endif %}
+                        </div>
+                      </section>
+                      </div>
+                    
+                  </div>
+                </dialog>
+                
+              {#SCRIPT QUE SE CORRE PARA ABRIR EL DIALOG  #}
+              <script>
+                // SE CREA LA VARIABLE DIALOG PARA TODAS LAS VECES QUE A APAREZCA LA CLASE SHOWDIALOG((product.id))//
+                var dialog{{product.id}} = document.querySelector('.show-dialog{{product.id}}');
+                // SE CREA LA VARIAVLE DE BOTON DE MODAL PARA TODAS LAS CLASES SHOWMODAL PARA CUANDO SE HAGA CLICK EN LA IMAGEN
+                var showModalButton{{product.id}} = document.querySelector('.show-modal{{product.id}}'); 
+                // SE CREA LA VARIABLE DE BOTON DE MODAL PARA TODAS LAS CLASES TEXT PARA CUANDO SE HAGA CLICK EN EL NOMBRE DEL PRODUCTO
+                var showTextButton{{product.id}} = document.querySelector('.text{{product.id}}');
+                // SE CREA LA VARIABLE DE BOTON DE MODEL PARA TODAS LAS CLASES PRICE PARA CUANDO SE HAGA CLICK EN EL PRECIO DEL PRODUCTO
+                var showPriceButton{{product.id}} = document.querySelector('.price{{product.id}}');
+                
+                if (!dialog{{product.id}}.showModal){
+                  dialogPolyfill.registerDialog(dialog{{product.id}});
+                }
+                // FUNCION PARA CUANDO SE HAGA CLICK EN LA IMAGEN
+                showModalButton{{product.id}}.addEventListener('click', function() {
+                  dialog{{product.id}}.showModal();
+                });
+                // FUNCION PARA CUANDO SE HAGA CLICK EN EL NOMBRE
+                showTextButton{{product.id}}.addEventListener('click', function() {
+                  dialog{{product.id}}.showModal();
+                });
+                // FUNCION PARA CUANDO SE HAGA CLICK EN EL PRECIO
+                showPriceButton{{product.id}}.addEventListener('click', function() {
+                  dialog{{product.id}}.showModal();
+                });
+                // FUNCION PARA CERRAR EL DIALOG
+                dialog{{product.id}}.querySelector('.close{{product.id}}').addEventListener('click', function() {
+                  dialog{{product.id}}.close();
+                });
+              </script> 
+            </a>
+              </div>
+            </div>
+      
+          {% endif %}
+          
+          {#ESTADOS UNIDOS#}
+          {% if app.user.pais == "US" %}
+            {#  <form action="{{ path('pais') }}" method="GET" id="formPais">#}
+            {#  <select class="form-control" name="seleccion" id="selPais">#}
+            {#    <option value="VE">Venezuela</a>#}
+            {#    <option value="US">United States</a>#}
+            {#    <option value="EN">England</a>#}
+            {#    <option selected value="CO">Colombia</a>#}
+            {#  </select>#}
+            {#</form>#}
+
+            <div id="{{product.id}}" class="col-lg-4 col-md-6 mb-4 epale" style="heigth:200px">
+            <div  class="filterDiv {{product.categoria}}">
+            {#link del producto#}
+            <a href="javascript:void(0)" class="show-modal{{product.id}}">
+              {#imagen del producto#}
+              <img class="card-img-top img-fluid " style="background-position:center center; background-size:cover" src="{{product.link}}" alt="">
+              {#informacion cuando se hace hover#}
+              <div class="descripcionProducto">
+                <a href="javascript:void(0)" class="show-modal{{product.id}}">
+                  <h4 class="producto text{{product.id}}">{{product.nombre}}</h4>
+                  <h6 class="producto price{{product.id}}">{{product.precio}} $.</h6>
+                </a>
+              </div>
+              <br>
+              <br>
+              
+              {#AQUI ABRE EL DIALOG CUANDO SE HACE CLICK EN UN PRODUCTO #}
+              
+              <dialog class="mdl-dialog show-dialog{{product.id}}">
+                  <div class="mdl-dialog__content">
+                     
+                      <div class="row">
+                      {#ESTA SECCION TIENE LA FOTO DEL PRODUCTO#}
+                      <section class="foto col-lg-6 col-md-6">
+                        <img class="img-fluid" src="{{product.link}}" alt="">  
+                      </section>
+                      {#ESTA SECCION TIENA LA INFORMACION DEL PRODUCTO#}
+                      <section class="col-lg-6 col-md-6 mb-12">
+                        <h4 class="producto text-center center-text">{{product.nombre}}</h4>
+                        <h6 class="producto text-center center-text">Price: {{product.precio}} $</h6>
+                        <h6 class="producto text-center center-text">Description: {{product.Descripcion}}</h6>
+                        {#AQUI ESTAN LOS BOTONES SOBRE LAS ACCIONES DE CADA PRODUCTO#}
+                        <div class="mdl-dialog__actions mdl-dialog__actions--full-width">
+                          
+                          {% if not is_granted('IS_AUTHENTICATED_FULLY')%}
+                          <p>You have to sign in to add products to your shopping cart!</p>
+                          <button type="button" class="mdl-button close{{product.id}}">Cerrar <i class="material-icons">close</i></button>
+                          {% endif %}
+                          
+                          {% if is_granted('IS_AUTHENTICATED_FULLY')%}
+                            <hr style="height:10px">                            
+                            <form style="width:100%" class="text-center center-text" action="{{ path('agregarProducto' , { 'id' : product.id}) }}" method="POST">
+                              <button style="width:100%; background-color:#f44336; color:white; font-weight:bold" type="submit" class="mdl-button text-center center-text">Add to Shopping Cart<i class="material-icons">add_shopping_cart</i></button>
+                            </form>
+                            <form style="width:100%" class="text-center center-text" action="{{ path('agregarWishlist' , { 'id' : product.id}) }}" method="POST">
+                              <button style="width:100%; background-color:#E0E3E8" type="submit" class="mdl-button text-center center-text"> Add To WishList <i class="material-icons">list</i></button>
+                            </form>
+                            <form style="width:100%" class="text-center center-text" action="" method="">
+                              <button style="width:100%; background-color:#E0E3E8" type="button" class="mdl-button text-center center-text close{{product.id}}">Close <i class="material-icons">close</i></button>
+                            </form>
+                          {% endif %}
+                        </div>
+                      </section>
+                      </div>
+                    
+                  </div>
+                </dialog>
+                
+              {#SCRIPT QUE SE CORRE PARA ABRIR EL DIALOG  #}
+              <script>
+                // SE CREA LA VARIABLE DIALOG PARA TODAS LAS VECES QUE A APAREZCA LA CLASE SHOWDIALOG((product.id))//
+                var dialog{{product.id}} = document.querySelector('.show-dialog{{product.id}}');
+                // SE CREA LA VARIAVLE DE BOTON DE MODAL PARA TODAS LAS CLASES SHOWMODAL PARA CUANDO SE HAGA CLICK EN LA IMAGEN
+                var showModalButton{{product.id}} = document.querySelector('.show-modal{{product.id}}'); 
+                // SE CREA LA VARIABLE DE BOTON DE MODAL PARA TODAS LAS CLASES TEXT PARA CUANDO SE HAGA CLICK EN EL NOMBRE DEL PRODUCTO
+                var showTextButton{{product.id}} = document.querySelector('.text{{product.id}}');
+                // SE CREA LA VARIABLE DE BOTON DE MODEL PARA TODAS LAS CLASES PRICE PARA CUANDO SE HAGA CLICK EN EL PRECIO DEL PRODUCTO
+                var showPriceButton{{product.id}} = document.querySelector('.price{{product.id}}');
+                
+                if (!dialog{{product.id}}.showModal){
+                  dialogPolyfill.registerDialog(dialog{{product.id}});
+                }
+                // FUNCION PARA CUANDO SE HAGA CLICK EN LA IMAGEN
+                showModalButton{{product.id}}.addEventListener('click', function() {
+                  dialog{{product.id}}.showModal();
+                });
+                // FUNCION PARA CUANDO SE HAGA CLICK EN EL NOMBRE
+                showTextButton{{product.id}}.addEventListener('click', function() {
+                  dialog{{product.id}}.showModal();
+                });
+                // FUNCION PARA CUANDO SE HAGA CLICK EN EL PRECIO
+                showPriceButton{{product.id}}.addEventListener('click', function() {
+                  dialog{{product.id}}.showModal();
+                });
+                // FUNCION PARA CERRAR EL DIALOG
+                dialog{{product.id}}.querySelector('.close{{product.id}}').addEventListener('click', function() {
+                  dialog{{product.id}}.close();
+                });
+              </script> 
+            </a>
+          </div>
+      </div>
+      
+          {% endif %}
+          
+          
+          {#INGLATERRA#}
+          {% if app.user.pais == "EN" %}
+            {#  <form action="{{ path('pais') }}" method="GET" id="formPais">#}
+            {#  <select class="form-control" name="seleccion" id="selPais">#}
+            {#    <option value="VE">Venezuela</a>#}
+            {#    <option value="US">United States</a>#}
+            {#    <option value="EN">England</a>#}
+            {#    <option selected value="CO">Colombia</a>#}
+            {#  </select>#}
+            {#</form>#}
+
+            <div id="{{product.id}}" class="col-lg-4 col-md-6 mb-4 epale" style="heigth:200px">
+              <div  class="filterDiv {{product.categoria}}">
+            {#link del producto#}
+            <a href="javascript:void(0)" class="show-modal{{product.id}}">
+              {#imagen del producto#}
+              <img class="card-img-top img-fluid " style="background-position:center center; background-size:cover" src="{{product.link}}" alt="">
+              {#informacion cuando se hace hover#}
+              <div class="descripcionProducto">
+                <a href="javascript:void(0)" class="show-modal{{product.id}}">
+                  <h4 class="producto text{{product.id}}">{{product.nombre}}</h4>
+                  <h6 class="producto price{{product.id}}">{{product.precio*0.76}} £.</h6>
+                </a>
+              </div>
+              <br>
+              <br>
+              
+              {#AQUI ABRE EL DIALOG CUANDO SE HACE CLICK EN UN PRODUCTO #}
+              
+              <dialog class="mdl-dialog show-dialog{{product.id}}">
+                  <div class="mdl-dialog__content">
+                     
+                      <div class="row">
+                      {#ESTA SECCION TIENE LA FOTO DEL PRODUCTO#}
+                      <section class="foto col-lg-6 col-md-6">
+                        <img class="img-fluid" src="{{product.link}}" alt="">  
+                      </section>
+                      {#ESTA SECCION TIENA LA INFORMACION DEL PRODUCTO#}
+                      <section class="col-lg-6 col-md-6 mb-12">
+                        <h4 class="producto text-center center-text">{{product.nombre}}</h4>
+                        <h6 class="producto text-center center-text">Price: {{product.precio*0.76}} £</h6>
+                        <h6 class="producto text-center center-text">Description: {{product.Descripcion}}</h6>
+                        {#AQUI ESTAN LOS BOTONES SOBRE LAS ACCIONES DE CADA PRODUCTO#}
+                        <div class="mdl-dialog__actions mdl-dialog__actions--full-width">
+                          
+                          {% if not is_granted('IS_AUTHENTICATED_FULLY')%}
+                          <p>You have to sign in to add products to your shopping cart!</p>
+                          <button type="button" class="mdl-button close{{product.id}}">Cerrar <i class="material-icons">close</i></button>
+                          {% endif %}
+                          
+                          {% if is_granted('IS_AUTHENTICATED_FULLY')%}
+                            <hr style="height:10px">                            
+                            <form style="width:100%" class="text-center center-text" action="{{ path('agregarProducto' , { 'id' : product.id}) }}" method="POST">
+                              <button style="width:100%; background-color:#f44336; color:white; font-weight:bold" type="submit" class="mdl-button text-center center-text">Add to Shopping Cart<i class="material-icons">add_shopping_cart</i></button>
+                            </form>
+                            <form style="width:100%" class="text-center center-text" action="{{ path('agregarWishlist' , { 'id' : product.id}) }}" method="POST">
+                              <button style="width:100%; background-color:#E0E3E8" type="submit" class="mdl-button text-center center-text"> Add To WishList <i class="material-icons">list</i></button>
+                            </form>
+                            <form style="width:100%" class="text-center center-text" action="" method="">
+                              <button style="width:100%; background-color:#E0E3E8" type="button" class="mdl-button text-center center-text close{{product.id}}">Close <i class="material-icons">close</i></button>
+                            </form>
+                          {% endif %}
+                        </div>
+                      </section>
+                      </div>
+                    
+                  </div>
+                </dialog>
+                
+              {#SCRIPT QUE SE CORRE PARA ABRIR EL DIALOG  #}
+              <script>
+                // SE CREA LA VARIABLE DIALOG PARA TODAS LAS VECES QUE A APAREZCA LA CLASE SHOWDIALOG((product.id))//
+                var dialog{{product.id}} = document.querySelector('.show-dialog{{product.id}}');
+                // SE CREA LA VARIAVLE DE BOTON DE MODAL PARA TODAS LAS CLASES SHOWMODAL PARA CUANDO SE HAGA CLICK EN LA IMAGEN
+                var showModalButton{{product.id}} = document.querySelector('.show-modal{{product.id}}'); 
+                // SE CREA LA VARIABLE DE BOTON DE MODAL PARA TODAS LAS CLASES TEXT PARA CUANDO SE HAGA CLICK EN EL NOMBRE DEL PRODUCTO
+                var showTextButton{{product.id}} = document.querySelector('.text{{product.id}}');
+                // SE CREA LA VARIABLE DE BOTON DE MODEL PARA TODAS LAS CLASES PRICE PARA CUANDO SE HAGA CLICK EN EL PRECIO DEL PRODUCTO
+                var showPriceButton{{product.id}} = document.querySelector('.price{{product.id}}');
+                
+                if (!dialog{{product.id}}.showModal){
+                  dialogPolyfill.registerDialog(dialog{{product.id}});
+                }
+                // FUNCION PARA CUANDO SE HAGA CLICK EN LA IMAGEN
+                showModalButton{{product.id}}.addEventListener('click', function() {
+                  dialog{{product.id}}.showModal();
+                });
+                // FUNCION PARA CUANDO SE HAGA CLICK EN EL NOMBRE
+                showTextButton{{product.id}}.addEventListener('click', function() {
+                  dialog{{product.id}}.showModal();
+                });
+                // FUNCION PARA CUANDO SE HAGA CLICK EN EL PRECIO
+                showPriceButton{{product.id}}.addEventListener('click', function() {
+                  dialog{{product.id}}.showModal();
+                });
+                // FUNCION PARA CERRAR EL DIALOG
+                dialog{{product.id}}.querySelector('.close{{product.id}}').addEventListener('click', function() {
+                  dialog{{product.id}}.close();
+                });
+              </script> 
+            </a>
+          </div>
+            </div>
+      
+          {% endif %}
+          
+          
+          {#COLOMBIA#}
+          {% if app.user.pais == "CO" %}
+            {#  <form action="{{ path('pais') }}" method="GET" id="formPais">#}
+            {#  <select class="form-control" name="seleccion" id="selPais">#}
+            {#    <option value="VE">Venezuela</a>#}
+            {#    <option value="US">United States</a>#}
+            {#    <option value="EN">England</a>#}
+            {#    <option selected value="CO">Colombia</a>#}
+            {#  </select>#}
+            {#</form>#}
+
+            <div id="{{product.id}}" class="col-lg-4 col-md-6 mb-4 epale" style="heigth:200px">
+              <div  class="filterDiv {{product.categoria}}">
+            {#link del producto#}
+            <a href="javascript:void(0)" class="show-modal{{product.id}}">
+              {#imagen del producto#}
+              <img class="card-img-top img-fluid " style="background-position:center center; background-size:cover" src="{{product.link}}" alt="">
+              {#informacion cuando se hace hover#}
+              <div class="descripcionProducto">
+                <a href="javascript:void(0)" class="show-modal{{product.id}}">
+                  <h4 class="producto text{{product.id}}">{{product.nombre}}</h4>
+                  <h6 class="producto price{{product.id}}">{{product.precio*2977.99}} COP</h6>
+                </a>
+              </div>
+              <br>
+              <br>
+              
+              {#AQUI ABRE EL DIALOG CUANDO SE HACE CLICK EN UN PRODUCTO #}
+              
+              <dialog class="mdl-dialog show-dialog{{product.id}}">
+                  <div class="mdl-dialog__content">
+                     
+                      <div class="row">
+                      {#ESTA SECCION TIENE LA FOTO DEL PRODUCTO#}
+                      <section class="foto col-lg-6 col-md-6">
+                        <img class="img-fluid" src="{{product.link}}" alt="">  
+                      </section>
+                      {#ESTA SECCION TIENA LA INFORMACION DEL PRODUCTO#}
+                      <section class="col-lg-6 col-md-6 mb-12">
+                        <h4 class="producto text-center center-text">{{product.nombre}}</h4>
+                        <h6 class="producto text-center center-text">Precio: {{product.precio*2977.99}} COP</h6>
+                        <h6 class="producto text-center center-text">Descripcion: {{product.Descripcion}}</h6>
+                        {#AQUI ESTAN LOS BOTONES SOBRE LAS ACCIONES DE CADA PRODUCTO#}
+                        <div class="mdl-dialog__actions mdl-dialog__actions--full-width">
+                          
+                          {% if not is_granted('IS_AUTHENTICATED_FULLY')%}
+                          <p>Inicie Sesion para empezar a agregar productos a su Carro de Compras!</p>
+                          <button type="button" class="mdl-button close{{product.id}}">Cerrar <i class="material-icons">close</i></button>
+                          {% endif %}
+                          
+                          {% if is_granted('IS_AUTHENTICATED_FULLY')%}
+                            <hr style="height:10px">                            
+                            <form style="width:100%" class="text-center center-text" action="{{ path('agregarProducto' , { 'id' : product.id}) }}" method="POST">
+                              <button style="width:100%; background-color:#f44336; color:white; font-weight:bold" type="submit" class="mdl-button text-center center-text">Agregar al Carro de Compras<i class="material-icons">add_shopping_cart</i></button>
+                            </form>
+                            <form style="width:100%" class="text-center center-text" action="{{ path('agregarWishlist' , { 'id' : product.id}) }}" method="POST">
+                              <button style="width:100%; background-color:#E0E3E8" type="submit" class="mdl-button text-center center-text"> Agregar a la wishlist <i class="material-icons">list</i></button>
+                            </form>
+                            <form style="width:100%" class="text-center center-text" action="" method="">
+                              <button style="width:100%; background-color:#E0E3E8" type="button" class="mdl-button text-center center-text close{{product.id}}">Cerrar <i class="material-icons">close</i></button>
+                            </form>
+                          {% endif %}
+                        </div>
+                      </section>
+                      </div>
+                    
+                  </div>
+                </dialog>
+                
+              {#SCRIPT QUE SE CORRE PARA ABRIR EL DIALOG  #}
+              <script>
+                // SE CREA LA VARIABLE DIALOG PARA TODAS LAS VECES QUE A APAREZCA LA CLASE SHOWDIALOG((product.id))//
+                var dialog{{product.id}} = document.querySelector('.show-dialog{{product.id}}');
+                // SE CREA LA VARIAVLE DE BOTON DE MODAL PARA TODAS LAS CLASES SHOWMODAL PARA CUANDO SE HAGA CLICK EN LA IMAGEN
+                var showModalButton{{product.id}} = document.querySelector('.show-modal{{product.id}}'); 
+                // SE CREA LA VARIABLE DE BOTON DE MODAL PARA TODAS LAS CLASES TEXT PARA CUANDO SE HAGA CLICK EN EL NOMBRE DEL PRODUCTO
+                var showTextButton{{product.id}} = document.querySelector('.text{{product.id}}');
+                // SE CREA LA VARIABLE DE BOTON DE MODEL PARA TODAS LAS CLASES PRICE PARA CUANDO SE HAGA CLICK EN EL PRECIO DEL PRODUCTO
+                var showPriceButton{{product.id}} = document.querySelector('.price{{product.id}}');
+                
+                if (!dialog{{product.id}}.showModal){
+                  dialogPolyfill.registerDialog(dialog{{product.id}});
+                }
+                // FUNCION PARA CUANDO SE HAGA CLICK EN LA IMAGEN
+                showModalButton{{product.id}}.addEventListener('click', function() {
+                  dialog{{product.id}}.showModal();
+                });
+                // FUNCION PARA CUANDO SE HAGA CLICK EN EL NOMBRE
+                showTextButton{{product.id}}.addEventListener('click', function() {
+                  dialog{{product.id}}.showModal();
+                });
+                // FUNCION PARA CUANDO SE HAGA CLICK EN EL PRECIO
+                showPriceButton{{product.id}}.addEventListener('click', function() {
+                  dialog{{product.id}}.showModal();
+                });
+                // FUNCION PARA CERRAR EL DIALOG
+                dialog{{product.id}}.querySelector('.close{{product.id}}').addEventListener('click', function() {
+                  dialog{{product.id}}.close();
+                });
+              </script> 
+            </a>
+          </div>
+            </div>
+      
+          {% endif %}
+      
+        {% endif %}
+      {% endfor %}
+
+  </div>
+  
+  <div class="row text-center" style="padding-left:100px; padding-top:50px; padding-bottom: 50px" id="macetaprod">
+      {% for product in products %}
+        {% if product.categoria == 'maceta'  %}
+          <style> 
+        .mdl-dialog {
+          border: none;
+          box-shadow: 0 9px 46px 8px rgba(0,0,0,.14), 0 11px 15px -7px rgba(0,0,0,.12), 0 24px 38px 3px rgba(0,0,0,.2);
+          width: 60%;
+        }
+        .mdl-navigation.lateral{
+          
+          background-color:white;
+      }
+        .mdl-layout__drawer.lateral{
+            background-color:white;
+            width: 175px;
+            height:55%;
+            border-right-style: none;
+            border-right-width: 0px;
+            border-bottom-style: none;
+            border-bottom-width: 0px;
+            border-bottom-color: transparent;
+            
+        }
+        .mdl-button.mdl-js-button.mdl-js-ripple-effect:hover{
+          
+          background-color: #67daff;
+           
+          
+      }
+      
+      </style>
+          {#componente que contiene cada producto#}
+          
+          {#VENEZUELA#}
+          {% if app.user.pais == "VE" %}
+            {#  <form action="{{ path('pais') }}" method="GET" id="formPais">#}
+            {#  <select class="form-control" name="seleccion" id="selPais">#}
+            {#    <option value="VE">Venezuela</a>#}
+            {#    <option value="US">United States</a>#}
+            {#    <option value="EN">England</a>#}
+            {#    <option selected value="CO">Colombia</a>#}
+            {#  </select>#}
+            {#</form>#}
+
+            <div id="{{product.id}}" class="col-lg-4 col-md-6 mb-4 epale" style="heigth:200px">
+              <div  class="filterDiv {{product.categoria}}">
+              {#link del producto#}
+                <a href="javascript:void(0)" class="show-modal{{product.id}}">
+              {#imagen del producto#}
+              <img class="card-img-top img-fluid " style="background-position:center center; background-size:cover" src="{{product.link}}" alt="">
+              {#informacion cuando se hace hover#}
+              <div class="descripcionProducto">
+                <a href="javascript:void(0)" class="show-modal{{product.id}}">
+                  <h4 class="producto text{{product.id}}">{{product.nombre}}</h4>
+                  <h6 class="producto price{{product.id}}">{{product.precio*35000}} BsF.</h6>
+                </a>
+              </div>
+              <br>
+              <br>
+              
+              {#AQUI ABRE EL DIALOG CUANDO SE HACE CLICK EN UN PRODUCTO #}
+              
+              <dialog class="mdl-dialog show-dialog{{product.id}}">
+                  <div class="mdl-dialog__content">
+                     
+                      <div class="row">
+                      {#ESTA SECCION TIENE LA FOTO DEL PRODUCTO#}
+                      <section class="foto col-lg-6 col-md-6">
+                        <img class="img-fluid" src="{{product.link}}" alt="">  
+                      </section>
+                      {#ESTA SECCION TIENA LA INFORMACION DEL PRODUCTO#}
+                      <section class="col-lg-6 col-md-6 mb-12">
+                        <h4 class="producto text-center center-text">{{product.nombre}}</h4>
+                        <h6 class="producto text-center center-text">Precio: {{product.precio*35000}} BsF</h6>
+                        <h6 class="producto text-center center-text">Descripcion: {{product.Descripcion}}</h6>
+                        {#AQUI ESTAN LOS BOTONES SOBRE LAS ACCIONES DE CADA PRODUCTO#}
+                        <div class="mdl-dialog__actions mdl-dialog__actions--full-width">
+                          
+                          {% if not is_granted('IS_AUTHENTICATED_FULLY')%}
+                          <p>Inicie Sesion para empezar a agregar productos a su Carro de Compras!</p>
+                          <button type="button" class="mdl-button close{{product.id}}">Cerrar <i class="material-icons">close</i></button>
+                          {% endif %}
+                          
+                          {% if is_granted('IS_AUTHENTICATED_FULLY')%}
+                            <hr style="height:10px">                            
+                            <form style="width:100%" class="text-center center-text" action="{{ path('agregarProducto' , { 'id' : product.id}) }}" method="POST">
+                              <button style="width:100%; background-color:#f44336; color:white; font-weight:bold" type="submit" class="mdl-button text-center center-text">Agregar al Carro de Compras<i class="material-icons">add_shopping_cart</i></button>
+                            </form>
+                            <form style="width:100%" class="text-center center-text" action="{{ path('agregarWishlist' , { 'id' : product.id}) }}" method="POST">
+                              <button style="width:100%; background-color:#E0E3E8" type="submit" class="mdl-button text-center center-text"> Agregar a la wishlist <i class="material-icons">list</i></button>
+                            </form>
+                            <form style="width:100%" class="text-center center-text" action="" method="">
+                              <button style="width:100%; background-color:#E0E3E8" type="button" class="mdl-button text-center center-text close{{product.id}}">Cerrar <i class="material-icons">close</i></button>
+                            </form>
+                          {% endif %}
+                        </div>
+                      </section>
+                      </div>
+                    
+                  </div>
+                </dialog>
+                
+              {#SCRIPT QUE SE CORRE PARA ABRIR EL DIALOG  #}
+              <script>
+                // SE CREA LA VARIABLE DIALOG PARA TODAS LAS VECES QUE A APAREZCA LA CLASE SHOWDIALOG((product.id))//
+                var dialog{{product.id}} = document.querySelector('.show-dialog{{product.id}}');
+                // SE CREA LA VARIAVLE DE BOTON DE MODAL PARA TODAS LAS CLASES SHOWMODAL PARA CUANDO SE HAGA CLICK EN LA IMAGEN
+                var showModalButton{{product.id}} = document.querySelector('.show-modal{{product.id}}'); 
+                // SE CREA LA VARIABLE DE BOTON DE MODAL PARA TODAS LAS CLASES TEXT PARA CUANDO SE HAGA CLICK EN EL NOMBRE DEL PRODUCTO
+                var showTextButton{{product.id}} = document.querySelector('.text{{product.id}}');
+                // SE CREA LA VARIABLE DE BOTON DE MODEL PARA TODAS LAS CLASES PRICE PARA CUANDO SE HAGA CLICK EN EL PRECIO DEL PRODUCTO
+                var showPriceButton{{product.id}} = document.querySelector('.price{{product.id}}');
+                
+                if (!dialog{{product.id}}.showModal){
+                  dialogPolyfill.registerDialog(dialog{{product.id}});
+                }
+                // FUNCION PARA CUANDO SE HAGA CLICK EN LA IMAGEN
+                showModalButton{{product.id}}.addEventListener('click', function() {
+                  dialog{{product.id}}.showModal();
+                });
+                // FUNCION PARA CUANDO SE HAGA CLICK EN EL NOMBRE
+                showTextButton{{product.id}}.addEventListener('click', function() {
+                  dialog{{product.id}}.showModal();
+                });
+                // FUNCION PARA CUANDO SE HAGA CLICK EN EL PRECIO
+                showPriceButton{{product.id}}.addEventListener('click', function() {
+                  dialog{{product.id}}.showModal();
+                });
+                // FUNCION PARA CERRAR EL DIALOG
+                dialog{{product.id}}.querySelector('.close{{product.id}}').addEventListener('click', function() {
+                  dialog{{product.id}}.close();
+                });
+              </script> 
+            </a>
+              </div>
+            </div>
+      
+          {% endif %}
+          
+          {#ESTADOS UNIDOS#}
+          {% if app.user.pais == "US" %}
+            {#  <form action="{{ path('pais') }}" method="GET" id="formPais">#}
+            {#  <select class="form-control" name="seleccion" id="selPais">#}
+            {#    <option value="VE">Venezuela</a>#}
+            {#    <option value="US">United States</a>#}
+            {#    <option value="EN">England</a>#}
+            {#    <option selected value="CO">Colombia</a>#}
+            {#  </select>#}
+            {#</form>#}
+
+            <div id="{{product.id}}" class="col-lg-4 col-md-6 mb-4 epale" style="heigth:200px">
+            <div  class="filterDiv {{product.categoria}}">
+            {#link del producto#}
+            <a href="javascript:void(0)" class="show-modal{{product.id}}">
+              {#imagen del producto#}
+              <img class="card-img-top img-fluid " style="background-position:center center; background-size:cover" src="{{product.link}}" alt="">
+              {#informacion cuando se hace hover#}
+              <div class="descripcionProducto">
+                <a href="javascript:void(0)" class="show-modal{{product.id}}">
+                  <h4 class="producto text{{product.id}}">{{product.nombre}}</h4>
+                  <h6 class="producto price{{product.id}}">{{product.precio}} $.</h6>
+                </a>
+              </div>
+              <br>
+              <br>
+              
+              {#AQUI ABRE EL DIALOG CUANDO SE HACE CLICK EN UN PRODUCTO #}
+              
+              <dialog class="mdl-dialog show-dialog{{product.id}}">
+                  <div class="mdl-dialog__content">
+                     
+                      <div class="row">
+                      {#ESTA SECCION TIENE LA FOTO DEL PRODUCTO#}
+                      <section class="foto col-lg-6 col-md-6">
+                        <img class="img-fluid" src="{{product.link}}" alt="">  
+                      </section>
+                      {#ESTA SECCION TIENA LA INFORMACION DEL PRODUCTO#}
+                      <section class="col-lg-6 col-md-6 mb-12">
+                        <h4 class="producto text-center center-text">{{product.nombre}}</h4>
+                        <h6 class="producto text-center center-text">Price: {{product.precio}} $</h6>
+                        <h6 class="producto text-center center-text">Description: {{product.Descripcion}}</h6>
+                        {#AQUI ESTAN LOS BOTONES SOBRE LAS ACCIONES DE CADA PRODUCTO#}
+                        <div class="mdl-dialog__actions mdl-dialog__actions--full-width">
+                          
+                          {% if not is_granted('IS_AUTHENTICATED_FULLY')%}
+                          <p>You have to sign in to add products to your shopping cart!</p>
+                          <button type="button" class="mdl-button close{{product.id}}">Cerrar <i class="material-icons">close</i></button>
+                          {% endif %}
+                          
+                          {% if is_granted('IS_AUTHENTICATED_FULLY')%}
+                            <hr style="height:10px">                            
+                            <form style="width:100%" class="text-center center-text" action="{{ path('agregarProducto' , { 'id' : product.id}) }}" method="POST">
+                              <button style="width:100%; background-color:#f44336; color:white; font-weight:bold" type="submit" class="mdl-button text-center center-text">Add to Shopping Cart<i class="material-icons">add_shopping_cart</i></button>
+                            </form>
+                            <form style="width:100%" class="text-center center-text" action="{{ path('agregarWishlist' , { 'id' : product.id}) }}" method="POST">
+                              <button style="width:100%; background-color:#E0E3E8" type="submit" class="mdl-button text-center center-text"> Add To WishList <i class="material-icons">list</i></button>
+                            </form>
+                            <form style="width:100%" class="text-center center-text" action="" method="">
+                              <button style="width:100%; background-color:#E0E3E8" type="button" class="mdl-button text-center center-text close{{product.id}}">Close <i class="material-icons">close</i></button>
+                            </form>
+                          {% endif %}
+                        </div>
+                      </section>
+                      </div>
+                    
+                  </div>
+                </dialog>
+                
+              {#SCRIPT QUE SE CORRE PARA ABRIR EL DIALOG  #}
+              <script>
+                // SE CREA LA VARIABLE DIALOG PARA TODAS LAS VECES QUE A APAREZCA LA CLASE SHOWDIALOG((product.id))//
+                var dialog{{product.id}} = document.querySelector('.show-dialog{{product.id}}');
+                // SE CREA LA VARIAVLE DE BOTON DE MODAL PARA TODAS LAS CLASES SHOWMODAL PARA CUANDO SE HAGA CLICK EN LA IMAGEN
+                var showModalButton{{product.id}} = document.querySelector('.show-modal{{product.id}}'); 
+                // SE CREA LA VARIABLE DE BOTON DE MODAL PARA TODAS LAS CLASES TEXT PARA CUANDO SE HAGA CLICK EN EL NOMBRE DEL PRODUCTO
+                var showTextButton{{product.id}} = document.querySelector('.text{{product.id}}');
+                // SE CREA LA VARIABLE DE BOTON DE MODEL PARA TODAS LAS CLASES PRICE PARA CUANDO SE HAGA CLICK EN EL PRECIO DEL PRODUCTO
+                var showPriceButton{{product.id}} = document.querySelector('.price{{product.id}}');
+                
+                if (!dialog{{product.id}}.showModal){
+                  dialogPolyfill.registerDialog(dialog{{product.id}});
+                }
+                // FUNCION PARA CUANDO SE HAGA CLICK EN LA IMAGEN
+                showModalButton{{product.id}}.addEventListener('click', function() {
+                  dialog{{product.id}}.showModal();
+                });
+                // FUNCION PARA CUANDO SE HAGA CLICK EN EL NOMBRE
+                showTextButton{{product.id}}.addEventListener('click', function() {
+                  dialog{{product.id}}.showModal();
+                });
+                // FUNCION PARA CUANDO SE HAGA CLICK EN EL PRECIO
+                showPriceButton{{product.id}}.addEventListener('click', function() {
+                  dialog{{product.id}}.showModal();
+                });
+                // FUNCION PARA CERRAR EL DIALOG
+                dialog{{product.id}}.querySelector('.close{{product.id}}').addEventListener('click', function() {
+                  dialog{{product.id}}.close();
+                });
+              </script> 
+            </a>
+          </div>
+      </div>
+      
+          {% endif %}
+          
+          
+          {#INGLATERRA#}
+          {% if app.user.pais == "EN" %}
+            {#  <form action="{{ path('pais') }}" method="GET" id="formPais">#}
+            {#  <select class="form-control" name="seleccion" id="selPais">#}
+            {#    <option value="VE">Venezuela</a>#}
+            {#    <option value="US">United States</a>#}
+            {#    <option value="EN">England</a>#}
+            {#    <option selected value="CO">Colombia</a>#}
+            {#  </select>#}
+            {#</form>#}
+
+            <div id="{{product.id}}" class="col-lg-4 col-md-6 mb-4 epale" style="heigth:200px">
+              <div  class="filterDiv {{product.categoria}}">
+            {#link del producto#}
+            <a href="javascript:void(0)" class="show-modal{{product.id}}">
+              {#imagen del producto#}
+              <img class="card-img-top img-fluid " style="background-position:center center; background-size:cover" src="{{product.link}}" alt="">
+              {#informacion cuando se hace hover#}
+              <div class="descripcionProducto">
+                <a href="javascript:void(0)" class="show-modal{{product.id}}">
+                  <h4 class="producto text{{product.id}}">{{product.nombre}}</h4>
+                  <h6 class="producto price{{product.id}}">{{product.precio*0.76}} £.</h6>
+                </a>
+              </div>
+              <br>
+              <br>
+              
+              {#AQUI ABRE EL DIALOG CUANDO SE HACE CLICK EN UN PRODUCTO #}
+              
+              <dialog class="mdl-dialog show-dialog{{product.id}}">
+                  <div class="mdl-dialog__content">
+                     
+                      <div class="row">
+                      {#ESTA SECCION TIENE LA FOTO DEL PRODUCTO#}
+                      <section class="foto col-lg-6 col-md-6">
+                        <img class="img-fluid" src="{{product.link}}" alt="">  
+                      </section>
+                      {#ESTA SECCION TIENA LA INFORMACION DEL PRODUCTO#}
+                      <section class="col-lg-6 col-md-6 mb-12">
+                        <h4 class="producto text-center center-text">{{product.nombre}}</h4>
+                        <h6 class="producto text-center center-text">Price: {{product.precio*0.76}} £</h6>
+                        <h6 class="producto text-center center-text">Description: {{product.Descripcion}}</h6>
+                        {#AQUI ESTAN LOS BOTONES SOBRE LAS ACCIONES DE CADA PRODUCTO#}
+                        <div class="mdl-dialog__actions mdl-dialog__actions--full-width">
+                          
+                          {% if not is_granted('IS_AUTHENTICATED_FULLY')%}
+                          <p>You have to sign in to add products to your shopping cart!</p>
+                          <button type="button" class="mdl-button close{{product.id}}">Cerrar <i class="material-icons">close</i></button>
+                          {% endif %}
+                          
+                          {% if is_granted('IS_AUTHENTICATED_FULLY')%}
+                            <hr style="height:10px">                            
+                            <form style="width:100%" class="text-center center-text" action="{{ path('agregarProducto' , { 'id' : product.id}) }}" method="POST">
+                              <button style="width:100%; background-color:#f44336; color:white; font-weight:bold" type="submit" class="mdl-button text-center center-text">Add to Shopping Cart<i class="material-icons">add_shopping_cart</i></button>
+                            </form>
+                            <form style="width:100%" class="text-center center-text" action="{{ path('agregarWishlist' , { 'id' : product.id}) }}" method="POST">
+                              <button style="width:100%; background-color:#E0E3E8" type="submit" class="mdl-button text-center center-text"> Add To WishList <i class="material-icons">list</i></button>
+                            </form>
+                            <form style="width:100%" class="text-center center-text" action="" method="">
+                              <button style="width:100%; background-color:#E0E3E8" type="button" class="mdl-button text-center center-text close{{product.id}}">Close <i class="material-icons">close</i></button>
+                            </form>
+                          {% endif %}
+                        </div>
+                      </section>
+                      </div>
+                    
+                  </div>
+                </dialog>
+                
+              {#SCRIPT QUE SE CORRE PARA ABRIR EL DIALOG  #}
+              <script>
+                // SE CREA LA VARIABLE DIALOG PARA TODAS LAS VECES QUE A APAREZCA LA CLASE SHOWDIALOG((product.id))//
+                var dialog{{product.id}} = document.querySelector('.show-dialog{{product.id}}');
+                // SE CREA LA VARIAVLE DE BOTON DE MODAL PARA TODAS LAS CLASES SHOWMODAL PARA CUANDO SE HAGA CLICK EN LA IMAGEN
+                var showModalButton{{product.id}} = document.querySelector('.show-modal{{product.id}}'); 
+                // SE CREA LA VARIABLE DE BOTON DE MODAL PARA TODAS LAS CLASES TEXT PARA CUANDO SE HAGA CLICK EN EL NOMBRE DEL PRODUCTO
+                var showTextButton{{product.id}} = document.querySelector('.text{{product.id}}');
+                // SE CREA LA VARIABLE DE BOTON DE MODEL PARA TODAS LAS CLASES PRICE PARA CUANDO SE HAGA CLICK EN EL PRECIO DEL PRODUCTO
+                var showPriceButton{{product.id}} = document.querySelector('.price{{product.id}}');
+                
+                if (!dialog{{product.id}}.showModal){
+                  dialogPolyfill.registerDialog(dialog{{product.id}});
+                }
+                // FUNCION PARA CUANDO SE HAGA CLICK EN LA IMAGEN
+                showModalButton{{product.id}}.addEventListener('click', function() {
+                  dialog{{product.id}}.showModal();
+                });
+                // FUNCION PARA CUANDO SE HAGA CLICK EN EL NOMBRE
+                showTextButton{{product.id}}.addEventListener('click', function() {
+                  dialog{{product.id}}.showModal();
+                });
+                // FUNCION PARA CUANDO SE HAGA CLICK EN EL PRECIO
+                showPriceButton{{product.id}}.addEventListener('click', function() {
+                  dialog{{product.id}}.showModal();
+                });
+                // FUNCION PARA CERRAR EL DIALOG
+                dialog{{product.id}}.querySelector('.close{{product.id}}').addEventListener('click', function() {
+                  dialog{{product.id}}.close();
+                });
+              </script> 
+            </a>
+          </div>
+            </div>
+      
+          {% endif %}
+          
+          
+          {#COLOMBIA#}
+          {% if app.user.pais == "CO" %}
+            {#  <form action="{{ path('pais') }}" method="GET" id="formPais">#}
+            {#  <select class="form-control" name="seleccion" id="selPais">#}
+            {#    <option value="VE">Venezuela</a>#}
+            {#    <option value="US">United States</a>#}
+            {#    <option value="EN">England</a>#}
+            {#    <option selected value="CO">Colombia</a>#}
+            {#  </select>#}
+            {#</form>#}
+
+            <div id="{{product.id}}" class="col-lg-4 col-md-6 mb-4 epale" style="heigth:200px">
+              <div  class="filterDiv {{product.categoria}}">
+            {#link del producto#}
+            <a href="javascript:void(0)" class="show-modal{{product.id}}">
+              {#imagen del producto#}
+              <img class="card-img-top img-fluid " style="background-position:center center; background-size:cover" src="{{product.link}}" alt="">
+              {#informacion cuando se hace hover#}
+              <div class="descripcionProducto">
+                <a href="javascript:void(0)" class="show-modal{{product.id}}">
+                  <h4 class="producto text{{product.id}}">{{product.nombre}}</h4>
+                  <h6 class="producto price{{product.id}}">{{product.precio*2977.99}} COP</h6>
+                </a>
+              </div>
+              <br>
+              <br>
+              
+              {#AQUI ABRE EL DIALOG CUANDO SE HACE CLICK EN UN PRODUCTO #}
+              
+              <dialog class="mdl-dialog show-dialog{{product.id}}">
+                  <div class="mdl-dialog__content">
+                     
+                      <div class="row">
+                      {#ESTA SECCION TIENE LA FOTO DEL PRODUCTO#}
+                      <section class="foto col-lg-6 col-md-6">
+                        <img class="img-fluid" src="{{product.link}}" alt="">  
+                      </section>
+                      {#ESTA SECCION TIENA LA INFORMACION DEL PRODUCTO#}
+                      <section class="col-lg-6 col-md-6 mb-12">
+                        <h4 class="producto text-center center-text">{{product.nombre}}</h4>
+                        <h6 class="producto text-center center-text">Precio: {{product.precio*2977.99}} COP</h6>
+                        <h6 class="producto text-center center-text">Descripcion: {{product.Descripcion}}</h6>
+                        {#AQUI ESTAN LOS BOTONES SOBRE LAS ACCIONES DE CADA PRODUCTO#}
+                        <div class="mdl-dialog__actions mdl-dialog__actions--full-width">
+                          
+                          {% if not is_granted('IS_AUTHENTICATED_FULLY')%}
+                          <p>Inicie Sesion para empezar a agregar productos a su Carro de Compras!</p>
+                          <button type="button" class="mdl-button close{{product.id}}">Cerrar <i class="material-icons">close</i></button>
+                          {% endif %}
+                          
+                          {% if is_granted('IS_AUTHENTICATED_FULLY')%}
+                            <hr style="height:10px">                            
+                            <form style="width:100%" class="text-center center-text" action="{{ path('agregarProducto' , { 'id' : product.id}) }}" method="POST">
+                              <button style="width:100%; background-color:#f44336; color:white; font-weight:bold" type="submit" class="mdl-button text-center center-text">Agregar al Carro de Compras<i class="material-icons">add_shopping_cart</i></button>
+                            </form>
+                            <form style="width:100%" class="text-center center-text" action="{{ path('agregarWishlist' , { 'id' : product.id}) }}" method="POST">
+                              <button style="width:100%; background-color:#E0E3E8" type="submit" class="mdl-button text-center center-text"> Agregar a la wishlist <i class="material-icons">list</i></button>
+                            </form>
+                            <form style="width:100%" class="text-center center-text" action="" method="">
+                              <button style="width:100%; background-color:#E0E3E8" type="button" class="mdl-button text-center center-text close{{product.id}}">Cerrar <i class="material-icons">close</i></button>
+                            </form>
+                          {% endif %}
+                        </div>
+                      </section>
+                      </div>
+                    
+                  </div>
+                </dialog>
+                
+              {#SCRIPT QUE SE CORRE PARA ABRIR EL DIALOG  #}
+              <script>
+                // SE CREA LA VARIABLE DIALOG PARA TODAS LAS VECES QUE A APAREZCA LA CLASE SHOWDIALOG((product.id))//
+                var dialog{{product.id}} = document.querySelector('.show-dialog{{product.id}}');
+                // SE CREA LA VARIAVLE DE BOTON DE MODAL PARA TODAS LAS CLASES SHOWMODAL PARA CUANDO SE HAGA CLICK EN LA IMAGEN
+                var showModalButton{{product.id}} = document.querySelector('.show-modal{{product.id}}'); 
+                // SE CREA LA VARIABLE DE BOTON DE MODAL PARA TODAS LAS CLASES TEXT PARA CUANDO SE HAGA CLICK EN EL NOMBRE DEL PRODUCTO
+                var showTextButton{{product.id}} = document.querySelector('.text{{product.id}}');
+                // SE CREA LA VARIABLE DE BOTON DE MODEL PARA TODAS LAS CLASES PRICE PARA CUANDO SE HAGA CLICK EN EL PRECIO DEL PRODUCTO
+                var showPriceButton{{product.id}} = document.querySelector('.price{{product.id}}');
+                
+                if (!dialog{{product.id}}.showModal){
+                  dialogPolyfill.registerDialog(dialog{{product.id}});
+                }
+                // FUNCION PARA CUANDO SE HAGA CLICK EN LA IMAGEN
+                showModalButton{{product.id}}.addEventListener('click', function() {
+                  dialog{{product.id}}.showModal();
+                });
+                // FUNCION PARA CUANDO SE HAGA CLICK EN EL NOMBRE
+                showTextButton{{product.id}}.addEventListener('click', function() {
+                  dialog{{product.id}}.showModal();
+                });
+                // FUNCION PARA CUANDO SE HAGA CLICK EN EL PRECIO
+                showPriceButton{{product.id}}.addEventListener('click', function() {
+                  dialog{{product.id}}.showModal();
+                });
+                // FUNCION PARA CERRAR EL DIALOG
+                dialog{{product.id}}.querySelector('.close{{product.id}}').addEventListener('click', function() {
+                  dialog{{product.id}}.close();
+                });
+              </script> 
+            </a>
+          </div>
+            </div>
+      
+          {% endif %}
+      
+        {% endif %}
+      {% endfor %}
+      
+  </div>
+  
+  <div class="row text-center" style="padding-left:100px; padding-top:50px; padding-bottom: 50px" id="accesorioprod">
+      {% for product in products %}
+        {% if product.categoria == 'accesorio'%}
+          <style> 
+        .mdl-dialog {
+          border: none;
+          box-shadow: 0 9px 46px 8px rgba(0,0,0,.14), 0 11px 15px -7px rgba(0,0,0,.12), 0 24px 38px 3px rgba(0,0,0,.2);
+          width: 60%;
+        }
+        .mdl-navigation.lateral{
+          
+          background-color:white;
+      }
+        .mdl-layout__drawer.lateral{
+            background-color:white;
+            width: 175px;
+            height:55%;
+            border-right-style: none;
+            border-right-width: 0px;
+            border-bottom-style: none;
+            border-bottom-width: 0px;
+            border-bottom-color: transparent;
+            
+        }
+        .mdl-button.mdl-js-button.mdl-js-ripple-effect:hover{
+          
+          background-color: #67daff;
+           
+          
+      }
+      
+      </style>
+          {#componente que contiene cada producto#}
+          
+          {#VENEZUELA#}
+          {% if app.user.pais == "VE" %}
+            {#  <form action="{{ path('pais') }}" method="GET" id="formPais">#}
+            {#  <select class="form-control" name="seleccion" id="selPais">#}
+            {#    <option value="VE">Venezuela</a>#}
+            {#    <option value="US">United States</a>#}
+            {#    <option value="EN">England</a>#}
+            {#    <option selected value="CO">Colombia</a>#}
+            {#  </select>#}
+            {#</form>#}
+
+            <div id="{{product.id}}" class="col-lg-4 col-md-6 mb-4 epale" style="heigth:200px">
+              <div  class="filterDiv {{product.categoria}}">
+              {#link del producto#}
+                <a href="javascript:void(0)" class="show-modal{{product.id}}">
+              {#imagen del producto#}
+              <img class="card-img-top img-fluid " style="background-position:center center; background-size:cover" src="{{product.link}}" alt="">
+              {#informacion cuando se hace hover#}
+              <div class="descripcionProducto">
+                <a href="javascript:void(0)" class="show-modal{{product.id}}">
+                  <h4 class="producto text{{product.id}}">{{product.nombre}}</h4>
+                  <h6 class="producto price{{product.id}}">{{product.precio*35000}} BsF.</h6>
+                </a>
+              </div>
+              <br>
+              <br>
+              
+              {#AQUI ABRE EL DIALOG CUANDO SE HACE CLICK EN UN PRODUCTO #}
+              
+              <dialog class="mdl-dialog show-dialog{{product.id}}">
+                  <div class="mdl-dialog__content">
+                     
+                      <div class="row">
+                      {#ESTA SECCION TIENE LA FOTO DEL PRODUCTO#}
+                      <section class="foto col-lg-6 col-md-6">
+                        <img class="img-fluid" src="{{product.link}}" alt="">  
+                      </section>
+                      {#ESTA SECCION TIENA LA INFORMACION DEL PRODUCTO#}
+                      <section class="col-lg-6 col-md-6 mb-12">
+                        <h4 class="producto text-center center-text">{{product.nombre}}</h4>
+                        <h6 class="producto text-center center-text">Precio: {{product.precio*35000}} BsF</h6>
+                        <h6 class="producto text-center center-text">Descripcion: {{product.Descripcion}}</h6>
+                        {#AQUI ESTAN LOS BOTONES SOBRE LAS ACCIONES DE CADA PRODUCTO#}
+                        <div class="mdl-dialog__actions mdl-dialog__actions--full-width">
+                          
+                          {% if not is_granted('IS_AUTHENTICATED_FULLY')%}
+                          <p>Inicie Sesion para empezar a agregar productos a su Carro de Compras!</p>
+                          <button type="button" class="mdl-button close{{product.id}}">Cerrar <i class="material-icons">close</i></button>
+                          {% endif %}
+                          
+                          {% if is_granted('IS_AUTHENTICATED_FULLY')%}
+                            <hr style="height:10px">                            
+                            <form style="width:100%" class="text-center center-text" action="{{ path('agregarProducto' , { 'id' : product.id}) }}" method="POST">
+                              <button style="width:100%; background-color:#f44336; color:white; font-weight:bold" type="submit" class="mdl-button text-center center-text">Agregar al Carro de Compras<i class="material-icons">add_shopping_cart</i></button>
+                            </form>
+                            <form style="width:100%" class="text-center center-text" action="{{ path('agregarWishlist' , { 'id' : product.id}) }}" method="POST">
+                              <button style="width:100%; background-color:#E0E3E8" type="submit" class="mdl-button text-center center-text"> Agregar a la wishlist <i class="material-icons">list</i></button>
+                            </form>
+                            <form style="width:100%" class="text-center center-text" action="" method="">
+                              <button style="width:100%; background-color:#E0E3E8" type="button" class="mdl-button text-center center-text close{{product.id}}">Cerrar <i class="material-icons">close</i></button>
+                            </form>
+                          {% endif %}
+                        </div>
+                      </section>
+                      </div>
+                    
+                  </div>
+                </dialog>
+                
+              {#SCRIPT QUE SE CORRE PARA ABRIR EL DIALOG  #}
+              <script>
+                // SE CREA LA VARIABLE DIALOG PARA TODAS LAS VECES QUE A APAREZCA LA CLASE SHOWDIALOG((product.id))//
+                var dialog{{product.id}} = document.querySelector('.show-dialog{{product.id}}');
+                // SE CREA LA VARIAVLE DE BOTON DE MODAL PARA TODAS LAS CLASES SHOWMODAL PARA CUANDO SE HAGA CLICK EN LA IMAGEN
+                var showModalButton{{product.id}} = document.querySelector('.show-modal{{product.id}}'); 
+                // SE CREA LA VARIABLE DE BOTON DE MODAL PARA TODAS LAS CLASES TEXT PARA CUANDO SE HAGA CLICK EN EL NOMBRE DEL PRODUCTO
+                var showTextButton{{product.id}} = document.querySelector('.text{{product.id}}');
+                // SE CREA LA VARIABLE DE BOTON DE MODEL PARA TODAS LAS CLASES PRICE PARA CUANDO SE HAGA CLICK EN EL PRECIO DEL PRODUCTO
+                var showPriceButton{{product.id}} = document.querySelector('.price{{product.id}}');
+                
+                if (!dialog{{product.id}}.showModal){
+                  dialogPolyfill.registerDialog(dialog{{product.id}});
+                }
+                // FUNCION PARA CUANDO SE HAGA CLICK EN LA IMAGEN
+                showModalButton{{product.id}}.addEventListener('click', function() {
+                  dialog{{product.id}}.showModal();
+                });
+                // FUNCION PARA CUANDO SE HAGA CLICK EN EL NOMBRE
+                showTextButton{{product.id}}.addEventListener('click', function() {
+                  dialog{{product.id}}.showModal();
+                });
+                // FUNCION PARA CUANDO SE HAGA CLICK EN EL PRECIO
+                showPriceButton{{product.id}}.addEventListener('click', function() {
+                  dialog{{product.id}}.showModal();
+                });
+                // FUNCION PARA CERRAR EL DIALOG
+                dialog{{product.id}}.querySelector('.close{{product.id}}').addEventListener('click', function() {
+                  dialog{{product.id}}.close();
+                });
+              </script> 
+            </a>
+              </div>
+            </div>
+      
+          {% endif %}
+          
+          {#ESTADOS UNIDOS#}
+          {% if app.user.pais == "US" %}
+            {#  <form action="{{ path('pais') }}" method="GET" id="formPais">#}
+            {#  <select class="form-control" name="seleccion" id="selPais">#}
+            {#    <option value="VE">Venezuela</a>#}
+            {#    <option value="US">United States</a>#}
+            {#    <option value="EN">England</a>#}
+            {#    <option selected value="CO">Colombia</a>#}
+            {#  </select>#}
+            {#</form>#}
+
+            <div id="{{product.id}}" class="col-lg-4 col-md-6 mb-4 epale" style="heigth:200px">
+            <div  class="filterDiv {{product.categoria}}">
+            {#link del producto#}
+            <a href="javascript:void(0)" class="show-modal{{product.id}}">
+              {#imagen del producto#}
+              <img class="card-img-top img-fluid " style="background-position:center center; background-size:cover" src="{{product.link}}" alt="">
+              {#informacion cuando se hace hover#}
+              <div class="descripcionProducto">
+                <a href="javascript:void(0)" class="show-modal{{product.id}}">
+                  <h4 class="producto text{{product.id}}">{{product.nombre}}</h4>
+                  <h6 class="producto price{{product.id}}">{{product.precio}} $.</h6>
+                </a>
+              </div>
+              <br>
+              <br>
+              
+              {#AQUI ABRE EL DIALOG CUANDO SE HACE CLICK EN UN PRODUCTO #}
+              
+              <dialog class="mdl-dialog show-dialog{{product.id}}">
+                  <div class="mdl-dialog__content">
+                     
+                      <div class="row">
+                      {#ESTA SECCION TIENE LA FOTO DEL PRODUCTO#}
+                      <section class="foto col-lg-6 col-md-6">
+                        <img class="img-fluid" src="{{product.link}}" alt="">  
+                      </section>
+                      {#ESTA SECCION TIENA LA INFORMACION DEL PRODUCTO#}
+                      <section class="col-lg-6 col-md-6 mb-12">
+                        <h4 class="producto text-center center-text">{{product.nombre}}</h4>
+                        <h6 class="producto text-center center-text">Price: {{product.precio}} $</h6>
+                        <h6 class="producto text-center center-text">Description: {{product.Descripcion}}</h6>
+                        {#AQUI ESTAN LOS BOTONES SOBRE LAS ACCIONES DE CADA PRODUCTO#}
+                        <div class="mdl-dialog__actions mdl-dialog__actions--full-width">
+                          
+                          {% if not is_granted('IS_AUTHENTICATED_FULLY')%}
+                          <p>You have to sign in to add products to your shopping cart!</p>
+                          <button type="button" class="mdl-button close{{product.id}}">Cerrar <i class="material-icons">close</i></button>
+                          {% endif %}
+                          
+                          {% if is_granted('IS_AUTHENTICATED_FULLY')%}
+                            <hr style="height:10px">                            
+                            <form style="width:100%" class="text-center center-text" action="{{ path('agregarProducto' , { 'id' : product.id}) }}" method="POST">
+                              <button style="width:100%; background-color:#f44336; color:white; font-weight:bold" type="submit" class="mdl-button text-center center-text">Add to Shopping Cart<i class="material-icons">add_shopping_cart</i></button>
+                            </form>
+                            <form style="width:100%" class="text-center center-text" action="{{ path('agregarWishlist' , { 'id' : product.id}) }}" method="POST">
+                              <button style="width:100%; background-color:#E0E3E8" type="submit" class="mdl-button text-center center-text"> Add To WishList <i class="material-icons">list</i></button>
+                            </form>
+                            <form style="width:100%" class="text-center center-text" action="" method="">
+                              <button style="width:100%; background-color:#E0E3E8" type="button" class="mdl-button text-center center-text close{{product.id}}">Close <i class="material-icons">close</i></button>
+                            </form>
+                          {% endif %}
+                        </div>
+                      </section>
+                      </div>
+                    
+                  </div>
+                </dialog>
+                
+              {#SCRIPT QUE SE CORRE PARA ABRIR EL DIALOG  #}
+              <script>
+                // SE CREA LA VARIABLE DIALOG PARA TODAS LAS VECES QUE A APAREZCA LA CLASE SHOWDIALOG((product.id))//
+                var dialog{{product.id}} = document.querySelector('.show-dialog{{product.id}}');
+                // SE CREA LA VARIAVLE DE BOTON DE MODAL PARA TODAS LAS CLASES SHOWMODAL PARA CUANDO SE HAGA CLICK EN LA IMAGEN
+                var showModalButton{{product.id}} = document.querySelector('.show-modal{{product.id}}'); 
+                // SE CREA LA VARIABLE DE BOTON DE MODAL PARA TODAS LAS CLASES TEXT PARA CUANDO SE HAGA CLICK EN EL NOMBRE DEL PRODUCTO
+                var showTextButton{{product.id}} = document.querySelector('.text{{product.id}}');
+                // SE CREA LA VARIABLE DE BOTON DE MODEL PARA TODAS LAS CLASES PRICE PARA CUANDO SE HAGA CLICK EN EL PRECIO DEL PRODUCTO
+                var showPriceButton{{product.id}} = document.querySelector('.price{{product.id}}');
+                
+                if (!dialog{{product.id}}.showModal){
+                  dialogPolyfill.registerDialog(dialog{{product.id}});
+                }
+                // FUNCION PARA CUANDO SE HAGA CLICK EN LA IMAGEN
+                showModalButton{{product.id}}.addEventListener('click', function() {
+                  dialog{{product.id}}.showModal();
+                });
+                // FUNCION PARA CUANDO SE HAGA CLICK EN EL NOMBRE
+                showTextButton{{product.id}}.addEventListener('click', function() {
+                  dialog{{product.id}}.showModal();
+                });
+                // FUNCION PARA CUANDO SE HAGA CLICK EN EL PRECIO
+                showPriceButton{{product.id}}.addEventListener('click', function() {
+                  dialog{{product.id}}.showModal();
+                });
+                // FUNCION PARA CERRAR EL DIALOG
+                dialog{{product.id}}.querySelector('.close{{product.id}}').addEventListener('click', function() {
+                  dialog{{product.id}}.close();
+                });
+              </script> 
+            </a>
+          </div>
+      </div>
+      
+          {% endif %}
+          
+          
+          {#INGLATERRA#}
+          {% if app.user.pais == "EN" %}
+            {#  <form action="{{ path('pais') }}" method="GET" id="formPais">#}
+            {#  <select class="form-control" name="seleccion" id="selPais">#}
+            {#    <option value="VE">Venezuela</a>#}
+            {#    <option value="US">United States</a>#}
+            {#    <option value="EN">England</a>#}
+            {#    <option selected value="CO">Colombia</a>#}
+            {#  </select>#}
+            {#</form>#}
+
+            <div id="{{product.id}}" class="col-lg-4 col-md-6 mb-4 epale" style="heigth:200px">
+              <div  class="filterDiv {{product.categoria}}">
+            {#link del producto#}
+            <a href="javascript:void(0)" class="show-modal{{product.id}}">
+              {#imagen del producto#}
+              <img class="card-img-top img-fluid " style="background-position:center center; background-size:cover" src="{{product.link}}" alt="">
+              {#informacion cuando se hace hover#}
+              <div class="descripcionProducto">
+                <a href="javascript:void(0)" class="show-modal{{product.id}}">
+                  <h4 class="producto text{{product.id}}">{{product.nombre}}</h4>
+                  <h6 class="producto price{{product.id}}">{{product.precio*0.76}} £.</h6>
+                </a>
+              </div>
+              <br>
+              <br>
+              
+              {#AQUI ABRE EL DIALOG CUANDO SE HACE CLICK EN UN PRODUCTO #}
+              
+              <dialog class="mdl-dialog show-dialog{{product.id}}">
+                  <div class="mdl-dialog__content">
+                     
+                      <div class="row">
+                      {#ESTA SECCION TIENE LA FOTO DEL PRODUCTO#}
+                      <section class="foto col-lg-6 col-md-6">
+                        <img class="img-fluid" src="{{product.link}}" alt="">  
+                      </section>
+                      {#ESTA SECCION TIENA LA INFORMACION DEL PRODUCTO#}
+                      <section class="col-lg-6 col-md-6 mb-12">
+                        <h4 class="producto text-center center-text">{{product.nombre}}</h4>
+                        <h6 class="producto text-center center-text">Price: {{product.precio*0.76}} £</h6>
+                        <h6 class="producto text-center center-text">Description: {{product.Descripcion}}</h6>
+                        {#AQUI ESTAN LOS BOTONES SOBRE LAS ACCIONES DE CADA PRODUCTO#}
+                        <div class="mdl-dialog__actions mdl-dialog__actions--full-width">
+                          
+                          {% if not is_granted('IS_AUTHENTICATED_FULLY')%}
+                          <p>You have to sign in to add products to your shopping cart!</p>
+                          <button type="button" class="mdl-button close{{product.id}}">Cerrar <i class="material-icons">close</i></button>
+                          {% endif %}
+                          
+                          {% if is_granted('IS_AUTHENTICATED_FULLY')%}
+                            <hr style="height:10px">                            
+                            <form style="width:100%" class="text-center center-text" action="{{ path('agregarProducto' , { 'id' : product.id}) }}" method="POST">
+                              <button style="width:100%; background-color:#f44336; color:white; font-weight:bold" type="submit" class="mdl-button text-center center-text">Add to Shopping Cart<i class="material-icons">add_shopping_cart</i></button>
+                            </form>
+                            <form style="width:100%" class="text-center center-text" action="{{ path('agregarWishlist' , { 'id' : product.id}) }}" method="POST">
+                              <button style="width:100%; background-color:#E0E3E8" type="submit" class="mdl-button text-center center-text"> Add To WishList <i class="material-icons">list</i></button>
+                            </form>
+                            <form style="width:100%" class="text-center center-text" action="" method="">
+                              <button style="width:100%; background-color:#E0E3E8" type="button" class="mdl-button text-center center-text close{{product.id}}">Close <i class="material-icons">close</i></button>
+                            </form>
+                          {% endif %}
+                        </div>
+                      </section>
+                      </div>
+                    
+                  </div>
+                </dialog>
+                
+              {#SCRIPT QUE SE CORRE PARA ABRIR EL DIALOG  #}
+              <script>
+                // SE CREA LA VARIABLE DIALOG PARA TODAS LAS VECES QUE A APAREZCA LA CLASE SHOWDIALOG((product.id))//
+                var dialog{{product.id}} = document.querySelector('.show-dialog{{product.id}}');
+                // SE CREA LA VARIAVLE DE BOTON DE MODAL PARA TODAS LAS CLASES SHOWMODAL PARA CUANDO SE HAGA CLICK EN LA IMAGEN
+                var showModalButton{{product.id}} = document.querySelector('.show-modal{{product.id}}'); 
+                // SE CREA LA VARIABLE DE BOTON DE MODAL PARA TODAS LAS CLASES TEXT PARA CUANDO SE HAGA CLICK EN EL NOMBRE DEL PRODUCTO
+                var showTextButton{{product.id}} = document.querySelector('.text{{product.id}}');
+                // SE CREA LA VARIABLE DE BOTON DE MODEL PARA TODAS LAS CLASES PRICE PARA CUANDO SE HAGA CLICK EN EL PRECIO DEL PRODUCTO
+                var showPriceButton{{product.id}} = document.querySelector('.price{{product.id}}');
+                
+                if (!dialog{{product.id}}.showModal){
+                  dialogPolyfill.registerDialog(dialog{{product.id}});
+                }
+                // FUNCION PARA CUANDO SE HAGA CLICK EN LA IMAGEN
+                showModalButton{{product.id}}.addEventListener('click', function() {
+                  dialog{{product.id}}.showModal();
+                });
+                // FUNCION PARA CUANDO SE HAGA CLICK EN EL NOMBRE
+                showTextButton{{product.id}}.addEventListener('click', function() {
+                  dialog{{product.id}}.showModal();
+                });
+                // FUNCION PARA CUANDO SE HAGA CLICK EN EL PRECIO
+                showPriceButton{{product.id}}.addEventListener('click', function() {
+                  dialog{{product.id}}.showModal();
+                });
+                // FUNCION PARA CERRAR EL DIALOG
+                dialog{{product.id}}.querySelector('.close{{product.id}}').addEventListener('click', function() {
+                  dialog{{product.id}}.close();
+                });
+              </script> 
+            </a>
+          </div>
+            </div>
+      
+          {% endif %}
+          
+          
+          {#COLOMBIA#}
+          {% if app.user.pais == "CO" %}
+            {#  <form action="{{ path('pais') }}" method="GET" id="formPais">#}
+            {#  <select class="form-control" name="seleccion" id="selPais">#}
+            {#    <option value="VE">Venezuela</a>#}
+            {#    <option value="US">United States</a>#}
+            {#    <option value="EN">England</a>#}
+            {#    <option selected value="CO">Colombia</a>#}
+            {#  </select>#}
+            {#</form>#}
+
+            <div id="{{product.id}}" class="col-lg-4 col-md-6 mb-4 epale" style="heigth:200px">
+              <div  class="filterDiv {{product.categoria}}">
+            {#link del producto#}
+            <a href="javascript:void(0)" class="show-modal{{product.id}}">
+              {#imagen del producto#}
+              <img class="card-img-top img-fluid " style="background-position:center center; background-size:cover" src="{{product.link}}" alt="">
+              {#informacion cuando se hace hover#}
+              <div class="descripcionProducto">
+                <a href="javascript:void(0)" class="show-modal{{product.id}}">
+                  <h4 class="producto text{{product.id}}">{{product.nombre}}</h4>
+                  <h6 class="producto price{{product.id}}">{{product.precio*2977.99}} COP</h6>
+                </a>
+              </div>
+              <br>
+              <br>
+              
+              {#AQUI ABRE EL DIALOG CUANDO SE HACE CLICK EN UN PRODUCTO #}
+              
+              <dialog class="mdl-dialog show-dialog{{product.id}}">
+                  <div class="mdl-dialog__content">
+                     
+                      <div class="row">
+                      {#ESTA SECCION TIENE LA FOTO DEL PRODUCTO#}
+                      <section class="foto col-lg-6 col-md-6">
+                        <img class="img-fluid" src="{{product.link}}" alt="">  
+                      </section>
+                      {#ESTA SECCION TIENA LA INFORMACION DEL PRODUCTO#}
+                      <section class="col-lg-6 col-md-6 mb-12">
+                        <h4 class="producto text-center center-text">{{product.nombre}}</h4>
+                        <h6 class="producto text-center center-text">Precio: {{product.precio*2977.99}} COP</h6>
+                        <h6 class="producto text-center center-text">Descripcion: {{product.Descripcion}}</h6>
+                        {#AQUI ESTAN LOS BOTONES SOBRE LAS ACCIONES DE CADA PRODUCTO#}
+                        <div class="mdl-dialog__actions mdl-dialog__actions--full-width">
+                          
+                          {% if not is_granted('IS_AUTHENTICATED_FULLY')%}
+                          <p>Inicie Sesion para empezar a agregar productos a su Carro de Compras!</p>
+                          <button type="button" class="mdl-button close{{product.id}}">Cerrar <i class="material-icons">close</i></button>
+                          {% endif %}
+                          
+                          {% if is_granted('IS_AUTHENTICATED_FULLY')%}
+                            <hr style="height:10px">                            
+                            <form style="width:100%" class="text-center center-text" action="{{ path('agregarProducto' , { 'id' : product.id}) }}" method="POST">
+                              <button style="width:100%; background-color:#f44336; color:white; font-weight:bold" type="submit" class="mdl-button text-center center-text">Agregar al Carro de Compras<i class="material-icons">add_shopping_cart</i></button>
+                            </form>
+                            <form style="width:100%" class="text-center center-text" action="{{ path('agregarWishlist' , { 'id' : product.id}) }}" method="POST">
+                              <button style="width:100%; background-color:#E0E3E8" type="submit" class="mdl-button text-center center-text"> Agregar a la wishlist <i class="material-icons">list</i></button>
+                            </form>
+                            <form style="width:100%" class="text-center center-text" action="" method="">
+                              <button style="width:100%; background-color:#E0E3E8" type="button" class="mdl-button text-center center-text close{{product.id}}">Cerrar <i class="material-icons">close</i></button>
+                            </form>
+                          {% endif %}
+                        </div>
+                      </section>
+                      </div>
+                    
+                  </div>
+                </dialog>
+                
+              {#SCRIPT QUE SE CORRE PARA ABRIR EL DIALOG  #}
+              <script>
+                // SE CREA LA VARIABLE DIALOG PARA TODAS LAS VECES QUE A APAREZCA LA CLASE SHOWDIALOG((product.id))//
+                var dialog{{product.id}} = document.querySelector('.show-dialog{{product.id}}');
+                // SE CREA LA VARIAVLE DE BOTON DE MODAL PARA TODAS LAS CLASES SHOWMODAL PARA CUANDO SE HAGA CLICK EN LA IMAGEN
+                var showModalButton{{product.id}} = document.querySelector('.show-modal{{product.id}}'); 
+                // SE CREA LA VARIABLE DE BOTON DE MODAL PARA TODAS LAS CLASES TEXT PARA CUANDO SE HAGA CLICK EN EL NOMBRE DEL PRODUCTO
+                var showTextButton{{product.id}} = document.querySelector('.text{{product.id}}');
+                // SE CREA LA VARIABLE DE BOTON DE MODEL PARA TODAS LAS CLASES PRICE PARA CUANDO SE HAGA CLICK EN EL PRECIO DEL PRODUCTO
+                var showPriceButton{{product.id}} = document.querySelector('.price{{product.id}}');
+                
+                if (!dialog{{product.id}}.showModal){
+                  dialogPolyfill.registerDialog(dialog{{product.id}});
+                }
+                // FUNCION PARA CUANDO SE HAGA CLICK EN LA IMAGEN
+                showModalButton{{product.id}}.addEventListener('click', function() {
+                  dialog{{product.id}}.showModal();
+                });
+                // FUNCION PARA CUANDO SE HAGA CLICK EN EL NOMBRE
+                showTextButton{{product.id}}.addEventListener('click', function() {
+                  dialog{{product.id}}.showModal();
+                });
+                // FUNCION PARA CUANDO SE HAGA CLICK EN EL PRECIO
+                showPriceButton{{product.id}}.addEventListener('click', function() {
+                  dialog{{product.id}}.showModal();
+                });
+                // FUNCION PARA CERRAR EL DIALOG
+                dialog{{product.id}}.querySelector('.close{{product.id}}').addEventListener('click', function() {
+                  dialog{{product.id}}.close();
+                });
+              </script> 
+            </a>
+          </div>
+            </div>
+      
+          {% endif %}
+      
+        {% endif %}
+      {% endfor %}
+      
+  </div>
+  
+  {% else %}
+  
+          <dialog class="mdl-dialog dialogLogin">
+            <h5 class="mdl-dialog__title" style="font-size:25px; align:center">Inicio de Sesión</h5>
+            <div class="mdl-dialog__content">
+              <form id="form-login" action="{{ path('login') }}" method="post">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                      <label class="mdl-textfield__label" for="correo">Correo</label>
+                      <input class="mdl-textfield__input" type="email" id="correo" name='_username'>
+                    </div>
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                      <label class="mdl-textfield__label" for="clave">Contraseña</label>
+                      <input class="mdl-textfield__input" type="password" id="clave" name="_password">
+                    </div>
+                  </form>
+            </div>
+            <div class="mdl-dialog__actions">
+              <button form="form-login" type="submit" class="mdl-button">Login</button>
+              <button type="button" class="mdl-button close">Cancelar</button>
+            </div>
+          </dialog>
+          <script>
+            var dialog = document.querySelector('.dialogLogin');
+            var showDialogButton = document.querySelector('.show-dialogLogin');
+            if (! dialog.showModal) {
+              dialogPolyfill.registerDialog(dialog);
+            }
+            showDialogButton.addEventListener('click', function() {
+              dialog.showModal();
+            });
+            dialog.querySelector('.close').addEventListener('click', function() {
+              dialog.close();
+            });
+            
+          </script>
+          
+          
+        
+          {% if products|length == 0  %}
+          <h3 style="text-align: right">No hay productos... </h3>
+          {% endif %}
+        
+          <div class="row text-center" style="padding-left:100px; padding-top:50px; padding-bottom: 50px" id="allproducts">
+              {% for product in products %}
+                <style> 
+                  .mdl-dialog {
+                    border: none;
+                    box-shadow: 0 9px 46px 8px rgba(0,0,0,.14), 0 11px 15px -7px rgba(0,0,0,.12), 0 24px 38px 3px rgba(0,0,0,.2);
+                    width: 60%;
+                  }
+                  .mdl-navigation.lateral{
+                    background-color:white;
+                  }
+                  .mdl-layout__drawer.lateral{
+                      background-color:white;
+                      width: 175px;
+                      height:55%;
+                      border-right-style: none;
+                      border-right-width: 0px;
+                      border-bottom-style: none;
+                      border-bottom-width: 0px;
+                      border-bottom-color: transparent;
+                      
+                  }
+                  .mdl-button.mdl-js-button.mdl-js-ripple-effect:hover{
+                    background-color: #67daff;
+                  }
+                  .mdl-dialog__actions--full-width>* {
+                      height: 48px;
+                      -webkit-flex: 0 0 100%;
+                      -ms-flex: 0 0 100%;
+                      flex: 0 0 100%;
+                      padding-right: 0px;
+                      margin-right: 0;
+                      /* text-align: right; */
+                  }
+              
+              </style>
+                  {#componente que contiene cada producto#}
+                  
+                  
+                 
+        
+                    <div id="{{product.id}}" class="col-lg-4 col-md-6 mb-4 epale" style="heigth:200px">
+                    <div  class="filterDiv {{product.categoria}}">
+                    {#link del producto#}
+                    <a href="javascript:void(0)" class="show-modal{{product.id}}">
+                      {#imagen del producto#}
+                      <img class="card-img-top img-fluid " style="background-position:center center; background-size:cover" src="{{product.link}}" alt="">
+                      {#informacion cuando se hace hover#}
+                      <div class="descripcionProducto">
+                        <a href="javascript:void(0)" class="show-modal{{product.id}}">
+                          <h4 class="producto text{{product.id}}">{{product.nombre}}</h4>
+                          <h6 class="producto price{{product.id}}">{{product.precio}} $.</h6>
+                        </a>
+                      </div>
+                      <br>
+                      <br>
+                      
+                      {#AQUI ABRE EL DIALOG CUANDO SE HACE CLICK EN UN PRODUCTO #}
+                      
+                      <dialog class="mdl-dialog show-dialog{{product.id}}">
+                          <div class="mdl-dialog__content">
+                             
+                              <div class="row">
+                              {#ESTA SECCION TIENE LA FOTO DEL PRODUCTO#}
+                              <section class="foto col-lg-6 col-md-6">
+                                <img class="img-fluid" src="{{product.link}}" alt="">  
+                              </section>
+                              {#ESTA SECCION TIENA LA INFORMACION DEL PRODUCTO#}
+                              <section class="col-lg-6 col-md-6 mb-12">
+                                <h4 class="producto text-center center-text">{{product.nombre}}</h4>
+                                <h6 class="producto text-center center-text">Price: {{product.precio}} $</h6>
+                                <h6 class="producto text-center center-text">Description: {{product.Descripcion}}</h6>
+                                {#AQUI ESTAN LOS BOTONES SOBRE LAS ACCIONES DE CADA PRODUCTO#}
+                                <div class="mdl-dialog__actions mdl-dialog__actions--full-width">
+                                  
+                                  {% if not is_granted('IS_AUTHENTICATED_FULLY')%}
+                                  <p>You have to sign in to add products to your shopping cart!</p>
+                                  <button type="button" class="mdl-button close{{product.id}}">Cerrar <i class="material-icons">close</i></button>
+                                  {% endif %}
+                                  
+                                  {% if is_granted('IS_AUTHENTICATED_FULLY')%}
+                                    <hr style="height:10px">                            
+                                    <form style="width:100%" class="text-center center-text" action="{{ path('agregarProducto' , { 'id' : product.id}) }}" method="POST">
+                                      <button style="width:100%; background-color:#f44336; color:white; font-weight:bold" type="submit" class="mdl-button text-center center-text">Add to Shopping Cart<i class="material-icons">add_shopping_cart</i></button>
+                                    </form>
+                                    <form style="width:100%" class="text-center center-text" action="{{ path('agregarWishlist' , { 'id' : product.id}) }}" method="POST">
+                                      <button style="width:100%; background-color:#E0E3E8" type="submit" class="mdl-button text-center center-text"> Add To WishList <i class="material-icons">list</i></button>
+                                    </form>
+                                    <form style="width:100%" class="text-center center-text" action="" method="">
+                                      <button style="width:100%; background-color:#E0E3E8" type="button" class="mdl-button text-center center-text close{{product.id}}">Close <i class="material-icons">close</i></button>
+                                    </form>
+                                  {% endif %}
+                                </div>
+                              </section>
+                              </div>
+                            
+                          </div>
+                        </dialog>
+                        
+                      {#SCRIPT QUE SE CORRE PARA ABRIR EL DIALOG  #}
+                      <script>
+                        // SE CREA LA VARIABLE DIALOG PARA TODAS LAS VECES QUE A APAREZCA LA CLASE SHOWDIALOG((product.id))//
+                        var dialog{{product.id}} = document.querySelector('.show-dialog{{product.id}}');
+                        // SE CREA LA VARIAVLE DE BOTON DE MODAL PARA TODAS LAS CLASES SHOWMODAL PARA CUANDO SE HAGA CLICK EN LA IMAGEN
+                        var showModalButton{{product.id}} = document.querySelector('.show-modal{{product.id}}'); 
+                        // SE CREA LA VARIABLE DE BOTON DE MODAL PARA TODAS LAS CLASES TEXT PARA CUANDO SE HAGA CLICK EN EL NOMBRE DEL PRODUCTO
+                        var showTextButton{{product.id}} = document.querySelector('.text{{product.id}}');
+                        // SE CREA LA VARIABLE DE BOTON DE MODEL PARA TODAS LAS CLASES PRICE PARA CUANDO SE HAGA CLICK EN EL PRECIO DEL PRODUCTO
+                        var showPriceButton{{product.id}} = document.querySelector('.price{{product.id}}');
+                        
+                        if (!dialog{{product.id}}.showModal){
+                          dialogPolyfill.registerDialog(dialog{{product.id}});
+                        }
+                        // FUNCION PARA CUANDO SE HAGA CLICK EN LA IMAGEN
+                        showModalButton{{product.id}}.addEventListener('click', function() {
+                          dialog{{product.id}}.showModal();
+                        });
+                        // FUNCION PARA CUANDO SE HAGA CLICK EN EL NOMBRE
+                        showTextButton{{product.id}}.addEventListener('click', function() {
+                          dialog{{product.id}}.showModal();
+                        });
+                        // FUNCION PARA CUANDO SE HAGA CLICK EN EL PRECIO
+                        showPriceButton{{product.id}}.addEventListener('click', function() {
+                          dialog{{product.id}}.showModal();
+                        });
+                        // FUNCION PARA CERRAR EL DIALOG
+                        dialog{{product.id}}.querySelector('.close{{product.id}}').addEventListener('click', function() {
+                          dialog{{product.id}}.close();
+                        });
+                      </script> 
+                    </a>
+                  </div>
+              </div>
+              
+                 
+                  
+                  
+              
+              {% endfor %}
+              
+        
+          </div>
+          
+          <div class="row text-center" style="padding-left:100px; padding-top:50px; padding-bottom: 50px" id="bonsaiprod">
+              {% for product in products %}
+                {% if product.categoria == 'bonsai'  %}
+                <style> 
+              .mdl-dialog {
+                border: none;
+                box-shadow: 0 9px 46px 8px rgba(0,0,0,.14), 0 11px 15px -7px rgba(0,0,0,.12), 0 24px 38px 3px rgba(0,0,0,.2);
+                width: 60%;
+              }
+              .mdl-navigation.lateral{
+                
+                background-color:white;
+            }
+              .mdl-layout__drawer.lateral{
+                  background-color:white;
+                  width: 175px;
+                  height:55%;
+                  border-right-style: none;
+                  border-right-width: 0px;
+                  border-bottom-style: none;
+                  border-bottom-width: 0px;
+                  border-bottom-color: transparent;
+                  
+              }
+              .mdl-button.mdl-js-button.mdl-js-ripple-effect:hover{
+                
+                background-color: #67daff;
+                 
+                
+            }
+            
+            </style>
+                  {#componente que contiene cada producto#}
+                  
+
+        
+                    <div id="{{product.id}}" class="col-lg-4 col-md-6 mb-4 epale" style="heigth:200px">
+                    <div  class="filterDiv {{product.categoria}}">
+                    {#link del producto#}
+                    <a href="javascript:void(0)" class="show-modal{{product.id}}">
+                      {#imagen del producto#}
+                      <img class="card-img-top img-fluid " style="background-position:center center; background-size:cover" src="{{product.link}}" alt="">
+                      {#informacion cuando se hace hover#}
+                      <div class="descripcionProducto">
+                        <a href="javascript:void(0)" class="show-modal{{product.id}}">
+                          <h4 class="producto text{{product.id}}">{{product.nombre}}</h4>
+                          <h6 class="producto price{{product.id}}">{{product.precio}} $.</h6>
+                        </a>
+                      </div>
+                      <br>
+                      <br>
+                      
+                      {#AQUI ABRE EL DIALOG CUANDO SE HACE CLICK EN UN PRODUCTO #}
+                      
+                      <dialog class="mdl-dialog show-dialog{{product.id}}">
+                          <div class="mdl-dialog__content">
+                             
+                              <div class="row">
+                              {#ESTA SECCION TIENE LA FOTO DEL PRODUCTO#}
+                              <section class="foto col-lg-6 col-md-6">
+                                <img class="img-fluid" src="{{product.link}}" alt="">  
+                              </section>
+                              {#ESTA SECCION TIENA LA INFORMACION DEL PRODUCTO#}
+                              <section class="col-lg-6 col-md-6 mb-12">
+                                <h4 class="producto text-center center-text">{{product.nombre}}</h4>
+                                <h6 class="producto text-center center-text">Price: {{product.precio}} $</h6>
+                                <h6 class="producto text-center center-text">Description: {{product.Descripcion}}</h6>
+                                {#AQUI ESTAN LOS BOTONES SOBRE LAS ACCIONES DE CADA PRODUCTO#}
+                                <div class="mdl-dialog__actions mdl-dialog__actions--full-width">
+                                  
+                                  {% if not is_granted('IS_AUTHENTICATED_FULLY')%}
+                                  <p>You have to sign in to add products to your shopping cart!</p>
+                                  <button type="button" class="mdl-button close{{product.id}}">Cerrar <i class="material-icons">close</i></button>
+                                  {% endif %}
+                                  
+                                  {% if is_granted('IS_AUTHENTICATED_FULLY')%}
+                                    <hr style="height:10px">                            
+                                    <form style="width:100%" class="text-center center-text" action="{{ path('agregarProducto' , { 'id' : product.id}) }}" method="POST">
+                                      <button style="width:100%; background-color:#f44336; color:white; font-weight:bold" type="submit" class="mdl-button text-center center-text">Add to Shopping Cart<i class="material-icons">add_shopping_cart</i></button>
+                                    </form>
+                                    <form style="width:100%" class="text-center center-text" action="{{ path('agregarWishlist' , { 'id' : product.id}) }}" method="POST">
+                                      <button style="width:100%; background-color:#E0E3E8" type="submit" class="mdl-button text-center center-text"> Add To WishList <i class="material-icons">list</i></button>
+                                    </form>
+                                    <form style="width:100%" class="text-center center-text" action="" method="">
+                                      <button style="width:100%; background-color:#E0E3E8" type="button" class="mdl-button text-center center-text close{{product.id}}">Close <i class="material-icons">close</i></button>
+                                    </form>
+                                  {% endif %}
+                                </div>
+                              </section>
+                              </div>
+                            
+                          </div>
+                        </dialog>
+                        
+                      {#SCRIPT QUE SE CORRE PARA ABRIR EL DIALOG  #}
+                      <script>
+                        // SE CREA LA VARIABLE DIALOG PARA TODAS LAS VECES QUE A APAREZCA LA CLASE SHOWDIALOG((product.id))//
+                        var dialog{{product.id}} = document.querySelector('.show-dialog{{product.id}}');
+                        // SE CREA LA VARIAVLE DE BOTON DE MODAL PARA TODAS LAS CLASES SHOWMODAL PARA CUANDO SE HAGA CLICK EN LA IMAGEN
+                        var showModalButton{{product.id}} = document.querySelector('.show-modal{{product.id}}'); 
+                        // SE CREA LA VARIABLE DE BOTON DE MODAL PARA TODAS LAS CLASES TEXT PARA CUANDO SE HAGA CLICK EN EL NOMBRE DEL PRODUCTO
+                        var showTextButton{{product.id}} = document.querySelector('.text{{product.id}}');
+                        // SE CREA LA VARIABLE DE BOTON DE MODEL PARA TODAS LAS CLASES PRICE PARA CUANDO SE HAGA CLICK EN EL PRECIO DEL PRODUCTO
+                        var showPriceButton{{product.id}} = document.querySelector('.price{{product.id}}');
+                        
+                        if (!dialog{{product.id}}.showModal){
+                          dialogPolyfill.registerDialog(dialog{{product.id}});
+                        }
+                        // FUNCION PARA CUANDO SE HAGA CLICK EN LA IMAGEN
+                        showModalButton{{product.id}}.addEventListener('click', function() {
+                          dialog{{product.id}}.showModal();
+                        });
+                        // FUNCION PARA CUANDO SE HAGA CLICK EN EL NOMBRE
+                        showTextButton{{product.id}}.addEventListener('click', function() {
+                          dialog{{product.id}}.showModal();
+                        });
+                        // FUNCION PARA CUANDO SE HAGA CLICK EN EL PRECIO
+                        showPriceButton{{product.id}}.addEventListener('click', function() {
+                          dialog{{product.id}}.showModal();
+                        });
+                        // FUNCION PARA CERRAR EL DIALOG
+                        dialog{{product.id}}.querySelector('.close{{product.id}}').addEventListener('click', function() {
+                          dialog{{product.id}}.close();
+                        });
+                      </script> 
+                    </a>
+                  </div>
+              </div>
+              
+
+              
+                {% endif %}
+              {% endfor %}
+        
+          </div>
+          
+          <div class="row text-center" style="padding-left:100px; padding-top:50px; padding-bottom: 50px" id="macetaprod">
+              {% for product in products %}
+                {% if product.categoria == 'maceta'  %}
+                  <style> 
+                .mdl-dialog {
+                  border: none;
+                  box-shadow: 0 9px 46px 8px rgba(0,0,0,.14), 0 11px 15px -7px rgba(0,0,0,.12), 0 24px 38px 3px rgba(0,0,0,.2);
+                  width: 60%;
+                }
+                .mdl-navigation.lateral{
+                  
+                  background-color:white;
+              }
+                .mdl-layout__drawer.lateral{
+                    background-color:white;
+                    width: 175px;
+                    height:55%;
+                    border-right-style: none;
+                    border-right-width: 0px;
+                    border-bottom-style: none;
+                    border-bottom-width: 0px;
+                    border-bottom-color: transparent;
+                    
+                }
+                .mdl-button.mdl-js-button.mdl-js-ripple-effect:hover{
+                  
+                  background-color: #67daff;
+                   
+                  
+              }
+              
+              </style>
+                  {#componente que contiene cada producto#}
+                  
+
+        
+                    <div id="{{product.id}}" class="col-lg-4 col-md-6 mb-4 epale" style="heigth:200px">
+                    <div  class="filterDiv {{product.categoria}}">
+                    {#link del producto#}
+                    <a href="javascript:void(0)" class="show-modal{{product.id}}">
+                      {#imagen del producto#}
+                      <img class="card-img-top img-fluid " style="background-position:center center; background-size:cover" src="{{product.link}}" alt="">
+                      {#informacion cuando se hace hover#}
+                      <div class="descripcionProducto">
+                        <a href="javascript:void(0)" class="show-modal{{product.id}}">
+                          <h4 class="producto text{{product.id}}">{{product.nombre}}</h4>
+                          <h6 class="producto price{{product.id}}">{{product.precio}} $.</h6>
+                        </a>
+                      </div>
+                      <br>
+                      <br>
+                      
+                      {#AQUI ABRE EL DIALOG CUANDO SE HACE CLICK EN UN PRODUCTO #}
+                      
+                      <dialog class="mdl-dialog show-dialog{{product.id}}">
+                          <div class="mdl-dialog__content">
+                             
+                              <div class="row">
+                              {#ESTA SECCION TIENE LA FOTO DEL PRODUCTO#}
+                              <section class="foto col-lg-6 col-md-6">
+                                <img class="img-fluid" src="{{product.link}}" alt="">  
+                              </section>
+                              {#ESTA SECCION TIENA LA INFORMACION DEL PRODUCTO#}
+                              <section class="col-lg-6 col-md-6 mb-12">
+                                <h4 class="producto text-center center-text">{{product.nombre}}</h4>
+                                <h6 class="producto text-center center-text">Price: {{product.precio}} $</h6>
+                                <h6 class="producto text-center center-text">Description: {{product.Descripcion}}</h6>
+                                {#AQUI ESTAN LOS BOTONES SOBRE LAS ACCIONES DE CADA PRODUCTO#}
+                                <div class="mdl-dialog__actions mdl-dialog__actions--full-width">
+                                  
+                                  {% if not is_granted('IS_AUTHENTICATED_FULLY')%}
+                                  <p>You have to sign in to add products to your shopping cart!</p>
+                                  <button type="button" class="mdl-button close{{product.id}}">Cerrar <i class="material-icons">close</i></button>
+                                  {% endif %}
+                                  
+                                  {% if is_granted('IS_AUTHENTICATED_FULLY')%}
+                                    <hr style="height:10px">                            
+                                    <form style="width:100%" class="text-center center-text" action="{{ path('agregarProducto' , { 'id' : product.id}) }}" method="POST">
+                                      <button style="width:100%; background-color:#f44336; color:white; font-weight:bold" type="submit" class="mdl-button text-center center-text">Add to Shopping Cart<i class="material-icons">add_shopping_cart</i></button>
+                                    </form>
+                                    <form style="width:100%" class="text-center center-text" action="{{ path('agregarWishlist' , { 'id' : product.id}) }}" method="POST">
+                                      <button style="width:100%; background-color:#E0E3E8" type="submit" class="mdl-button text-center center-text"> Add To WishList <i class="material-icons">list</i></button>
+                                    </form>
+                                    <form style="width:100%" class="text-center center-text" action="" method="">
+                                      <button style="width:100%; background-color:#E0E3E8" type="button" class="mdl-button text-center center-text close{{product.id}}">Close <i class="material-icons">close</i></button>
+                                    </form>
+                                  {% endif %}
+                                </div>
+                              </section>
+                              </div>
+                            
+                          </div>
+                        </dialog>
+                        
+                      {#SCRIPT QUE SE CORRE PARA ABRIR EL DIALOG  #}
+                      <script>
+                        // SE CREA LA VARIABLE DIALOG PARA TODAS LAS VECES QUE A APAREZCA LA CLASE SHOWDIALOG((product.id))//
+                        var dialog{{product.id}} = document.querySelector('.show-dialog{{product.id}}');
+                        // SE CREA LA VARIAVLE DE BOTON DE MODAL PARA TODAS LAS CLASES SHOWMODAL PARA CUANDO SE HAGA CLICK EN LA IMAGEN
+                        var showModalButton{{product.id}} = document.querySelector('.show-modal{{product.id}}'); 
+                        // SE CREA LA VARIABLE DE BOTON DE MODAL PARA TODAS LAS CLASES TEXT PARA CUANDO SE HAGA CLICK EN EL NOMBRE DEL PRODUCTO
+                        var showTextButton{{product.id}} = document.querySelector('.text{{product.id}}');
+                        // SE CREA LA VARIABLE DE BOTON DE MODEL PARA TODAS LAS CLASES PRICE PARA CUANDO SE HAGA CLICK EN EL PRECIO DEL PRODUCTO
+                        var showPriceButton{{product.id}} = document.querySelector('.price{{product.id}}');
+                        
+                        if (!dialog{{product.id}}.showModal){
+                          dialogPolyfill.registerDialog(dialog{{product.id}});
+                        }
+                        // FUNCION PARA CUANDO SE HAGA CLICK EN LA IMAGEN
+                        showModalButton{{product.id}}.addEventListener('click', function() {
+                          dialog{{product.id}}.showModal();
+                        });
+                        // FUNCION PARA CUANDO SE HAGA CLICK EN EL NOMBRE
+                        showTextButton{{product.id}}.addEventListener('click', function() {
+                          dialog{{product.id}}.showModal();
+                        });
+                        // FUNCION PARA CUANDO SE HAGA CLICK EN EL PRECIO
+                        showPriceButton{{product.id}}.addEventListener('click', function() {
+                          dialog{{product.id}}.showModal();
+                        });
+                        // FUNCION PARA CERRAR EL DIALOG
+                        dialog{{product.id}}.querySelector('.close{{product.id}}').addEventListener('click', function() {
+                          dialog{{product.id}}.close();
+                        });
+                      </script> 
+                    </a>
+                  </div>
+              </div>
+              
+
+
+              
+                {% endif %}
+              {% endfor %}
+              
+          </div>
+          
+          <div class="row text-center" style="padding-left:100px; padding-top:50px; padding-bottom: 50px" id="accesorioprod">
+              {% for product in products %}
+                {% if product.categoria == 'accesorio'%}
+                  <style> 
+                .mdl-dialog {
+                  border: none;
+                  box-shadow: 0 9px 46px 8px rgba(0,0,0,.14), 0 11px 15px -7px rgba(0,0,0,.12), 0 24px 38px 3px rgba(0,0,0,.2);
+                  width: 60%;
+                }
+                .mdl-navigation.lateral{
+                  
+                  background-color:white;
+              }
+                .mdl-layout__drawer.lateral{
+                    background-color:white;
+                    width: 175px;
+                    height:55%;
+                    border-right-style: none;
+                    border-right-width: 0px;
+                    border-bottom-style: none;
+                    border-bottom-width: 0px;
+                    border-bottom-color: transparent;
+                    
+                }
+                .mdl-button.mdl-js-button.mdl-js-ripple-effect:hover{
+                  
+                  background-color: #67daff;
+                   
+                  
+              }
+              
+              </style>
+                  {#componente que contiene cada producto#}
+
+        
+                    <div id="{{product.id}}" class="col-lg-4 col-md-6 mb-4 epale" style="heigth:200px">
+                    <div  class="filterDiv {{product.categoria}}">
+                    {#link del producto#}
+                    <a href="javascript:void(0)" class="show-modal{{product.id}}">
+                      {#imagen del producto#}
+                      <img class="card-img-top img-fluid " style="background-position:center center; background-size:cover" src="{{product.link}}" alt="">
+                      {#informacion cuando se hace hover#}
+                      <div class="descripcionProducto">
+                        <a href="javascript:void(0)" class="show-modal{{product.id}}">
+                          <h4 class="producto text{{product.id}}">{{product.nombre}}</h4>
+                          <h6 class="producto price{{product.id}}">{{product.precio}} $.</h6>
+                        </a>
+                      </div>
+                      <br>
+                      <br>
+                      
+                      {#AQUI ABRE EL DIALOG CUANDO SE HACE CLICK EN UN PRODUCTO #}
+                      
+                      <dialog class="mdl-dialog show-dialog{{product.id}}">
+                          <div class="mdl-dialog__content">
+                             
+                              <div class="row">
+                              {#ESTA SECCION TIENE LA FOTO DEL PRODUCTO#}
+                              <section class="foto col-lg-6 col-md-6">
+                                <img class="img-fluid" src="{{product.link}}" alt="">  
+                              </section>
+                              {#ESTA SECCION TIENA LA INFORMACION DEL PRODUCTO#}
+                              <section class="col-lg-6 col-md-6 mb-12">
+                                <h4 class="producto text-center center-text">{{product.nombre}}</h4>
+                                <h6 class="producto text-center center-text">Price: {{product.precio}} $</h6>
+                                <h6 class="producto text-center center-text">Description: {{product.Descripcion}}</h6>
+                                {#AQUI ESTAN LOS BOTONES SOBRE LAS ACCIONES DE CADA PRODUCTO#}
+                                <div class="mdl-dialog__actions mdl-dialog__actions--full-width">
+                                  
+                                  {% if not is_granted('IS_AUTHENTICATED_FULLY')%}
+                                  <p>You have to sign in to add products to your shopping cart!</p>
+                                  <button type="button" class="mdl-button close{{product.id}}">Cerrar <i class="material-icons">close</i></button>
+                                  {% endif %}
+                                  
+                                  {% if is_granted('IS_AUTHENTICATED_FULLY')%}
+                                    <hr style="height:10px">                            
+                                    <form style="width:100%" class="text-center center-text" action="{{ path('agregarProducto' , { 'id' : product.id}) }}" method="POST">
+                                      <button style="width:100%; background-color:#f44336; color:white; font-weight:bold" type="submit" class="mdl-button text-center center-text">Add to Shopping Cart<i class="material-icons">add_shopping_cart</i></button>
+                                    </form>
+                                    <form style="width:100%" class="text-center center-text" action="{{ path('agregarWishlist' , { 'id' : product.id}) }}" method="POST">
+                                      <button style="width:100%; background-color:#E0E3E8" type="submit" class="mdl-button text-center center-text"> Add To WishList <i class="material-icons">list</i></button>
+                                    </form>
+                                    <form style="width:100%" class="text-center center-text" action="" method="">
+                                      <button style="width:100%; background-color:#E0E3E8" type="button" class="mdl-button text-center center-text close{{product.id}}">Close <i class="material-icons">close</i></button>
+                                    </form>
+                                  {% endif %}
+                                </div>
+                              </section>
+                              </div>
+                            
+                          </div>
+                        </dialog>
+                        
+                      {#SCRIPT QUE SE CORRE PARA ABRIR EL DIALOG  #}
+                      <script>
+                        // SE CREA LA VARIABLE DIALOG PARA TODAS LAS VECES QUE A APAREZCA LA CLASE SHOWDIALOG((product.id))//
+                        var dialog{{product.id}} = document.querySelector('.show-dialog{{product.id}}');
+                        // SE CREA LA VARIAVLE DE BOTON DE MODAL PARA TODAS LAS CLASES SHOWMODAL PARA CUANDO SE HAGA CLICK EN LA IMAGEN
+                        var showModalButton{{product.id}} = document.querySelector('.show-modal{{product.id}}'); 
+                        // SE CREA LA VARIABLE DE BOTON DE MODAL PARA TODAS LAS CLASES TEXT PARA CUANDO SE HAGA CLICK EN EL NOMBRE DEL PRODUCTO
+                        var showTextButton{{product.id}} = document.querySelector('.text{{product.id}}');
+                        // SE CREA LA VARIABLE DE BOTON DE MODEL PARA TODAS LAS CLASES PRICE PARA CUANDO SE HAGA CLICK EN EL PRECIO DEL PRODUCTO
+                        var showPriceButton{{product.id}} = document.querySelector('.price{{product.id}}');
+                        
+                        if (!dialog{{product.id}}.showModal){
+                          dialogPolyfill.registerDialog(dialog{{product.id}});
+                        }
+                        // FUNCION PARA CUANDO SE HAGA CLICK EN LA IMAGEN
+                        showModalButton{{product.id}}.addEventListener('click', function() {
+                          dialog{{product.id}}.showModal();
+                        });
+                        // FUNCION PARA CUANDO SE HAGA CLICK EN EL NOMBRE
+                        showTextButton{{product.id}}.addEventListener('click', function() {
+                          dialog{{product.id}}.showModal();
+                        });
+                        // FUNCION PARA CUANDO SE HAGA CLICK EN EL PRECIO
+                        showPriceButton{{product.id}}.addEventListener('click', function() {
+                          dialog{{product.id}}.showModal();
+                        });
+                        // FUNCION PARA CERRAR EL DIALOG
+                        dialog{{product.id}}.querySelector('.close{{product.id}}').addEventListener('click', function() {
+                          dialog{{product.id}}.close();
+                        });
+                      </script> 
+                    </a>
+                  </div>
+              </div>
+
+                {% endif %}
+              {% endfor %}
+              
+          </div>
+          
+  
+  {% endif %}
+  
+{% endblock %}

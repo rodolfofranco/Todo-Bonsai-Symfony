@@ -1,0 +1,103 @@
+/*
+Css para el menu lateral para las opciones del producto
+*/
+/*.mdl-navigation.lateral{*/
+    
+/*    background-color:#67daff;*/
+/*}*/
+
+/*
+Css para el bloque entero del menu lateral
+*/
+/*.mdl-layout__drawer.lateral{*/
+/*    background-color:#67daff;*/
+/*    width: 175px;*/
+/*    height:350px;*/
+    /*border-right-style: solid;*/
+    /*border-right-width: 1px;*/
+    /*border-right-color: black;*/
+    /*border-bottom-style: solid;*/
+    /*border-bottom-width: 1px;*/
+    /*border-bottom-color: black;*/
+    
+/*}*/
+
+/*
+Css, efecto hover para los botones para el menu lateral
+*/
+/*.mdl-button.mdl-js-button.mdl-js-ripple-effect:hover{*/
+    
+/*    background-color: #6E6E6E;*/
+     
+    
+/*}*/
+
+/*
+Css, imagen del producto
+*/
+.card-img-top{
+    opacity: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: .5s ease;
+  backface-visibility: hidden;
+  background-position:center center;
+  background-size:cover;
+  
+}
+
+/*
+Css, descripcion del producto escondido detras de la imagen (se muestra cuando se pase el mouse por encima de la imagen)
+*/
+.descripcionProducto{
+    
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}
+
+/*
+Css, texto de la descripcion del producto
+*/
+.producto{
+    
+    color:black;
+}
+
+.producto:hover{
+    
+    text-decoration: none;
+    
+}
+
+.col-lg-4.col-md-6.mb-4:hover .descripcionProducto{
+    
+    opacity: 1;
+}
+
+.col-lg-4.col-md-6.mb-4:hover .card-img-top{
+    
+    opacity: 0.2;
+     text-decoration: none;
+}
+
+.product {
+    float: left;
+    background-color: #2196F3;
+    color: #ffffff;
+    width: 100px;
+    line-height: 100px;
+    text-align: center;
+    margin: 2px;
+    display: none; /* Hidden by default */
+}
+
+/* The "show" class is added to the filtered elements */
+.show {
+    display: block;
+}

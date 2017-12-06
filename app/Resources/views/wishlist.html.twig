@@ -1,0 +1,485 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+  {{ parent() }}
+{% endblock %}
+
+{% block toplinks %}
+    
+   {% if app.user.pais == "VE" %}
+   {% if not is_granted('IS_AUTHENTICATED_FULLY')%}
+    <a class="mdl-navigation__link" href="/"> <i class="material-icons">home</i> Inicio</a>
+    <a class="mdl-navigation__link" href="/product"> <i class="material-icons">view_module</i> Productos</a>
+    <a class="mdl-navigation__link" href="/register"> <i class="material-icons">person_add</i> Registrarse</a>
+    <a class="mdl-navigation__link show-dialog" href="javascript:void(0)" id="show-dialog">  <i class="material-icons">person</i>Iniciar Sesion</a>
+  {% endif %}
+    
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %} 
+      <a class="mdl-navigation__link" href="/"> <i class="material-icons">home</i> Inicio</a>
+      <a class="mdl-navigation__link" href="/product"> <i class="material-icons">view_module</i> Productos</a>
+      <a class="mdl-navigation__link" href="/getWishlist"> <i class="material-icons">view_list</i> Lista de Deseos</a>
+      <a class="mdl-navigation__link" href="/shoppingCart"> <i class="material-icons">shopping_cart</i>Carro de Compras</a>
+      <a class="mdl-navigation__link" href="/orders"> <i class="material-icons">local_shipping</i> Ordenes</a>
+      <a class="mdl-navigation__link" href="/logout"> <i class="material-icons">exit_to_app</i> Salir</a>
+    {% endif %} 
+    {% endif %}
+    
+     {% if app.user.pais == "CO" %}
+   {% if not is_granted('IS_AUTHENTICATED_FULLY')%}
+    <a class="mdl-navigation__link" href="/"> <i class="material-icons">home</i> Home</a>
+    <a class="mdl-navigation__link" href="/product"> <i class="material-icons">view_module</i> Productos</a>
+    <a class="mdl-navigation__link" href="/register"> <i class="material-icons">person_add</i> Registrarse</a>
+    <a class="mdl-navigation__link show-dialog" href="javascript:void(0)" id="show-dialog">  <i class="material-icons">person</i>Iniciar Sesion</a>
+  {% endif %}
+    
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %} 
+      <a class="mdl-navigation__link" href="/"> <i class="material-icons">home</i> Home</a>
+      <a class="mdl-navigation__link" href="/product"> <i class="material-icons">view_module</i> Productos</a>
+      <a class="mdl-navigation__link" href="/getWishlist"> <i class="material-icons">view_list</i> Lista de Deseos</a>
+      <a class="mdl-navigation__link" href="/shoppingCart"> <i class="material-icons">shopping_cart</i>Carro de Compras</a>
+      <a class="mdl-navigation__link" href="/orders"> <i class="material-icons">local_shipping</i> Ordenes</a>
+      <a class="mdl-navigation__link" href="/logout"> <i class="material-icons">exit_to_app</i> Salir</a>
+    {% endif %} 
+    {% endif %}
+    
+     {% if app.user.pais == "US" %}
+   {% if not is_granted('IS_AUTHENTICATED_FULLY')%}
+    <a class="mdl-navigation__link" href="/"> <i class="material-icons">home</i> Home</a>
+    <a class="mdl-navigation__link" href="/product"> <i class="material-icons">view_module</i> Products</a>
+    <a class="mdl-navigation__link" href="/register"> <i class="material-icons">person_add</i> Sign Up</a>
+    <a class="mdl-navigation__link show-dialog" href="javascript:void(0)" id="show-dialog">  <i class="material-icons">person</i>Sign In</a>
+  {% endif %}
+    
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %} 
+      <a class="mdl-navigation__link" href="/"> <i class="material-icons">home</i> Home</a>
+      <a class="mdl-navigation__link" href="/product"> <i class="material-icons">view_module</i> Products</a>
+      <a class="mdl-navigation__link" href="/getWishlist"> <i class="material-icons">view_list</i> Wishlist</a>
+      <a class="mdl-navigation__link" href="/shoppingCart"> <i class="material-icons">shopping_cart</i>Shopping Cart</a>
+      <a class="mdl-navigation__link" href="/orders"> <i class="material-icons">local_shipping</i> Orders</a>
+      <a class="mdl-navigation__link" href="/logout"> <i class="material-icons">exit_to_app</i> Logout</a>
+    {% endif %} 
+    {% endif %}
+    
+    {% if app.user.pais == "EN" %}
+   {% if not is_granted('IS_AUTHENTICATED_FULLY')%}
+    <a class="mdl-navigation__link" href="/"> <i class="material-icons">home</i> Home</a>
+    <a class="mdl-navigation__link" href="/product"> <i class="material-icons">view_module</i> Products</a>
+    <a class="mdl-navigation__link" href="/register"> <i class="material-icons">person_add</i> Sign Up</a>
+    <a class="mdl-navigation__link show-dialog" href="javascript:void(0)" id="show-dialog">  <i class="material-icons">person</i>Sign In</a>
+  {% endif %}
+    
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %} 
+      <a class="mdl-navigation__link" href="/"> <i class="material-icons">home</i> Home</a>
+      <a class="mdl-navigation__link" href="/product"> <i class="material-icons">view_module</i> Products</a>
+      <a class="mdl-navigation__link" href="/getWishlist"> <i class="material-icons">view_list</i> Wishlist</a>
+      <a class="mdl-navigation__link" href="/shoppingCart"> <i class="material-icons">shopping_cart</i>Shopping Cart</a>
+      <a class="mdl-navigation__link" href="/orders"> <i class="material-icons">local_shipping</i> Orders</a>
+      <a class="mdl-navigation__link" href="/logout"> <i class="material-icons">exit_to_app</i> Logout</a>
+    {% endif %} 
+    {% endif %} 
+    
+{% endblock %}
+
+{% block links %}
+    
+    {% if app.user.pais == "VE" %}
+   {% if not is_granted('IS_AUTHENTICATED_FULLY')%}
+    <a class="mdl-navigation__link" href="/"> <i class="material-icons">home</i> Inicio</a>
+    <a class="mdl-navigation__link" href="/product"> <i class="material-icons">view_module</i> Productos</a>
+    <a class="mdl-navigation__link" href="/register"> <i class="material-icons">person_add</i> Registrarse</a>
+    <a class="mdl-navigation__link show-dialog" href="javascript:void(0)" id="show-dialog">  <i class="material-icons">person</i>Iniciar Sesion</a>
+  {% endif %}
+    
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %} 
+      <a class="mdl-navigation__link" href="/"> <i class="material-icons">home</i> Inicio</a>
+      <a class="mdl-navigation__link" href="/product"> <i class="material-icons">view_module</i> Productos</a>
+      <a class="mdl-navigation__link" href="/getWishlist"> <i class="material-icons">view_list</i> Lista de Deseos</a>
+      <a class="mdl-navigation__link" href="/shoppingCart"> <i class="material-icons">shopping_cart</i>Carro de Compras</a>
+      <a class="mdl-navigation__link" href="/orders"> <i class="material-icons">local_shipping</i> Ordenes</a>
+      <a class="mdl-navigation__link" href="/logout"> <i class="material-icons">exit_to_app</i> Salir</a>
+    {% endif %} 
+    {% endif %}
+    
+     {% if app.user.pais == "CO" %}
+   {% if not is_granted('IS_AUTHENTICATED_FULLY')%}
+    <a class="mdl-navigation__link" href="/"> <i class="material-icons">home</i> Home</a>
+    <a class="mdl-navigation__link" href="/product"> <i class="material-icons">view_module</i> Productos</a>
+    <a class="mdl-navigation__link" href="/register"> <i class="material-icons">person_add</i> Registrarse</a>
+    <a class="mdl-navigation__link show-dialog" href="javascript:void(0)" id="show-dialog">  <i class="material-icons">person</i>Iniciar Sesion</a>
+  {% endif %}
+    
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %} 
+      <a class="mdl-navigation__link" href="/"> <i class="material-icons">home</i> Home</a>
+      <a class="mdl-navigation__link" href="/product"> <i class="material-icons">view_module</i> Productos</a>
+      <a class="mdl-navigation__link" href="/getWishlist"> <i class="material-icons">view_list</i> Lista de Deseos</a>
+      <a class="mdl-navigation__link" href="/shoppingCart"> <i class="material-icons">shopping_cart</i>Carro de Compras</a>
+      <a class="mdl-navigation__link" href="/orders"> <i class="material-icons">local_shipping</i> Ordenes</a>
+      <a class="mdl-navigation__link" href="/logout"> <i class="material-icons">exit_to_app</i> Salir</a>
+    {% endif %} 
+    {% endif %}
+    
+     {% if app.user.pais == "US" %}
+   {% if not is_granted('IS_AUTHENTICATED_FULLY')%}
+    <a class="mdl-navigation__link" href="/"> <i class="material-icons">home</i> Home</a>
+    <a class="mdl-navigation__link" href="/product"> <i class="material-icons">view_module</i> Products</a>
+    <a class="mdl-navigation__link" href="/register"> <i class="material-icons">person_add</i> Sign Up</a>
+    <a class="mdl-navigation__link show-dialog" href="javascript:void(0)" id="show-dialog">  <i class="material-icons">person</i>Sign In</a>
+  {% endif %}
+    
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %} 
+      <a class="mdl-navigation__link" href="/"> <i class="material-icons">home</i> Home</a>
+      <a class="mdl-navigation__link" href="/product"> <i class="material-icons">view_module</i> Products</a>
+      <a class="mdl-navigation__link" href="/getWishlist"> <i class="material-icons">view_list</i> Wishlist</a>
+      <a class="mdl-navigation__link" href="/shoppingCart"> <i class="material-icons">shopping_cart</i>Shopping Cart</a>
+      <a class="mdl-navigation__link" href="/orders"> <i class="material-icons">local_shipping</i> Orders</a>
+      <a class="mdl-navigation__link" href="/logout"> <i class="material-icons">exit_to_app</i> Logout</a>
+    {% endif %} 
+    {% endif %}
+    
+    {% if app.user.pais == "EN" %}
+   {% if not is_granted('IS_AUTHENTICATED_FULLY')%}
+    <a class="mdl-navigation__link" href="/"> <i class="material-icons">home</i> Home</a>
+    <a class="mdl-navigation__link" href="/product"> <i class="material-icons">view_module</i> Products</a>
+    <a class="mdl-navigation__link" href="/register"> <i class="material-icons">person_add</i> Sign Up</a>
+    <a class="mdl-navigation__link show-dialog" href="javascript:void(0)" id="show-dialog">  <i class="material-icons">person</i>Sign In</a>
+  {% endif %}
+    
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %} 
+      <a class="mdl-navigation__link" href="/"> <i class="material-icons">home</i> Home</a>
+      <a class="mdl-navigation__link" href="/product"> <i class="material-icons">view_module</i> Products</a>
+      <a class="mdl-navigation__link" href="/getWishlist"> <i class="material-icons">view_list</i> Wishlist</a>
+      <a class="mdl-navigation__link" href="/shoppingCart"> <i class="material-icons">shopping_cart</i>Shopping Cart</a>
+      <a class="mdl-navigation__link" href="/orders"> <i class="material-icons">local_shipping</i> Orders</a>
+      <a class="mdl-navigation__link" href="/logout"> <i class="material-icons">exit_to_app</i> Logout</a>
+    {% endif %} 
+    {% endif %}
+    
+{% endblock %}
+
+
+{% block test %} 
+
+          <form id="form-login" action="{{ path('login') }}" method="post">
+              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <label class="mdl-textfield__label" for="correo">Correo</label>
+                <input class="mdl-textfield__input" type="email" id="correo" name='_username'>
+              </div>
+              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <label class="mdl-textfield__label" for="clave">Contraseña</label>
+                <input class="mdl-textfield__input" type="text" id="clave" name="_password">
+              </div>
+            </form>
+          <div class="mdl-dialog__actions">
+            <button form="form-login" type="submit" class="mdl-button">Login</button>
+            <button type="button" class="mdl-button close">Cancelar</button>
+          </div>
+
+{% endblock %}
+
+{% block contenido %}
+
+<h2>Wishlist</h2>
+
+<style>
+  .table>tbody>tr>td, .table>tfoot>tr>td{
+    vertical-align: middle;
+}
+@media screen and (max-width: 600px) {
+    table#cart tbody td .form-control{
+		width:20%;
+		display: inline !important;
+	}
+	.actions .btn{
+		width:36%;
+		margin:1.5em 0;
+	}
+	
+	.actions .btn-info{
+		float:left;
+	}
+	.actions .btn-danger{
+		float:right;
+	}
+	
+	table#cart thead { display: none; }
+	table#cart tbody td { display: block; padding: .6rem; min-width:320px;}
+	table#cart tbody tr td:first-child { background: #333; color: #fff; }
+	table#cart tbody td:before {
+		content: attr(data-th); font-weight: bold;
+		display: inline-block; width: 8rem;
+	}
+	
+	
+	
+	table#cart tfoot td{display:block; }
+	table#cart tfoot td .btn{display:block;}
+	
+}
+
+</style>
+
+{% if app.user.pais == "US" %}
+<div class="card" style="">
+<div class="container">
+	<table id="cart" class="table table-hover table-condensed">
+    			<thead>
+						<tr>
+							<th style="width:60%" class="">Product</th>
+							<th style="width:20%" class="">Price</th>
+							<th style="width:20%" class="text-center center-text">Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% set total = 0 %}
+						{% for product in productos %}
+						{% set total = total + product.precio %}
+			
+						<tr>
+							<td data-th="Product">
+								<div class="row">
+									<div class="col-sm-3 hidden-xs"><img src="{{product.link}}" alt="..." class="img-responsive" width="100px" height="100px"/></div>
+									<div class="col-sm-9">
+										<h4 class="nomargin">{{product.nombre}}</h4>
+										<p>{{product.descripcion}}</p>
+									</div>
+								</div>
+							</td>
+							<td data-th="Price">{{product.precio}} $</td>
+							
+								<td class="actions" data-th="" style="text-center center-text">
+									<div class="text-center center-text">
+
+										<form action="{{ path('removeWishlist' , { 'id' : product.id})}}" method="POST">
+											<button id="delete{{product.id}}" class="btn" style="width:50%; background-color: #f44336; color:white" type="submit"><i class="material-icons">delete</i></button>
+										</form>
+										<br>
+										<form action="{{ path('agregarProducto' , { 'id' : product.id})}}" method="POST">
+											<button id="add{{product.id}}" class="btn" type="submit" style="width:50%; background-color:#00c853; color:white; font-weight:bold"><i class="material-icons">add_shopping_cart</i></button>
+										</form>
+										
+									</div>
+									<div class="mdl-tooltip mdl-tooltip--right" data-mdl-for="delete{{product.id}}">
+										Delete
+									</div>
+									<div class="mdl-tooltip mdl-tooltip--right" data-mdl-for="add{{product.id}}">
+										Add to Shopping Cart
+									</div>
+	
+								</td>
+							
+						</tr>
+						
+						{% endfor %}
+						
+					</tbody>
+					<tfoot>
+						
+						
+					</tfoot>
+					
+				</table>
+</div>
+</div>
+	<br>
+	<br>
+{% endif %}
+
+{% if app.user.pais == "EN" %}
+<div class="card" style="">
+<div class="container">
+	<table id="cart" class="table table-hover table-condensed">
+    			<thead>
+						<tr>
+							<th style="width:60%" class="">Product</th>
+							<th style="width:20%" class="">Price</th>
+							<th style="width:20%" class="text-center center-text">Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% set total = 0 %}
+						{% for product in productos %}
+
+			
+						<tr>
+							<td data-th="Product">
+								<div class="row">
+									<div class="col-sm-3 hidden-xs"><img src="{{product.link}}" alt="..." class="img-responsive" width="100px" height="100px"/></div>
+									<div class="col-sm-9">
+										<h4 class="nomargin">{{product.nombre}}</h4>
+										<p>{{product.descripcion}}</p>
+									</div>
+								</div>
+							</td>
+							<td data-th="Price">{{product.precio * 0.76}} £</td>
+							
+								<td class="actions" data-th="" style="text-center center-text">
+									<div class="text-center center-text">
+
+										<form action="{{ path('removeWishlist' , { 'id' : product.id})}}" method="POST">
+											<button id="delete{{product.id}}" class="btn" style="width:50%; background-color: #f44336; color:white" type="submit"><i class="material-icons">delete</i></button>
+										</form>
+										<br>
+										<form action="{{ path('agregarProducto' , { 'id' : product.id})}}" method="POST">
+											<button id="add{{product.id}}" class="btn" type="submit" style="width:50%; background-color:#00c853; color:white; font-weight:bold"><i class="material-icons">add_shopping_cart</i></button>
+										</form>
+										
+									</div>
+									<div class="mdl-tooltip mdl-tooltip--right" data-mdl-for="delete{{product.id}}">
+										Delete
+									</div>
+									<div class="mdl-tooltip mdl-tooltip--right" data-mdl-for="add{{product.id}}">
+										Add to Shopping Cart
+									</div>
+	
+								</td>
+							
+						</tr>
+						
+						{% endfor %}
+						
+					</tbody>
+					<tfoot>
+						
+						
+					</tfoot>
+					
+				</table>
+</div>
+</div>
+	<br>
+	<br>
+{% endif %}
+
+{% if app.user.pais == "CO" %}
+<div class="card" style="">
+<div class="container">
+	<table id="cart" class="table table-hover table-condensed">
+    			<thead>
+						<tr>
+							<th style="width:60%" class="">Producto</th>
+							<th style="width:20%" class="">Precio</th>
+							<th style="width:20%" class="text-center center-text">Acciones</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% set total = 0 %}
+						{% for product in productos %}
+
+			
+						<tr>
+							<td data-th="Product">
+								<div class="row">
+									<div class="col-sm-3 hidden-xs"><img src="{{product.link}}" alt="..." class="img-responsive" width="100px" height="100px"/></div>
+									<div class="col-sm-9">
+										<h4 class="nomargin">{{product.nombre}}</h4>
+										<p>{{product.descripcion}}</p>
+									</div>
+								</div>
+							</td>
+							<td data-th="Price">{{product.precio * 2977.99}} COP</td>
+							
+								<td class="actions" data-th="" style="text-center center-text">
+									<div class="text-center center-text">
+
+										<form action="{{ path('removeWishlist' , { 'id' : product.id})}}" method="POST">
+											<button id="delete{{product.id}}" class="btn" style="width:50%; background-color: #f44336; color:white" type="submit"><i class="material-icons">delete</i></button>
+										</form>
+										<br>
+										<form action="{{ path('agregarProducto' , { 'id' : product.id})}}" method="POST">
+											<button id="add{{product.id}}" class="btn" type="submit" style="width:50%; background-color:#00c853; color:white; font-weight:bold"><i class="material-icons">add_shopping_cart</i></button>
+										</form>
+										
+									</div>
+									<div class="mdl-tooltip mdl-tooltip--right" data-mdl-for="delete{{product.id}}">
+										Borrar
+									</div>
+									<div class="mdl-tooltip mdl-tooltip--right" data-mdl-for="add{{product.id}}">
+										Agregar al Carro de Compras
+									</div>
+	
+								</td>
+							
+						</tr>
+						
+						{% endfor %}
+						
+					</tbody>
+					<tfoot>
+						
+						
+					</tfoot>
+					
+				</table>
+</div>
+</div>
+	<br>
+	<br>
+{% endif %}
+
+{% if app.user.pais == "VE" %}
+<div class="card" style="">
+<div class="container">
+	<table id="cart" class="table table-hover table-condensed">
+    			<thead>
+						<tr>
+							<th style="width:60%" class="">Producto</th>
+							<th style="width:20%" class="">Precio</th>
+							<th style="width:20%" class="text-center center-text">Acciones</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% set total = 0 %}
+						{% for product in productos %}
+
+			
+						<tr>
+							<td data-th="Product">
+								<div class="row">
+									<div class="col-sm-3 hidden-xs"><img src="{{product.link}}" alt="..." class="img-responsive" width="100px" height="100px"/></div>
+									<div class="col-sm-9">
+										<h4 class="nomargin">{{product.nombre}}</h4>
+										<p>{{product.descripcion}}</p>
+									</div>
+								</div>
+							</td>
+							<td data-th="Price">{{product.precio * 35000}} BsF</td>
+							
+								<td class="actions" data-th="" style="text-center center-text">
+									<div class="text-center center-text">
+
+										<form action="{{ path('removeWishlist' , { 'id' : product.id})}}" method="POST">
+											<button id="delete{{product.id}}" class="btn" style="width:50%; background-color: #f44336; color:white" type="submit"><i class="material-icons">delete</i></button>
+										</form>
+										<br>
+										<form action="{{ path('agregarProducto' , { 'id' : product.id})}}" method="POST">
+											<button id="add{{product.id}}" class="btn" type="submit" style="width:50%; background-color:#00c853; color:white; font-weight:bold"><i class="material-icons">add_shopping_cart</i></button>
+										</form>
+										
+									</div>
+									<div class="mdl-tooltip mdl-tooltip--right" data-mdl-for="delete{{product.id}}">
+										Borrar
+									</div>
+									<div class="mdl-tooltip mdl-tooltip--right" data-mdl-for="add{{product.id}}">
+										Agregar al Carro de Compras
+									</div>
+	
+								</td>
+							
+						</tr>
+						
+						{% endfor %}
+						
+					</tbody>
+					<tfoot>
+						
+						
+					</tfoot>
+					
+				</table>
+</div>
+</div>
+	<br>
+	<br>
+{% endif %}
+
+
+{% endblock %}

@@ -1,0 +1,729 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+  {{ parent() }}
+{% endblock %}
+
+{% block toplinks %}
+{% if app.user %}
+    
+      {% if app.user.correo == "admin@admin.com" %}
+        
+        {% if app.user.pais == "VE" %}
+        
+              {% if is_granted('IS_AUTHENTICATED_FULLY') %} 
+              <a class="mdl-navigation__link" href="/"> <i class="material-icons">home</i> Inicio</a>
+              <a class="mdl-navigation__link" href="/admin"> <i class="material-icons">account_circle</i> Administrar Aplicacion</a>
+              <a class="mdl-navigation__link" href="/product"> <i class="material-icons">view_module</i> Productos</a>
+              <a class="mdl-navigation__link" href="/logout"> <i class="material-icons">exit_to_app</i> Salir</a>
+              {% endif %} 
+            
+        {% endif %}
+      
+          {% if app.user.pais == "CO" %}
+            
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %} 
+                  <a class="mdl-navigation__link" href="/"> <i class="material-icons">home</i> Inicio</a>
+                  <a class="mdl-navigation__link" href="/admin"> <i class="material-icons">account_circle</i> Administrar Aplicacion</a>
+                  <a class="mdl-navigation__link" href="/product"> <i class="material-icons">view_module</i> Productos</a>
+                  <a class="mdl-navigation__link" href="/logout"> <i class="material-icons">exit_to_app</i> Salir</a>
+                {% endif %} 
+                
+          {% endif %}
+          
+          {% if app.user.pais == "US" %}
+        
+              {% if is_granted('IS_AUTHENTICATED_FULLY') %} 
+                <a class="mdl-navigation__link" href="/"> <i class="material-icons">home</i> Home</a>
+                <a class="mdl-navigation__link" href="/admin"> <i class="material-icons">account_circle</i> Administrate App</a>
+                <a class="mdl-navigation__link" href="/product"> <i class="material-icons">view_module</i> Products</a>
+                <a class="mdl-navigation__link" href="/logout"> <i class="material-icons">exit_to_app</i> Logout</a>
+              {% endif %} 
+          {% endif %}
+          
+          {% if app.user.pais == "EN" %}
+        
+              {% if is_granted('IS_AUTHENTICATED_FULLY') %} 
+                <a class="mdl-navigation__link" href="/"> <i class="material-icons">home</i> Home</a>
+                <a class="mdl-navigation__link" href="/admin"> <i class="material-icons">account_circle</i> Administrate App</a>
+                <a class="mdl-navigation__link" href="/product"> <i class="material-icons">view_module</i> Products</a>
+                <a class="mdl-navigation__link" href="/logout"> <i class="material-icons">exit_to_app</i> Logout</a>
+              {% endif %} 
+              
+          {% endif %}
+          
+      {% else %}
+      
+      {% if app.user.pais == "VE" %}
+        
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %} 
+          <a class="mdl-navigation__link" href="/"> <i class="material-icons">home</i> Inicio</a>
+          <a class="mdl-navigation__link" href="/product"> <i class="material-icons">view_module</i> Productos</a>
+          <a class="mdl-navigation__link" href="/getWishlist"> <i class="material-icons">view_list</i> Lista de Deseos</a>
+          <a class="mdl-navigation__link" href="/shoppingCart"> <i class="material-icons">shopping_cart</i>Carro de Compras</a>
+          <a class="mdl-navigation__link" href="/orders"> <i class="material-icons">local_shipping</i> Ordenes</a>
+          <a class="mdl-navigation__link" href="/logout"> <i class="material-icons">exit_to_app</i> Salir</a>
+        {% endif %} 
+      {% endif %}
+    
+      {% if app.user.pais == "CO" %}
+    
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %} 
+          <a class="mdl-navigation__link" href="/"> <i class="material-icons">home</i> Home</a>
+          <a class="mdl-navigation__link" href="/product"> <i class="material-icons">view_module</i> Productos</a>
+          <a class="mdl-navigation__link" href="/getWishlist"> <i class="material-icons">view_list</i> Lista de Deseos</a>
+          <a class="mdl-navigation__link" href="/shoppingCart"> <i class="material-icons">shopping_cart</i>Carro de Compras</a>
+          <a class="mdl-navigation__link" href="/orders"> <i class="material-icons">local_shipping</i> Ordenes</a>
+          <a class="mdl-navigation__link" href="/logout"> <i class="material-icons">exit_to_app</i> Salir</a>
+        {% endif %} 
+      {% endif %}
+    
+      {% if app.user.pais == "US" %}
+        
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %} 
+          <a class="mdl-navigation__link" href="/"> <i class="material-icons">home</i> Home</a>
+          <a class="mdl-navigation__link" href="/product"> <i class="material-icons">view_module</i> Products</a>
+          <a class="mdl-navigation__link" href="/getWishlist"> <i class="material-icons">view_list</i> Wishlist</a>
+          <a class="mdl-navigation__link" href="/shoppingCart"> <i class="material-icons">shopping_cart</i>Shopping Cart</a>
+          <a class="mdl-navigation__link" href="/orders"> <i class="material-icons">local_shipping</i> Orders</a>
+          <a class="mdl-navigation__link" href="/logout"> <i class="material-icons">exit_to_app</i> Logout</a>
+        {% endif %} 
+      {% endif %}
+    
+    {% if app.user.pais == "EN" %}
+      
+      {% if is_granted('IS_AUTHENTICATED_FULLY') %} 
+        <a class="mdl-navigation__link" href="/"> <i class="material-icons">home</i> Home</a>
+        <a class="mdl-navigation__link" href="/product"> <i class="material-icons">view_module</i> Products</a>
+        <a class="mdl-navigation__link" href="/getWishlist"> <i class="material-icons">view_list</i> Wishlist</a>
+        <a class="mdl-navigation__link" href="/shoppingCart"> <i class="material-icons">shopping_cart</i>Shopping Cart</a>
+        <a class="mdl-navigation__link" href="/orders"> <i class="material-icons">local_shipping</i> Orders</a>
+        <a class="mdl-navigation__link" href="/logout"> <i class="material-icons">exit_to_app</i> Logout</a>
+      {% endif %} 
+      
+    {% endif %}
+          
+    {% endif %}
+    
+    
+    {% else %}
+    
+      {% if not is_granted('IS_AUTHENTICATED_FULLY')%}
+        <a class="mdl-navigation__link" href="/"> <i class="material-icons">home</i> Home</a>
+        <a class="mdl-navigation__link" href="/product"> <i class="material-icons">view_module</i> Products</a>
+        <a class="mdl-navigation__link" href="/register"> <i class="material-icons">person_add</i> Sign Up</a>
+        <a class="mdl-navigation__link show-dialog" href="javascript:void(0)" id="show-dialog">  <i class="material-icons">person</i>Sign In</a>
+      {% endif %}
+  
+    {% endif %}
+{% endblock %}
+
+{% block links %}
+
+{% if app.user %}
+    
+      {% if app.user.correo == "admin@admin.com" %}
+        
+        {% if app.user.pais == "VE" %}
+        
+              {% if is_granted('IS_AUTHENTICATED_FULLY') %} 
+              <a class="mdl-navigation__link" href="/"> <i class="material-icons">home</i> Inicio</a>
+              <a class="mdl-navigation__link" href="/admin"> <i class="material-icons">account_circle</i> Administrar Aplicacion</a>
+              <a class="mdl-navigation__link" href="/product"> <i class="material-icons">view_module</i> Productos</a>
+              <a class="mdl-navigation__link" href="/logout"> <i class="material-icons">exit_to_app</i> Salir</a>
+              {% endif %} 
+            
+        {% endif %}
+      
+          {% if app.user.pais == "CO" %}
+            
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %} 
+                  <a class="mdl-navigation__link" href="/"> <i class="material-icons">home</i> Inicio</a>
+                  <a class="mdl-navigation__link" href="/admin"> <i class="material-icons">account_circle</i> Administrar Aplicacion</a>
+                  <a class="mdl-navigation__link" href="/product"> <i class="material-icons">view_module</i> Productos</a>
+                  <a class="mdl-navigation__link" href="/logout"> <i class="material-icons">exit_to_app</i> Salir</a>
+                {% endif %} 
+                
+          {% endif %}
+          
+          {% if app.user.pais == "US" %}
+        
+              {% if is_granted('IS_AUTHENTICATED_FULLY') %} 
+                <a class="mdl-navigation__link" href="/"> <i class="material-icons">home</i> Home</a>
+                <a class="mdl-navigation__link" href="/admin"> <i class="material-icons">account_circle</i> Administrate App</a>
+                <a class="mdl-navigation__link" href="/product"> <i class="material-icons">view_module</i> Products</a>
+                <a class="mdl-navigation__link" href="/logout"> <i class="material-icons">exit_to_app</i> Logout</a>
+              {% endif %} 
+          {% endif %}
+          
+          {% if app.user.pais == "EN" %}
+        
+              {% if is_granted('IS_AUTHENTICATED_FULLY') %} 
+                <a class="mdl-navigation__link" href="/"> <i class="material-icons">home</i> Home</a>
+                <a class="mdl-navigation__link" href="/admin"> <i class="material-icons">account_circle</i> Administrate App</a>
+                <a class="mdl-navigation__link" href="/product"> <i class="material-icons">view_module</i> Products</a>
+                <a class="mdl-navigation__link" href="/logout"> <i class="material-icons">exit_to_app</i> Logout</a>
+              {% endif %} 
+              
+          {% endif %}
+          
+      {% else %}
+      
+      {% if app.user.pais == "VE" %}
+        
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %} 
+          <a class="mdl-navigation__link" href="/"> <i class="material-icons">home</i> Inicio</a>
+          <a class="mdl-navigation__link" href="/product"> <i class="material-icons">view_module</i> Productos</a>
+          <a class="mdl-navigation__link" href="/getWishlist"> <i class="material-icons">view_list</i> Lista de Deseos</a>
+          <a class="mdl-navigation__link" href="/shoppingCart"> <i class="material-icons">shopping_cart</i>Carro de Compras</a>
+          <a class="mdl-navigation__link" href="/orders"> <i class="material-icons">local_shipping</i> Ordenes</a>
+          <a class="mdl-navigation__link" href="/logout"> <i class="material-icons">exit_to_app</i> Salir</a>
+        {% endif %} 
+      {% endif %}
+    
+      {% if app.user.pais == "CO" %}
+    
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %} 
+          <a class="mdl-navigation__link" href="/"> <i class="material-icons">home</i> Home</a>
+          <a class="mdl-navigation__link" href="/product"> <i class="material-icons">view_module</i> Productos</a>
+          <a class="mdl-navigation__link" href="/getWishlist"> <i class="material-icons">view_list</i> Lista de Deseos</a>
+          <a class="mdl-navigation__link" href="/shoppingCart"> <i class="material-icons">shopping_cart</i>Carro de Compras</a>
+          <a class="mdl-navigation__link" href="/orders"> <i class="material-icons">local_shipping</i> Ordenes</a>
+          <a class="mdl-navigation__link" href="/logout"> <i class="material-icons">exit_to_app</i> Salir</a>
+        {% endif %} 
+      {% endif %}
+    
+      {% if app.user.pais == "US" %}
+        
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %} 
+          <a class="mdl-navigation__link" href="/"> <i class="material-icons">home</i> Home</a>
+          <a class="mdl-navigation__link" href="/product"> <i class="material-icons">view_module</i> Products</a>
+          <a class="mdl-navigation__link" href="/getWishlist"> <i class="material-icons">view_list</i> Wishlist</a>
+          <a class="mdl-navigation__link" href="/shoppingCart"> <i class="material-icons">shopping_cart</i>Shopping Cart</a>
+          <a class="mdl-navigation__link" href="/orders"> <i class="material-icons">local_shipping</i> Orders</a>
+          <a class="mdl-navigation__link" href="/logout"> <i class="material-icons">exit_to_app</i> Logout</a>
+        {% endif %} 
+      {% endif %}
+    
+    {% if app.user.pais == "EN" %}
+      
+      {% if is_granted('IS_AUTHENTICATED_FULLY') %} 
+        <a class="mdl-navigation__link" href="/"> <i class="material-icons">home</i> Home</a>
+        <a class="mdl-navigation__link" href="/product"> <i class="material-icons">view_module</i> Products</a>
+        <a class="mdl-navigation__link" href="/getWishlist"> <i class="material-icons">view_list</i> Wishlist</a>
+        <a class="mdl-navigation__link" href="/shoppingCart"> <i class="material-icons">shopping_cart</i>Shopping Cart</a>
+        <a class="mdl-navigation__link" href="/orders"> <i class="material-icons">local_shipping</i> Orders</a>
+        <a class="mdl-navigation__link" href="/logout"> <i class="material-icons">exit_to_app</i> Logout</a>
+      {% endif %} 
+      
+    {% endif %}
+          
+    {% endif %}
+    
+    
+    {% else %}
+    
+      {% if not is_granted('IS_AUTHENTICATED_FULLY')%}
+        <a class="mdl-navigation__link" href="/"> <i class="material-icons">home</i> Home</a>
+        <a class="mdl-navigation__link" href="/product"> <i class="material-icons">view_module</i> Products</a>
+        <a class="mdl-navigation__link" href="/register"> <i class="material-icons">person_add</i> Sign Up</a>
+        <a class="mdl-navigation__link show-dialog" href="javascript:void(0)" id="show-dialog">  <i class="material-icons">person</i>Sign In</a>
+      {% endif %}
+  
+    {% endif %}
+
+{% endblock %}
+
+{% block contenido %}
+
+{% if app.user.correo == "admin@admin.com"%}
+
+  {% if (app.user.pais == "CO") or (app.user.pais == "VE") %}
+  
+    <h2>Agregar un producto</h2>
+    <form action="{{path('agregarAdmin')}}" method="GET">
+      
+      <div class="row">
+        <section class="col-lg-4 col-md-4 mb-4">
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" type="text" id="nombreP" name="nombreP">
+            <label class="mdl-textfield__label" for="nombreP">Nombre del producto</label>
+          </div>
+        </section>
+        <section class="col-lg-8 col-md-8 mb-8">
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:100%">
+            <input class="mdl-textfield__input" type="text" id="descripcionP" name="descripcionP">
+            <label class="mdl-textfield__label" for="descripcionP">Descripcion del producto</label>
+          </div>
+        </section>
+      </div>
+      
+      <div class="row">
+        <section class="col-lg-4 col-md-4 mb-4">
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="precioP" name="precioP">
+            <label class="mdl-textfield__label" for="precioP">Precio en $</label>
+            <span class="mdl-textfield__error">Lo ingresado no es un numero</span>
+          </div>
+        </section>
+        <section class="col-lg-4 col-md-4 mb-4">
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <select class="mdl-textfield__input" id="categoriaP" name="categoriaP" name="categoriaP">
+              <option selected disabled>Seleccione la categoria</option>  
+              <option value="maceta">Maceta</option>
+              <option value="bonsai">Bonsai</option>
+              <option value="accesorio">Accesorio</option>
+            </select>
+            <label class="mdl-textfield__label">Categoria</label>
+          </div>
+        </section>
+        <section class="col-lg-4 col-md-4 mb-4">
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" type="text" id="linkP" name="linkP">
+            <label class="mdl-textfield__label" for="linkP">Link de la foto</label>
+          </div>
+        </section>
+      </div>
+      
+      <button type="submit" class="btn btn-primary">Agregar</button>
+      <br>
+      <br>
+    </form>
+  
+  {% endif %}
+  
+  {% if (app.user.pais == "EN") or (app.user.pais == "US") %}
+  
+    <h2>Add a product</h2>
+    <form action="{{path('agregarAdmin')}}" method="GET">
+      
+      <div class="row">
+        <section class="col-lg-4 col-md-4 mb-4">
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" type="text" id="nombreP" name="nombreP">
+            <label class="mdl-textfield__label" for="nombreP">Name of Product</label>
+          </div>
+        </section>
+        <section class="col-lg-8 col-md-8 mb-8">
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width:100%">
+            <input class="mdl-textfield__input" type="text" id="descripcionP" name="descripcionP">
+            <label class="mdl-textfield__label" for="descripcionP">Description of Product</label>
+          </div>
+        </section>
+      </div>
+      
+      <div class="row">
+        <section class="col-lg-4 col-md-4 mb-4">
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="precioP" name="precioP">
+            <label class="mdl-textfield__label" for="precioP">Price in $</label>
+            <span class="mdl-textfield__error">Please enter only numbers</span>
+          </div>
+        </section>
+        <section class="col-lg-4 col-md-4 mb-4">
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <select class="mdl-textfield__input" id="categoriaP" name="categoriaP" name="categoriaP">
+              <option selected disabled>Select Category</option>  
+              <option value="maceta">Pot</option>
+              <option value="bonsai">Bonsai</option>
+              <option value="accesorio">Accessory</option>
+            </select>
+            <label class="mdl-textfield__label">Category</label>
+          </div>
+        </section>
+        <section class="col-lg-4 col-md-4 mb-4">
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" type="text" id="linkP" name="linkP">
+            <label class="mdl-textfield__label" for="linkP">Link of the photo</label>
+          </div>
+        </section>
+      </div>
+      
+      <button type="submit" class="btn btn-primary">Add </button>
+      <br>
+      <br>
+    </form>
+  
+  {% endif %}
+  
+  
+  <hr>
+  
+  <br>
+  <br>
+  
+  {% if (app.user.pais == "CO") or (app.user.pais == "VE") %}
+      
+    <h2>Gestionar los productos</h2>
+
+        <div class="row">
+          <form action="{{path('eliminarAdmin')}}" method="GET" class="col-lg-6 col-md-6 mb-6">
+            <section class="col-lg-12 col-md-12 mb-12">
+              <h4>Gestión de productos</h4>
+              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <select class="mdl-textfield__input" id="categoriaP" name="borrarP">
+                  <option selected disabled>Seleccionar producto</option>
+                  {% if (app.user.pais == "VE")%}
+                    {% for product in products %}
+                      <option value="{{product.id}}">{{product.nombre}}. Precio: {{product.precio*35000}} BsF</option>
+                    {% endfor %}
+                  {% endif %}
+                  {% if (app.user.pais == "CO")%}
+                    {% for product in products %}
+                      <option value="{{product.id}}">{{product.nombre}}. Precio: {{product.precio*2994.55}} $</option>
+                    {% endfor %}
+                  {% endif %}
+                </select>
+                <label class="mdl-textfield__label">Productos</label>
+              </div>
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit">
+                    Eliminar
+                </button>
+            </section>
+          </form>
+          
+          <form action="{{path('updatePrice')}}" method="GET" class="col-lg-6 col-md-6 mb-6">
+            <section class="col-lg-12 col-md-12 mb-12">
+              <h4>Actualizar precios</h4>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                  <select class="mdl-textfield__input" id="categoriaP" name="gestionarP">
+                    <option selected disabled>Seleccionar productos</option>
+                    {% if (app.user.pais == "VE")%}
+                      {% for product in products %}
+                        <option value="{{product.id}}">{{product.nombre}}. Precio: {{product.precio*35000}} BsF</option>
+                      {% endfor %}
+                    {% endif %}
+                    {% if (app.user.pais == "CO")%}
+                      {% for product in products %}
+                        <option value="{{product.id}}">{{product.nombre}}. PRecio: {{product.precio*2994.55}} $</option>
+                      {% endfor %}
+                    {% endif %}
+                  </select>
+                  <label class="mdl-textfield__label">Productos</label>
+                </div>
+                <div class="row">
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="precioN" name="precioN">
+                    <label class="mdl-textfield__label" for="precioN">Precio Nuevo</label>
+                    <span class="mdl-textfield__error">Favor ingresa sólo números</span>
+                  </div>
+                  <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit">
+                    Actualizar precio
+                  </button>
+                </div>
+            </section>
+          </form>
+        </div>
+        
+        <h2>Gestionar Ordenes</h2>
+            
+            <div class="card" style="">
+            <div class="container">
+	<table id="cart" class="table table-hover table-condensed">
+    		<thead>
+						<tr>
+							<th style="width:55%" class="">Usuario</th>
+							<th style="width:15%" class="text-center center-text">Acciones</th>
+						</tr>
+					</thead>
+					<tbody>
+			
+				{% for key, user in users %}
+			
+						<tr>
+							<td data-th="Product">
+								
+								
+								<h6><i class="material-icons">person_pin</i>{{user.nombre}}</h6>
+									
+										<div class="collapse" id="collapseExample{{key}}">
+										<div class="row">
+										  
+										  <div class="col-sm">
+											  <h4>Orden</h4>
+											 </div>
+											 
+											 <div class="col-sm">
+											  <h4>Monto Total</h4>
+											 </div>
+											 
+											 <div class="col-sm">
+											  <h4>Fecha</h4>
+											 </div>
+											 
+											 <div class="col-sm">
+											  <h4>Accion</h4>
+											 </div>
+										  
+										</div>
+										{% set  cont = 1 %}
+										{% for order in orders %}
+										{% if order.usuario.id == user.id %}
+										<div class="row">
+											<div class="col-sm">
+											  <h6>{{cont}}</h6>
+											 </div>
+											<div class="col-sm">
+											  
+											  {% if app.user.pais == "VE" %}
+									    	<h6 class="nomargin"> <h6>{{order.montoTotal*35000}} BsF</h6></h6>
+									    	{% else %}
+									    	<h6 class="nomargin"> <h6>{{order.montoTotal*2977}} COP</h6></h6>
+									    	{% endif %}
+									    </div>
+        								
+        
+                    <div class="col-sm">
+									        
+									        <h6>{{order.fecha}}</h6>
+									        
+									      </div>
+        
+        								<div class="col-sm">
+        								  </br>
+										    <form action="{{path('cancelarAdmin' , {'id' : order.id, 'userid': user.id} ) }}" method="POST" >
+        								<button class="btn btn-danger" id="botonCancel{{cont}}" type="submit">
+        										  <i class="material-icons">cancel</i>
+        								</button>
+        								</form>
+        								
+        								<div class="mdl-tooltip mdl-tooltip--right" data-mdl-for="botonCancel{{cont}}">
+        										Cancelar Orden
+        								</div>
+									      </div>
+									      
+									      
+									    
+									    
+									    
+									    
+									    
+									    
+									    </div>
+									    
+									    {% set cont= cont + 1  %}
+									    {% endif %}
+										{% endfor %}
+										</div>
+										
+									
+									
+								
+							</td>
+							<td data-th="Acciones">
+								<button class="btn" id="botonOrden{{key}}" type="button" data-toggle="collapse" data-target="#collapseExample{{key}}" aria-expanded="false" aria-controls="collapseExample">
+										  <i class="material-icons">list</i>
+								</button>
+								<div class="mdl-tooltip mdl-tooltip--right" data-mdl-for="botonOrden{{key}}">
+										Ver Ordenes
+								</div>
+								
+										  
+							</td>
+							
+						</tr>
+						
+						{% endfor %}
+						
+					</tbody>
+			
+	
+
+				</table>
+</div>
+</div>
+
+  {% endif %}
+  
+  {% if (app.user.pais == "US") or (app.user.pais == "EN") %}
+    <h2>Manage products</h2>
+        <div class="row">
+            <form action="{{path('eliminarAdmin')}}" method="GET" class="col-lg-6 col-md-6 mb-6">
+            <section class="col-lg-12 col-md-12 mb-12">
+              <h4>Products elimination</h4>
+              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <select class="mdl-textfield__input" id="categoriaP" name="borrarP">
+                  <option selected disabled>Select product</option>
+                  {% if (app.user.pais == "US")%}
+                    {% for product in products %}
+                      <option value="{{product.id}}">{{product.nombre}}. Price: {{product.precio}} $</option>
+                    {% endfor %}
+                  {% endif %}
+                  {% if (app.user.pais == "EN")%}
+                    {% for product in products %}
+                      <option value="{{product.id}}">{{product.nombre}}. Price: {{product.precio*0.76}} £</option>
+                    {% endfor %}
+                  {% endif %}
+                </select>
+                <label class="mdl-textfield__label">Products</label>
+              </div>
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit">
+                    Delete
+                  </button>
+            </section>
+          </form>
+          
+            <form action="{{path('updatePrice')}}" method="GET" class="col-lg-6 col-md-6 mb-6">
+              <section class="col-lg-12 col-md-12 mb-12">
+                <h4>Update products price</h4>
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <select class="mdl-textfield__input" id="categoriaP" name="gestionarP">
+                      <option selected disabled>Select product</option>
+                      {% if (app.user.pais == "US")%}
+                        {% for product in products %}
+                          <option value="{{product.id}}">{{product.nombre}}. Price: {{product.precio}} $</option>
+                        {% endfor %}
+                      {% endif %}
+                      {% if (app.user.pais == "EN")%}
+                        {% for product in products %}
+                          <option value="{{product.id}}">{{product.nombre}}. Price: {{product.precio*0.76}} £</option>
+                        {% endfor %}
+                      {% endif %}
+                    </select>
+                    <label class="mdl-textfield__label">Products</label>
+                  </div>
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                      <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="precioN" name="precioN">
+                      <label class="mdl-textfield__label" for="precioN">New price</label>
+                      <span class="mdl-textfield__error">Input is not a number!</span>
+                    </div>
+                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit">
+                      Update Price
+                    </button>
+              </section>
+            </form> 
+            
+            <h2>Manage Orders</h2>
+            
+            <div class="card" style="">
+  <div class="container">
+	<table id="cart" class="table table-hover table-condensed">
+    		<thead>
+						<tr>
+							<th style="width:55%" class="">User</th>
+							<th style="width:15%" class="text-center center-text">Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+			
+				{% for key, user in users %}
+			
+						<tr>
+							<td data-th="Product">
+								
+								
+								<h6><i class="material-icons">person_pin</i>{{user.nombre}}</h6>
+									
+										<div class="collapse" id="collapseExample{{key}}">
+										<div class="row">
+										  
+										  <div class="col-sm">
+											  <h4>Order</h4>
+											 </div>
+											 
+											 <div class="col-sm">
+											  <h4>Total</h4>
+											 </div>
+											 
+											 <div class="col-sm">
+											  <h4>Date</h4>
+											 </div>
+											 
+											 <div class="col-sm">
+											  <h4>Action</h4>
+											 </div>
+										  
+										</div>
+										{% set  cont = 1 %}
+										{% for order in orders %}
+										{% if order.usuario.id == user.id %}
+										<div class="row">
+											<div class="col-sm">
+											  <h6>{{cont}}</h6>
+											 </div>
+											<div class="col-sm">
+											  
+											  {% if app.user.pais == "EN" %}
+									    	<h6 class="nomargin"> <h6>{{order.montoTotal*0.76}} £</h6></h6>
+									    	{% else %}
+									    	<h6 class="nomargin"> <h6>{{order.montoTotal}} $</h6></h6>
+									    	{% endif %}
+									    </div>
+        								
+        
+                    <div class="col-sm">
+									        
+									        <h6>{{order.fecha}}</h6>
+									        
+									      </div>
+        
+        								<div class="col-sm">
+        								  </br>
+										    <form action="{{path('cancelarAdmin' , {'id' : order.id, 'userid': user.id} ) }}" method="POST" >
+        								<button class="btn btn-danger" id="botonCancel{{cont}}" type="submit">
+        										  <i class="material-icons">cancel</i>
+        								</button>
+        								</form>
+        								
+        								<div class="mdl-tooltip mdl-tooltip--right" data-mdl-for="botonCancel{{cont}}">
+        										Cancel Order
+        								</div>
+									      </div>
+									      
+									      
+									    
+									    
+									    
+									    
+									    
+									    
+									    </div>
+									    
+									    {% set cont= cont + 1  %}
+									    {% endif %}
+										{% endfor %}
+										</div>
+										
+									
+									
+								
+							</td>
+							<td data-th="Acciones">
+								<button class="btn" id="botonOrden{{key}}" type="button" data-toggle="collapse" data-target="#collapseExample{{key}}" aria-expanded="false" aria-controls="collapseExample">
+										  <i class="material-icons">list</i>
+								</button>
+								<div class="mdl-tooltip mdl-tooltip--right" data-mdl-for="botonOrden{{key}}">
+										Display Orders
+								</div>
+								
+										  
+							</td>
+							
+						</tr>
+						
+						{% endfor %}
+						
+					</tbody>
+			
+	
+
+				</table>
+</div>
+</div>
+            
+            
+            
+        </div>
+
+    
+  {% endif %}
+  
+
+{% else %}
+
+<h1>No eres un administrador</h1>
+
+<img src="https://www.stellarinfo.com/blog/wp-content/uploads/2017/02/error-thinkstock-100655502-primary.idge_.jpg" alt="Error">
+
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,134 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use AppBundle\Entity\Usuario;
+use AppBundle\Entity\Producto;
+
+
+/**
+ * Orden
+ *
+ * @ORM\Table(name="orden")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\OrdenRepository")
+ */
+class Orden
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+    
+    /**
+     * @var string
+     * 
+     * @ORM\Column(name="direccion", type="text")
+     * 
+     */
+     private $direccion;
+     
+     
+    /**
+     * @var date
+     * 
+     * @ORM\Column(name="fecha", type="date")
+     * 
+     */
+     private $fecha;
+     
+      /**
+     * @var int
+     * 
+     * @ORM\Column(name="numeroTarjeta", type="bigint")
+     * 
+     */
+     private $numeroTarjeta;
+     
+     /**
+     * @var string
+     * 
+     * @ORM\Column(name="tipoPago", type="text")
+     * 
+     */
+     private $tipoPago;
+     
+     
+     
+     
+    /**
+     * @var string
+     * 
+     * @ORM\Column(name="montoTotal", type="text")
+     * 
+     */
+     private $montoTotal;
+     
+    /**
+     * @ORM\ManyToOne(targetEntity="Usuario", inversedBy="orden")
+     * @ORM\JoinColumn(name="usuario_id", referencedColumnName="id")
+     */
+    private $usuario;
+    
+    
+    /**
+     * @var \Doctrine\Common\Collections\ArrayCollection|Carrito[]
+     * @ORM\ManyToMany(targetEntity="Carrito", inversedBy="orden")
+     * @ORM\JoinTable(
+     *  name="orden_producto",
+     *  joinColumns={
+     *      @ORM\JoinColumn(name="id_producto", referencedColumnName="id")
+     *  },
+     *  inverseJoinColumns={
+     *      @ORM\JoinColumn(name="id_orden", referencedColumnName="id")
+     *  }
+     * )
+     */
+    private $carrito;
+    
+     public function __construct()
+    {
+        $this->carrito = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+    
+     /**
+     * @param Producto $producto
+     */
+    public function removeProducto(Producto $producto)
+    {
+        if (false === $this->producto->contains($producto)) {
+            return;
+        }
+        $this->producto->removeElement($producto);
+        $producto->removeOrden($this);
+    }
+
+    /**
+     * @param Producto $producto
+     */
+    public function addProducto(Producto $producto)
+    {
+        if (true === $this->producto->contains($producto)) {
+            return;
+        }
+        $this->producto->add($producto);
+        $producto->addOrden($this);
+    }
+    
+    
+    
+}
+

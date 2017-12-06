@@ -1,0 +1,19 @@
+Para cambiar de base de datos:
+    1. Abre los archivos config.yml y parameters.yml (/app/config)
+    2. En config.yml, tienes que ir a la configuración de doctrine y cambiar el driver 
+    (
+    Opción 1: "pdo_mysql" para abrir la base de datos de MySQL,
+    Opción 2: "pdo_pgsql" para conectarse a la base de datos de PostgreSQL)
+    3. En parameters.yml tienes que comentar la segunda configuración de parameters para entrar a la base de datos de MySQL,
+    y para entrar a PostgreSQL comentas la otra configuración.
+    
+    
+Para ingresar como admin:
+    Usuario: admin@admin.com
+    Clave: admin
+    
+Para cambiar de país:
+    Cambia el pais en el dropdown que hay en el footer (está en todas las vistas, debes haber iniciado sesión para que funcione)
+    
+
+    

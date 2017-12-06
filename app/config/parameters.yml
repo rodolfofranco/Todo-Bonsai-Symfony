@@ -1,0 +1,30 @@
+# Parametros para conectar a la base de datos de MySQL que se llama  "symfony"
+parameters:
+     database_host: 127.0.0.1
+     database_port: null
+     database_name: symfony
+     database_user: ceyanesb
+     database_password: null
+     mailer_transport: smtp
+     mailer_host: 127.0.0.1
+     mailer_user: null
+     mailer_password: null
+     secret: 5fa9975d0c0865cddb462bebced9da81ce977a4b
+    
+    # Parametros para conectar a la base de datos de postgreSQL que se llama "symfony"
+# parameters:
+#      database_driver:   pdo_pgsql
+#      database_host:     127.0.0.1
+#      database_port:     null
+#      database_name:     symfony
+#      database_user:     ceyanesb
+#      database_password: root
+#      mailer_transport:  smtp
+#      mailer_host: 127.0.0.1
+#      mailer_user: null
+#      mailer_password: null
+#      secret: 5fa9975d0c0865cddb462bebced9da81ce977a4b
+
+    
+    
+    

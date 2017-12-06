@@ -1,0 +1,565 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+  {{ parent() }}
+{% endblock %}
+
+{% block toplinks %}
+
+   {% if app.user %}
+    
+    {% if app.user.pais == "VE" %}
+    
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %} 
+      <a class="mdl-navigation__link" href="/"> <i class="material-icons">home</i> Inicio</a>
+      <a class="mdl-navigation__link" href="/product"> <i class="material-icons">view_module</i> Productos</a>
+      <a class="mdl-navigation__link" href="/getWishlist"> <i class="material-icons">view_list</i> Lista de Deseos</a>
+      <a class="mdl-navigation__link" href="/shoppingCart"> <i class="material-icons">shopping_cart</i>Carro de Compras</a>
+      <a class="mdl-navigation__link" href="/orders"> <i class="material-icons">local_shipping</i> Ordenes</a>
+      <a class="mdl-navigation__link" href="/logout"> <i class="material-icons">exit_to_app</i> Salir</a>
+    {% endif %} 
+    
+    {% endif %}
+    
+    {% if app.user.pais == "CO" %}
+    
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %} 
+      <a class="mdl-navigation__link" href="/"> <i class="material-icons">home</i> Inicio</a>
+      <a class="mdl-navigation__link" href="/product"> <i class="material-icons">view_module</i> Productos</a>
+      <a class="mdl-navigation__link" href="/getWishlist"> <i class="material-icons">view_list</i> Lista de Deseos</a>
+      <a class="mdl-navigation__link" href="/shoppingCart"> <i class="material-icons">shopping_cart</i>Carro de Compras</a>
+      <a class="mdl-navigation__link" href="/orders"> <i class="material-icons">local_shipping</i> Ordenes</a>
+      <a class="mdl-navigation__link" href="/logout"> <i class="material-icons">exit_to_app</i> Salir</a>
+    {% endif %} 
+    
+    {% endif %}
+    
+    {% if app.user.pais == "US" %}
+    
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %} 
+      <a class="mdl-navigation__link" href="/"> <i class="material-icons">home</i> Home</a>
+      <a class="mdl-navigation__link" href="/product"> <i class="material-icons">view_module</i> Products</a>
+      <a class="mdl-navigation__link" href="/getWishlist"> <i class="material-icons">view_list</i> Wishlist</a>
+      <a class="mdl-navigation__link" href="/shoppingCart"> <i class="material-icons">shopping_cart</i>Shopping Cart</a>
+      <a class="mdl-navigation__link" href="/orders"> <i class="material-icons">local_shipping</i> Orders</a>
+      <a class="mdl-navigation__link" href="/logout"> <i class="material-icons">exit_to_app</i> Logout</a>
+    {% endif %} 
+    
+    {% endif %}
+    
+    {% if app.user.pais == "EN" %}
+    
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %} 
+      <a class="mdl-navigation__link" href="/"> <i class="material-icons">home</i> Home</a>
+      <a class="mdl-navigation__link" href="/product"> <i class="material-icons">view_module</i> Products</a>
+      <a class="mdl-navigation__link" href="/getWishlist"> <i class="material-icons">view_list</i> Wishlist</a>
+      <a class="mdl-navigation__link" href="/shoppingCart"> <i class="material-icons">shopping_cart</i>Shopping Cart</a>
+      <a class="mdl-navigation__link" href="/orders"> <i class="material-icons">local_shipping</i> Orders</a>
+      <a class="mdl-navigation__link" href="/logout"> <i class="material-icons">exit_to_app</i> Logout</a>
+    {% endif %} 
+    
+    {% endif %}
+    
+    {% else %}
+
+    <a class="mdl-navigation__link" href="/"> <i class="material-icons">home</i> Home</a>
+    <a class="mdl-navigation__link" href="/product"> <i class="material-icons">view_module</i> Productos</a>
+    <a class="mdl-navigation__link" href="/register"> <i class="material-icons">person_add</i> Sign Up</a>
+    <a class="mdl-navigation__link show-dialogLogin" href="javascript:void(0)" id="show-dialogLogin">  <i class="material-icons">person</i>Sign In</a>
+    
+    {% endif %}
+    
+{% endblock %}
+
+{% block links %}
+    {% if app.user %}
+    
+    {% if app.user.pais == "VE" %}
+    
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %} 
+      <a class="mdl-navigation__link" href="/"> <i class="material-icons">home</i> Inicio</a>
+      <a class="mdl-navigation__link" href="/product"> <i class="material-icons">view_module</i> Productos</a>
+      <a class="mdl-navigation__link" href="/getWishlist"> <i class="material-icons">view_list</i> Lista de Deseos</a>
+      <a class="mdl-navigation__link" href="/shoppingCart"> <i class="material-icons">shopping_cart</i>Carro de Compras</a>
+      <a class="mdl-navigation__link" href="/orders"> <i class="material-icons">local_shipping</i> Ordenes</a>
+      <a class="mdl-navigation__link" href="/logout"> <i class="material-icons">exit_to_app</i> Salir</a>
+    {% endif %} 
+    
+    {% endif %}
+    
+    {% if app.user.pais == "CO" %}
+    
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %} 
+      <a class="mdl-navigation__link" href="/"> <i class="material-icons">home</i> Inicio</a>
+      <a class="mdl-navigation__link" href="/product"> <i class="material-icons">view_module</i> Productos</a>
+      <a class="mdl-navigation__link" href="/getWishlist"> <i class="material-icons">view_list</i> Lista de Deseos</a>
+      <a class="mdl-navigation__link" href="/shoppingCart"> <i class="material-icons">shopping_cart</i>Carro de Compras</a>
+      <a class="mdl-navigation__link" href="/orders"> <i class="material-icons">local_shipping</i> Ordenes</a>
+      <a class="mdl-navigation__link" href="/logout"> <i class="material-icons">exit_to_app</i> Salir</a>
+    {% endif %} 
+    
+    {% endif %}
+    
+    {% if app.user.pais == "US" %}
+    
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %} 
+      <a class="mdl-navigation__link" href="/"> <i class="material-icons">home</i> Home</a>
+      <a class="mdl-navigation__link" href="/product"> <i class="material-icons">view_module</i> Products</a>
+      <a class="mdl-navigation__link" href="/getWishlist"> <i class="material-icons">view_list</i> Wishlist</a>
+      <a class="mdl-navigation__link" href="/shoppingCart"> <i class="material-icons">shopping_cart</i>Shopping Cart</a>
+      <a class="mdl-navigation__link" href="/orders"> <i class="material-icons">local_shipping</i> Orders</a>
+      <a class="mdl-navigation__link" href="/logout"> <i class="material-icons">exit_to_app</i> Logout</a>
+    {% endif %} 
+    
+    {% endif %}
+    
+    {% if app.user.pais == "EN" %}
+    
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %} 
+      <a class="mdl-navigation__link" href="/"> <i class="material-icons">home</i> Home</a>
+      <a class="mdl-navigation__link" href="/product"> <i class="material-icons">view_module</i> Products</a>
+      <a class="mdl-navigation__link" href="/getWishlist"> <i class="material-icons">view_list</i> Wishlist</a>
+      <a class="mdl-navigation__link" href="/shoppingCart"> <i class="material-icons">shopping_cart</i>Shopping Cart</a>
+      <a class="mdl-navigation__link" href="/orders"> <i class="material-icons">local_shipping</i> Orders</a>
+      <a class="mdl-navigation__link" href="/logout"> <i class="material-icons">exit_to_app</i> Logout</a>
+    {% endif %} 
+    
+    {% endif %}
+    
+    {% else %}
+
+    <a class="mdl-navigation__link" href="/"> <i class="material-icons">home</i> Home</a>
+    <a class="mdl-navigation__link" href="/product"> <i class="material-icons">view_module</i> Productos</a>
+    <a class="mdl-navigation__link" href="/register"> <i class="material-icons">person_add</i> Sign Up</a>
+    <a class="mdl-navigation__link show-dialogLogin" href="javascript:void(0)" id="show-dialogLogin">  <i class="material-icons">person</i>Sign In</a>
+    
+    {% endif %}
+    
+{% endblock %}
+
+
+{% block test %} 
+
+          <form id="form-login" action="{{ path('login') }}" method="post">
+              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <label class="mdl-textfield__label" for="correo">Correo</label>
+                <input class="mdl-textfield__input" type="email" id="correo" name='_username'>
+              </div>
+              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <label class="mdl-textfield__label" for="clave">Contraseña</label>
+                <input class="mdl-textfield__input" type="text" id="clave" name="_password">
+              </div>
+            </form>
+          <div class="mdl-dialog__actions">
+            <button form="form-login" type="submit" class="mdl-button">Login</button>
+            <button type="button" class="mdl-button close">Cancelar</button>
+          </div>
+
+{% endblock %}
+
+{% block contenido %}
+
+{% if app.user.pais == "VE" %}
+<h2>Ordenes</h2>
+{% endif %}
+{% if app.user.pais == "CO" %}
+<h2>Ordenes</h2>
+{% endif %}
+{% if app.user.pais == "US" %}
+<h2>Orders</h2>
+{% endif %}
+{% if app.user.pais == "EN" %}
+<h2>Orders</h2>
+{% endif %}
+
+<style>
+  .table>tbody>tr>td, .table>tfoot>tr>td{
+    vertical-align: middle;
+}
+@media screen and (max-width: 600px) {
+    table#cart tbody td .form-control{
+		width:20%;
+		display: inline !important;
+	}
+	.actions .btn{
+		width:36%;
+		margin:1.5em 0;
+	}
+	
+	.actions .btn-info{
+		float:left;
+	}
+	.actions .btn-danger{
+		float:right;
+	}
+	
+	table#cart thead { display: none; }
+	table#cart tbody td { display: block; padding: .6rem; min-width:320px;}
+	table#cart tbody tr td:first-child { background: #333; color: #fff; }
+	table#cart tbody td:before {
+		content: attr(data-th); font-weight: bold;
+		display: inline-block; width: 8rem;
+	}
+	
+	
+	
+	table#cart tfoot td{display:block; }
+	table#cart tfoot td .btn{display:block;}
+	
+}
+
+</style>
+
+{% if app.user.pais == "US" %}
+<div class="card" style="">
+<div class="container">
+	<table id="cart" class="table table-hover table-condensed">
+    		<thead>
+						<tr>
+							<th style="width:55%" class="">Order</th>
+							<th style="width:15%" class="">Date and Time</th>
+							<th style="width:15%" class="">Total</th>
+							<th style="width:15%" class="text-center center-text">Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+			
+				{% for key, orden in ordenes %}
+			
+						<tr>
+							<td data-th="Product">
+								<div class="row">
+									<div class="col-sm-3 hidden-xs"><h3 class="nomargin">{{ key + 1 }}</h3>	</div>
+									<div class="col-sm-9">
+
+										
+											<div class="collapse" id="collapseExample{{key}}">
+											
+											{% for key1, products in productos %}
+											{% for product in products %}
+												
+												{% if key==key1 %}
+												<div class="row" style="padding-top:15px">
+								<div class="col-sm-3 hidden-xs"><img src="{{product.link}}" alt="..." class="img-responsive" width="50px" height="50px"/></div>
+									<div class="col-sm-9">
+										<h6 class="nomargin">{{product.nombre}} <p>{{product.descripcion}} <h5>{{product.precio}} $</h5></p></h6>
+										
+									</div>
+								</div>
+											  
+												{% endif %}
+											{% endfor %}
+											{% endfor %}
+											</div>
+										</div>
+										
+									</div>
+									
+								</div>
+							</td>
+							<td> <p>{{orden.fecha}}</p></td>
+							<td data-th="Price"><h4>{{orden.montoTotal}} $</h4></td>
+						
+							
+								</td>
+							<td data-th="Acciones">
+								
+								<button class="btn" id="botonOrden{{key}}" type="button" data-toggle="collapse" data-target="#collapseExample{{key}}" aria-expanded="false" aria-controls="collapseExample">
+										  <i class="material-icons">list</i>
+								</button>
+								<div class="mdl-tooltip mdl-tooltip--right" data-mdl-for="botonOrden{{key}}">
+										Display Order
+								</div>
+								<br>
+								<br>
+								<form action="{{path('cancelarOrden' , {'id' : orden.id} ) }}" method="POST" >
+								<button id="botonCancel{{key}}" class="btn btn-danger" type="submit">
+										  <i class="material-icons">cancel</i>
+								</button>
+								</form>
+								
+								<div class="mdl-tooltip mdl-tooltip--right" data-mdl-for="botonCancel{{key}}">
+										Cancel Order
+								</div>
+										  
+							</td>
+							
+						</tr>
+						
+						{% endfor %}
+						
+					</tbody>
+			
+	
+
+				</table>
+</div>
+</div>
+	<br>
+	<br>
+{% endif %}
+
+{% if app.user.pais == "EN" %}
+<div class="card" style="">
+<div class="container">
+	<table id="cart" class="table table-hover table-condensed">
+    		<thead>
+						<tr>
+							<th style="width:55%" class="">Order</th>
+							<th style="width:15%" class="">Date and Time</th>
+							<th style="width:15%" class="">Total</th>
+							<th style="width:15%" class="text-center center-text">Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+			
+				{% for key, orden in ordenes %}
+			
+						<tr>
+							<td data-th="Product">
+								<div class="row">
+									<div class="col-sm-3 hidden-xs"><h3 class="nomargin">{{ key + 1 }}</h3>	</div>
+									<div class="col-sm-9">
+										
+											<div class="collapse" id="collapseExample{{key}}">
+											
+											{% for key1, products in productos %}
+											{% for product in products %}
+												{% set precio = product.precio * 0.76 %}
+												{% if key==key1 %}
+												<div class="row" style="padding-top:15px">
+								<div class="col-sm-3 hidden-xs"><img src="{{product.link}}" alt="..." class="img-responsive" width="50px" height="50px"/></div>
+									<div class="col-sm-9">
+										<h6 class="nomargin">{{product.nombre}} <p>{{product.descripcion}} <h5>{{precio}} £</h5></p></h6>
+										
+									</div>
+								</div>
+											  
+												{% endif %}
+											{% endfor %}
+											{% endfor %}
+											</div>
+										</div>
+										
+									</div>
+									
+								</div>
+							</td>
+							<td> <p>{{orden.fecha}}</p></td>
+							<td data-th="Price"><h4>{{orden.montoTotal*0.76}} £</h4></td>
+						
+							
+								</td>
+							<td data-th="Acciones">
+								<button class="btn" id="botonOrden{{key}}" type="button" data-toggle="collapse" data-target="#collapseExample{{key}}" aria-expanded="false" aria-controls="collapseExample">
+										  <i class="material-icons">list</i>
+								</button>
+								<div class="mdl-tooltip mdl-tooltip--right" data-mdl-for="botonOrden{{key}}">
+										Display Order
+								</div>
+								<br>
+								<br>
+								<form action="{{path('cancelarOrden' , {'id' : orden.id} ) }}" method="POST" >
+								<button class="btn btn-danger" id="botonCancel{{key}}" type="submit">
+										  <i class="material-icons">cancel</i>
+								</button>
+								</form>
+								
+								<div class="mdl-tooltip mdl-tooltip--right" data-mdl-for="botonCancel{{key}}">
+										Cancel Order
+								</div>
+										  
+							</td>
+							
+						</tr>
+						
+						{% endfor %}
+						
+					</tbody>
+			
+	
+
+				</table>
+</div>
+</div>
+	<br>
+	<br>
+{% endif %}
+
+{% if app.user.pais == "VE" %}
+<div class="card" style="">
+<div class="container">
+	<table id="cart" class="table table-hover table-condensed">
+    		<thead>
+						<tr>
+							<th style="width:55%" class="">Orden</th>
+							<th style="width:15%" class="">Hora y Fecha</th>
+							<th style="width:15%" class="">Monto Total</th>
+							<th style="width:15%" class="text-center center-text">Acciones</th>
+						</tr>
+					</thead>
+					<tbody>
+			
+				{% for key, orden in ordenes %}
+			
+						<tr>
+							<td data-th="Product">
+								<div class="row">
+									<div class="col-sm-3 hidden-xs"><h3 class="nomargin">{{ key + 1 }}</h3>	</div>
+									<div class="col-sm-9">
+
+										
+											<div class="collapse" id="collapseExample{{key}}">
+											
+											{% for key1, products in productos %}
+											{% for product in products %}
+												{% set precio = product.precio * 35000 %}
+												{% if key==key1 %}
+												<div class="row" style="padding-top:15px">
+								<div class="col-sm-3 hidden-xs"><img src="{{product.link}}" alt="..." class="img-responsive" width="50px" height="50px"/></div>
+									<div class="col-sm-9">
+										<h6 class="nomargin">{{product.nombre}} <p>{{product.descripcion}} <h5>{{precio}} BsF</h5></p></h6>
+										
+									</div>
+								</div>
+											  
+												{% endif %}
+											{% endfor %}
+											{% endfor %}
+											</div>
+										</div>
+										
+									</div>
+									
+								</div>
+							</td>
+							<td> <p>{{orden.fecha}}</p></td>
+							<td data-th="Price"><h4>{{orden.montoTotal*35000}} BsF</h4></td>
+						
+							
+								</td>
+							<td data-th="Acciones">
+								<button class="btn" id="botonOrden{{key}}" type="button" data-toggle="collapse" data-target="#collapseExample{{key}}" aria-expanded="false" aria-controls="collapseExample">
+										  <i class="material-icons">list</i>
+								</button>
+								<div class="mdl-tooltip mdl-tooltip--right" data-mdl-for="botonOrden{{key}}">
+										Ver Orden
+								</div>
+								<br>
+								<br>
+								<form action="{{path('cancelarOrden' , {'id' : orden.id} ) }}" method="POST" >
+								<button class="btn btn-danger" id="botonCancel{{key}} "type="submit">
+										  <i class="material-icons">cancel</i>
+								</button>
+								</form>
+								
+								<div class="mdl-tooltip mdl-tooltip--right" data-mdl-for="botonCancel{{key}}">
+										Cancelar Orden
+								</div>
+										  
+							</td>
+							
+						</tr>
+						
+						{% endfor %}
+						
+					</tbody>
+			
+	
+
+				</table>
+</div>
+</div>
+	<br>
+	<br>
+{% endif %}
+
+{% if app.user.pais == "CO" %}
+<div class="card" style="">
+<div class="container">
+	<table id="cart" class="table table-hover table-condensed">
+    		<thead>
+						<tr>
+							<th style="width:55%" class="">Orden</th>
+							<th style="width:15%" class="">Hora y Fecha</th>
+							<th style="width:15%" class="">Monto Total</th>
+							<th style="width:15%" class="text-center center-text">Acciones</th>
+						</tr>
+					</thead>
+					<tbody>
+			
+				{% for key, orden in ordenes %}
+			
+						<tr>
+							<td data-th="Product">
+								<div class="row">
+									<div class="col-sm-3 hidden-xs"><h3 class="nomargin">{{ key + 1 }}</h3>	</div>
+									<div class="col-sm-9">
+										
+											<div class="collapse" id="collapseExample{{key}}">
+											
+											{% for key1, products in productos %}
+											{% for product in products %}
+												{% set precio = product.precio * 2977.99 %}
+												{% if key==key1 %}
+												<div class="row" style="padding-top:15px">
+								<div class="col-sm-3 hidden-xs"><img src="{{product.link}}" alt="..." class="img-responsive" width="50px" height="50px"/></div>
+									<div class="col-sm-9">
+										<h6 class="nomargin">{{product.nombre}} <p>{{product.descripcion}} <h5>{{precio}} BsF</h5></p></h6>
+										
+									</div>
+								</div>
+											  
+												{% endif %}
+											{% endfor %}
+											{% endfor %}
+											</div>
+										</div>
+										
+									</div>
+									
+								</div>
+							</td>
+							<td> <p>{{orden.fecha}}</p></td>
+							<td data-th="Price"><h4>{{orden.montoTotal*2977.99}} BsF</h4></td>
+						
+							
+								</td>
+							<td data-th="Acciones">
+								<button class="btn" id="botonOrden{{key}}" type="button" data-toggle="collapse" data-target="#collapseExample{{key}}" aria-expanded="false" aria-controls="collapseExample">
+										  <i class="material-icons">list</i>
+								</button>
+								<div class="mdl-tooltip mdl-tooltip--right" data-mdl-for="botonOrden{{key}}">
+										Ver Orden
+								</div>
+								<br>
+								<br>
+								<form action="{{path('cancelarOrden' , {'id' : orden.id} ) }}" method="POST" >
+								<button class="btn btn-danger" id="botonCancel{{key}}" type="submit">
+										  <i class="material-icons">cancel</i>
+								</button>
+								</form>
+								
+								<div class="mdl-tooltip mdl-tooltip--right" data-mdl-for="botonCancel{{key}}">
+										Cancelar Orden
+								</div>
+										  
+							</td>
+							
+						</tr>
+						
+						{% endfor %}
+						
+					</tbody>
+			
+	
+
+				</table>
+</div>
+</div>
+	<br>
+	<br>
+{% endif %}
+
+
+
+{% endblock %}

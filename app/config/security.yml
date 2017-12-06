@@ -1,0 +1,42 @@
+# To get started with security, check out the documentation:
+# https://symfony.com/doc/current/security.html
+security:
+    encoders:
+        AppBundle\Entity\Usuario: bcrypt
+        
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN: [ ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH ]
+
+    # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
+    providers:
+    
+        our_db_provider:
+            entity:
+                class: AppBundle:Usuario
+                property: correo
+        in_memory:
+            memory: ~
+
+    firewalls:
+        # disables authentication for assets and the profiler, adapt it according to your needs
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        main:
+            anonymous: ~
+            form_login:
+                login_path: login
+                check_path: login
+            logout:
+                path: /logout
+                target: /
+            provider: our_db_provider
+            
+    access_control:
+        - { path: ^/orders, roles: ROLE_USER }
+        - { path: ^/shoppingCart, roles: ROLE_USER }
+        - { path: ^/wishlist, roles: ROLE_USER }
+        - { path: ^/getWishlist, roles: ROLE_USER }
+        - { path: ^/register, allow_if: "is_anonymous() and !is_authenticated()" }
